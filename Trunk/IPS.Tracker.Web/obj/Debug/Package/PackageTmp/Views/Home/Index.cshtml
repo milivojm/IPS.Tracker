@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Početna";
+}
+
+<div class="jumbotron">
+    <h1>Podsjetnik</h1>
+    <p>Dobrodošli u aplikaciju za upravljanje zadacima!</p>
+    <div>
+        @Html.ActionLink("Moji zadaci", "ListProblemsByUser", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Novi zadatak", "ReportNewDefect", null, new { @class = "btn btn-danger" })
+    </div>
+</div>
+
+
+

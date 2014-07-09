@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Zadatak kreiran";
+}
+
+<h2>Zadatak kreiran</h2>
+
+<div class="alert alert-success">
+    Uspješno se kreirali zadatak broj @ViewBag.DefectId. Možete ga pogledati @Html.ActionLink("ovdje", "Details", new { id = ViewBag.DefectId }).
+</div>

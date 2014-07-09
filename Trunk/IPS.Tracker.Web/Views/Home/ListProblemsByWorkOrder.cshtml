@@ -1,0 +1,13 @@
+﻿@model IEnumerable<IPS.Tracker.Web.TrackerService.DefectDTO>
+
+@{
+    ViewBag.Title = "Pregled zadataka na radnom nalogu";
+}
+
+<h2>Pregled zadataka na radnom nalogu @ViewBag.RadniNalog</h2>
+
+<div class="toolbox-container pull-left">
+
+</div>
+
+@Html.Partial("ListProblems", Model)

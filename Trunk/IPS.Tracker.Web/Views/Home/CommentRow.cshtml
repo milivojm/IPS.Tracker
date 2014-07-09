@@ -1,0 +1,13 @@
+﻿@model IPS.Tracker.Web.TrackerService.DefectCommentDTO
+
+<li class="media">
+    <div class="pull-left">
+        <h3>
+            <span class="glyphicon glyphicon-leaf"></span>
+        </h3>
+    </div>
+    <div class="media-body">
+        <h5 class="media-heading">@Model.CommentatorName u @Model.CommentDate</h5>
+        <h6><span>@Html.Raw(IPS.Tracker.Web.Utils.HtmlUtils.ParseHash(Model.Text))</span></h6>
+    </div>
+</li>
