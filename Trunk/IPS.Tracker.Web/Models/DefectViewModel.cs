@@ -60,6 +60,7 @@ namespace IPS.Tracker.Web.Models
         }
 
         [Required(ErrorMessage="Naziv je obavezan")]
+        [StringLength(50,ErrorMessage="Najviše 50 znakova")]
         [Display(Name = "Naziv")]
         public string Summary { get; set; }
 

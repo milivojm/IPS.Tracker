@@ -176,8 +176,14 @@ namespace IPS.Tracker.WCF
             mailMessage.From = new MailAddress("ips@gzr.hr", defectComment.Commentator.Name, Encoding.Unicode);
 
             foreach (DefectFollower df in defect.DefectFollowers)
-                mailMessage.To.Add(new MailAddress(df.Follower.Email));
+            {
+                if (df.Follower != defectComment.Commentator)
+                    mailMessage.To.Add(new MailAddress(df.Follower.Email));
+            }
 
+            // ne treba nikog obavijestiti
+            if (mailMessage.To.Count == 0)
+                return;
 
             string detailsUrl = ConfigurationManager.AppSettings["DetailsUrl"];
 
@@ -187,6 +193,7 @@ namespace IPS.Tracker.WCF
             html = html.Replace("{Summary}", defect.Summary);
             html = html.Replace("{Description}", defectComment.Text.Replace("\n", "<br/>"));
             html = html.Replace("{Link}", detailsUrl + defect.Id.ToString());
+            html = html.Replace("{Commentator}", defectComment.Commentator.Name);
             mailMessage.Body = html;
             SmtpClient client = new SmtpClient();
             // client.Credentials = CredentialCache.DefaultNetworkCredentials;

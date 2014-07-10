@@ -10,10 +10,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/IPS.Tracker.Web.dll">
-      <publishTime>07/08/2014 14:28:45</publishTime>
+      <publishTime>07/10/2014 10:53:18</publishTime>
     </File>
     <File Include="bin/IPS.Tracker.Web.pdb">
-      <publishTime>07/08/2014 14:28:45</publishTime>
+      <publishTime>07/10/2014 10:53:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>05/29/2014 15:25:50</publishTime>
@@ -235,7 +235,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2014 15:31:40</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/08/2014 14:28:55</publishTime>
+      <publishTime>07/10/2014 10:53:40</publishTime>
     </File>
   </ItemGroup>
 </Project>

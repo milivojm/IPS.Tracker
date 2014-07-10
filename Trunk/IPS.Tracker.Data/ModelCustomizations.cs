@@ -101,7 +101,13 @@ namespace IPS.Tracker.Data
 
             if (this.WorkOrderId != workOrderId)
             {
-                string oldWorkOrderLabel = this.WorkOrder.Label;
+                string oldWorkOrderLabel;
+
+                if (this.WorkOrder != null)
+                    oldWorkOrderLabel = this.WorkOrder.Label;
+                else
+                    oldWorkOrderLabel = "(prazno)";
+
                 this.WorkOrderId = workOrderId;
                 comment.AddChange("radni nalog", oldWorkOrderLabel, WorkOrder.Label);
             }
@@ -217,7 +223,8 @@ namespace IPS.Tracker.Data
         }
     }
 
-    public partial class Worker {
+    public partial class Worker
+    {
         public static List<Worker> AllWorkers { get; set; }
     }
 }

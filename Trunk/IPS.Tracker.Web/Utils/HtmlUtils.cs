@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace IPS.Tracker.Web.Utils
 {
@@ -24,7 +26,9 @@ namespace IPS.Tracker.Web.Utils
 
                     if (!matchedTasks.Contains(taskNumber))
                     {
-                        endResult = endResult.Replace(match.Groups[0].Value, "<a href='/Home/Details/" + taskNumber + "'>#" + taskNumber + "</a>");
+                        UrlHelper helper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+                        string url = helper.Action("Details", "Home", new { id = taskNumber });
+                        endResult = endResult.Replace(match.Groups[0].Value, "<a href='" + url + "'>#" + taskNumber + "</a>");
                         matchedTasks.Add(taskNumber);
                     }
                 }

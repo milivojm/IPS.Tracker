@@ -1,0 +1,13 @@
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\bin\Debug\IPS.Tracker.SyncService.exe.config
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\bin\Debug\IPS.Tracker.SyncService.exe
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\bin\Debug\IPS.Tracker.SyncService.pdb
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\obj\Debug\IPS.Tracker.SyncService.csprojResolveAssemblyReference.cache
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\obj\Debug\IPS.Tracker.SyncService.exe
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\obj\Debug\IPS.Tracker.SyncService.pdb
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\bin\Debug\Microsoft.Exchange.WebServices.Auth.dll
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\bin\Debug\Microsoft.Exchange.WebServices.dll
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\bin\Debug\Microsoft.Exchange.WebServices.xml
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\bin\Debug\Microsoft.Exchange.WebServices.Auth.xml
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\obj\Debug\IPS.Tracker.SyncService.SyncService.resources
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\obj\Debug\IPS.Tracker.SyncService.csproj.GenerateResource.Cache
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.SyncService\obj\Debug\IPS.Tracker.SyncService.ProjectInstaller.resources

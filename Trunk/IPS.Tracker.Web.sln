@@ -10,6 +10,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPS.Tracker.WCF", "IPS.Trac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPS.Tracker.Data", "IPS.Tracker.Data\IPS.Tracker.Data.csproj", "{DEF30CC8-C2AE-4B38-A402-9D7C164644E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPS.Tracker.SyncService", "IPS.Tracker.SyncService\IPS.Tracker.SyncService.csproj", "{F3A9BA42-62A3-43B3-8FE8-AD4D0D5BEEE4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B228DC3-96E5-4121-901A-9A2655692846} = {5B228DC3-96E5-4121-901A-9A2655692846}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +33,10 @@ Global
 		{DEF30CC8-C2AE-4B38-A402-9D7C164644E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEF30CC8-C2AE-4B38-A402-9D7C164644E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEF30CC8-C2AE-4B38-A402-9D7C164644E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3A9BA42-62A3-43B3-8FE8-AD4D0D5BEEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A9BA42-62A3-43B3-8FE8-AD4D0D5BEEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A9BA42-62A3-43B3-8FE8-AD4D0D5BEEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A9BA42-62A3-43B3-8FE8-AD4D0D5BEEE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
