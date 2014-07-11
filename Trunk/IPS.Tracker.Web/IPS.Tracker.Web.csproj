@@ -93,10 +93,20 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\LICENSE.txt" />
+    <Content Include="fonts\octicons.css" />
+    <Content Include="fonts\octicons.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\octicons-local.ttf" />
+    <Content Include="fonts\octicons.eot" />
+    <Content Include="fonts\octicons.less" />
+    <Content Include="fonts\octicons.ttf" />
+    <Content Include="fonts\octicons.woff" />
+    <Content Include="fonts\README.md" />
+    <Content Include="fonts\sprockets-octicons.scss" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="jquery-ui-1.10.4.custom\css\custom-theme\images\animated-overlay.gif" />
@@ -142,13 +152,13 @@
     <Content Include="Service References\TrackerService\IPS.Tracker.Web.TrackerService.WorkOrderDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\TrackerService\TrackerService.disco" />
-    <Content Include="Service References\TrackerService\configuration91.svcinfo" />
-    <Content Include="Service References\TrackerService\configuration.svcinfo" />
-    <Content Include="Service References\TrackerService\Reference.svcmap">
+    <None Include="Service References\TrackerService\TrackerService.disco" />
+    <None Include="Service References\TrackerService\configuration91.svcinfo" />
+    <None Include="Service References\TrackerService\configuration.svcinfo" />
+    <None Include="Service References\TrackerService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -163,6 +173,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkOrderDTO.cs" />
     <Compile Include="Models\DefectDTO.cs" />
     <Compile Include="Models\Priority.cs" />
     <Compile Include="Models\DefectViewModel.cs" />
@@ -192,7 +203,7 @@
     <Content Include="Views\Home\CommentRow.cshtml" />
     <Content Include="Views\Home\PageNotExist.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Service References\TrackerService\TrackerService.wsdl" />
+    <None Include="Service References\TrackerService\TrackerService.wsdl" />
     <None Include="Service References\TrackerService\TrackerService.xsd">
       <SubType>Designer</SubType>
     </None>

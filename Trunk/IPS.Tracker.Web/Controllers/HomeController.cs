@@ -29,6 +29,8 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.InitializeNewDefect();
+                WorkerDTO currentWorker = GetCurrentWorker(client);
+                defect.AssigneeId = currentWorker.Id;
                 DefectViewModel viewModel = new DefectViewModel(defect);
                 viewModel.Workers = client.GetActiveWorkers();
                 return View(viewModel);

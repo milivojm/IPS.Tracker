@@ -100,7 +100,7 @@
          function saveWorkOrders(response) {
              if (response != null) {
                  for (var i = 0; i < response.length; i++) {
-                     var wo = { label: response[i].Name, value: response[i].Id };
+                     var wo = { label: response[i].Label, value: response[i].Id };
                      //
                      workOrders.push(wo);
                  }

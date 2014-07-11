@@ -48,7 +48,7 @@ namespace IPS.Tracker.Web.Models
                 Comments = new List<DefectCommentDTO>();
         }
 
-        [Display(Name = "Prioritet")]
+        [Display(Name = "Prioritet *")]
         public short SelectedPriorityId { get; set; }
 
         public IEnumerable<SelectListItem> Priorities
@@ -61,11 +61,11 @@ namespace IPS.Tracker.Web.Models
 
         [Required(ErrorMessage="Naziv je obavezan")]
         [StringLength(50,ErrorMessage="Najviše 50 znakova")]
-        [Display(Name = "Naziv")]
+        [Display(Name = "Naziv *")]
         public string Summary { get; set; }
 
         [Required(ErrorMessage="Opis zadatka je obavezan")]
-        [Display(Name = "Opis zadatka")]
+        [Display(Name = "Opis zadatka *")]
         public string Description { get; set; }
 
         [Display(Name = "Radni nalog")]
@@ -74,7 +74,7 @@ namespace IPS.Tracker.Web.Models
         public int? SelectedWorkOrderId { get; set; }
 
         [Required(ErrorMessage="Zaduženje je obavezno")]
-        [Display(Name = "Zadužen")]
+        [Display(Name = "Zadužen *")]
         public int AssigneeId { get; set; }
 
         public List<WorkerDTO> Workers
