@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="DefectDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="AssigneeId" type="xs:int" />
@@ -11,6 +12,7 @@
       <xs:element minOccurs="0" name="DefectState" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="LinkedDefectNumbers" nillable="true" type="q1:ArrayOfint" />
       <xs:element minOccurs="0" name="Priority" type="xs:short" />
       <xs:element minOccurs="0" name="PriorityDescription" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReporterId" type="xs:int" />
@@ -33,6 +35,9 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="CommentDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CommentatorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefectDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefectId" type="xs:int" />
+      <xs:element minOccurs="0" name="DefectSummary" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
     </xs:sequence>

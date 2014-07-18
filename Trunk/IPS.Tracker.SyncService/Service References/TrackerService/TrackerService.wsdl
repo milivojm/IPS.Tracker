@@ -73,6 +73,12 @@
   <wsdl:message name="ITrackerService_SearchDefects_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchDefectsResponse" />
   </wsdl:message>
+  <wsdl:message name="ITrackerService_GetLastComments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastComments" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetLastComments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastCommentsResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITrackerService">
     <wsdl:operation name="InitializeNewDefect">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/InitializeNewDefect" message="tns:ITrackerService_InitializeNewDefect_InputMessage" />
@@ -117,6 +123,10 @@
     <wsdl:operation name="SearchDefects">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/SearchDefects" message="tns:ITrackerService_SearchDefects_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/SearchDefectsResponse" message="tns:ITrackerService_SearchDefects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastComments">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetLastComments" message="tns:ITrackerService_GetLastComments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetLastCommentsResponse" message="tns:ITrackerService_GetLastComments_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TrackerServiceEndpoint" type="tns:ITrackerService">
@@ -213,6 +223,15 @@
     </wsdl:operation>
     <wsdl:operation name="SearchDefects">
       <soap:operation soapAction="http://tempuri.org/ITrackerService/SearchDefects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastComments">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetLastComments" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -167,6 +167,9 @@ namespace IPS.Tracker.WCF
 
         private void SendNotification(DefectComment defectComment)
         {
+            if (defectComment == null)
+                return;
+
             Defect defect = defectComment.Defect;
 
             if (defect.DefectFollowers == null || defect.DefectFollowers.Count == 0)
@@ -255,6 +258,39 @@ namespace IPS.Tracker.WCF
                             select d;
 
                 return Mapper.Map<List<DefectDTO>>(query.ToList());
+            }
+        }
+
+
+        public List<DefectCommentDTO> GetLastComments(int currentWorkerId, int commentNumber)
+        {
+            using (TrackerEntities e = new TrackerEntities())
+            {
+                IQueryable<DefectComment> query = (from dc in e.DefectComments
+                                                   from df in e.DefectFollowers
+                                                   where dc.DefectId == df.DefectId
+                                                   && df.FollowerId == currentWorkerId
+                                                   orderby dc.CommentDate descending
+                                                   select dc).Take(commentNumber);
+
+                var newDefects = (from d in e.Defects
+                                  from df in e.DefectFollowers
+                                  where df.FollowerId == currentWorkerId
+                                  && d.Id == df.DefectId
+                                  orderby d.DefectDate descending
+                                  select d).Take(commentNumber);
+
+                List<DefectCommentDTO> comments = Mapper.Map<List<DefectCommentDTO>>(query.ToList());
+
+                List<DefectCommentDTO> defectsOpened = new List<DefectCommentDTO>();
+
+                foreach (Defect d in newDefects)
+                {
+                    defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate, DefectId = d.Id, DefectSummary = d.Summary, Text = "Otvorio", DefectDescription = d.Description });
+                }
+
+                List<DefectCommentDTO> result = comments.Union(defectsOpened).OrderByDescending(d => d.CommentDate).Take(commentNumber).ToList();
+                return result;
             }
         }
     }

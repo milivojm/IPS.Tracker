@@ -164,4 +164,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetLastComments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="currentWorkerId" type="xs:int" />
+        <xs:element minOccurs="0" name="commentNumber" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastCommentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetLastCommentsResult" nillable="true" type="q11:ArrayOfDefectCommentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

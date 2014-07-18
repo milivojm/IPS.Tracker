@@ -45,5 +45,7 @@ namespace IPS.Tracker.WCF
         public List<DefectCommentDTO> DefectComments { get; set; }
         [DataMember]
         public List<DefectFollowerDTO> DefectFollowers { get; set; }
+        [DataMember]
+        public List<int> LinkedDefectNumbers { get; set; }
     }
 }

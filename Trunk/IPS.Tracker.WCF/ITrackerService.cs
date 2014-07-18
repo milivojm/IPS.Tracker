@@ -44,5 +44,8 @@ namespace IPS.Tracker.WCF
 
         [OperationContract]
         List<DefectDTO> SearchDefects(string searchTerm);
+
+        [OperationContract]
+        List<DefectCommentDTO> GetLastComments(int currentWorkerId, int commentNumber);
     }
 }

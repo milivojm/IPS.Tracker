@@ -50,6 +50,9 @@ namespace IPS.Tracker.Web.TrackerService {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<int> LinkedDefectNumbersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private short PriorityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -204,6 +207,19 @@ namespace IPS.Tracker.Web.TrackerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<int> LinkedDefectNumbers {
+            get {
+                return this.LinkedDefectNumbersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LinkedDefectNumbersField, value) != true)) {
+                    this.LinkedDefectNumbersField = value;
+                    this.RaisePropertyChanged("LinkedDefectNumbers");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public short Priority {
             get {
                 return this.PriorityField;
@@ -346,6 +362,15 @@ namespace IPS.Tracker.Web.TrackerService {
         private string CommentatorNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DefectDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DefectIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DefectSummaryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -383,6 +408,45 @@ namespace IPS.Tracker.Web.TrackerService {
                 if ((object.ReferenceEquals(this.CommentatorNameField, value) != true)) {
                     this.CommentatorNameField = value;
                     this.RaisePropertyChanged("CommentatorName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DefectDescription {
+            get {
+                return this.DefectDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DefectDescriptionField, value) != true)) {
+                    this.DefectDescriptionField = value;
+                    this.RaisePropertyChanged("DefectDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DefectId {
+            get {
+                return this.DefectIdField;
+            }
+            set {
+                if ((this.DefectIdField.Equals(value) != true)) {
+                    this.DefectIdField = value;
+                    this.RaisePropertyChanged("DefectId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DefectSummary {
+            get {
+                return this.DefectSummaryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DefectSummaryField, value) != true)) {
+                    this.DefectSummaryField = value;
+                    this.RaisePropertyChanged("DefectSummary");
                 }
             }
         }
@@ -754,6 +818,9 @@ namespace IPS.Tracker.Web.TrackerService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SearchDefects", ReplyAction="http://tempuri.org/ITrackerService/SearchDefectsResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> SearchDefects(string searchTerm);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetLastComments", ReplyAction="http://tempuri.org/ITrackerService/GetLastCommentsResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO> GetLastComments(int currentWorkerId, int commentNumber);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -825,6 +892,10 @@ namespace IPS.Tracker.Web.TrackerService {
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> SearchDefects(string searchTerm) {
             return base.Channel.SearchDefects(searchTerm);
+        }
+        
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO> GetLastComments(int currentWorkerId, int commentNumber) {
+            return base.Channel.GetLastComments(currentWorkerId, commentNumber);
         }
     }
 }

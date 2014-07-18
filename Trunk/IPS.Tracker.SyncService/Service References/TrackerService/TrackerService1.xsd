@@ -33,6 +33,9 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="CommentDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CommentatorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefectDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefectId" type="xs:int" />
+      <xs:element minOccurs="0" name="DefectSummary" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
     </xs:sequence>

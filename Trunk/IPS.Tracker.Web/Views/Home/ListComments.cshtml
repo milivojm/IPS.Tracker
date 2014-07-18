@@ -22,6 +22,14 @@
 <script type="text/javascript">
     $("#commentButton").click(function () {
         var commentText = $("#commentText").val();
+
+        if (commentText == null || commentText.length == 0)
+        {
+            $(".alert-danger").remove();
+            $("#commentText").after('<div class="alert alert-danger" role="alert" style="margin-top:5px;">Komentar ne može biti prazan.</div>');
+            return;
+        }
+
         var defectId = @ViewContext.RouteData.Values["Id"];
         var url = '@Url.Action("NewComment", "Home")';
         $.post(url, { id : defectId, text : commentText }, function (data){

@@ -14,5 +14,7 @@ namespace IPS.Tracker.Web.TrackerService
                 return DefectDate.ToShortDateString();
             }
         }
+
+        public List<DefectDTO> LinkedDefects { get; set; }
     }
 }

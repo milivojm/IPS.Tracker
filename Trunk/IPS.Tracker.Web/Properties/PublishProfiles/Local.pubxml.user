@@ -10,10 +10,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/IPS.Tracker.Web.dll">
-      <publishTime>07/10/2014 16:13:43</publishTime>
+      <publishTime>07/17/2014 14:14:36</publishTime>
     </File>
     <File Include="bin/IPS.Tracker.Web.pdb">
-      <publishTime>07/10/2014 16:13:43</publishTime>
+      <publishTime>07/17/2014 14:14:36</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>05/29/2014 15:25:50</publishTime>
@@ -56,6 +56,36 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
       <publishTime>05/29/2014 15:31:39</publishTime>
+    </File>
+    <File Include="fonts/LICENSE.txt">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/octicons-local.ttf">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/octicons.css">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/octicons.eot">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/octicons.less">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/octicons.svg">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/octicons.ttf">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/octicons.woff">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/README.md">
+      <publishTime>07/02/2014 16:28:46</publishTime>
+    </File>
+    <File Include="fonts/sprockets-octicons.scss">
+      <publishTime>07/02/2014 16:28:46</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>05/29/2014 15:25:49</publishTime>
@@ -160,16 +190,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/08/2014 10:39:12</publishTime>
     </File>
     <File Include="Service References/TrackerService/IPS.Tracker.Web.TrackerService.DefectCommentDTO.datasource">
-      <publishTime>07/10/2014 15:27:35</publishTime>
+      <publishTime>07/17/2014 14:13:49</publishTime>
     </File>
     <File Include="Service References/TrackerService/IPS.Tracker.Web.TrackerService.DefectDTO.datasource">
-      <publishTime>07/10/2014 15:27:35</publishTime>
+      <publishTime>07/17/2014 14:13:48</publishTime>
     </File>
     <File Include="Service References/TrackerService/IPS.Tracker.Web.TrackerService.WorkerDTO.datasource">
-      <publishTime>07/10/2014 15:27:35</publishTime>
+      <publishTime>07/17/2014 14:13:49</publishTime>
     </File>
     <File Include="Service References/TrackerService/IPS.Tracker.Web.TrackerService.WorkOrderDTO.datasource">
-      <publishTime>07/10/2014 15:27:35</publishTime>
+      <publishTime>07/17/2014 14:13:49</publishTime>
     </File>
     <File Include="Service References/TrackerService/Reference.svcmap">
       <publishTime>07/08/2014 10:39:12</publishTime>
@@ -189,20 +219,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/CommentRow.cshtml">
       <publishTime>07/03/2014 09:44:17</publishTime>
     </File>
+    <File Include="Views/Home/DefectLinks.cshtml">
+      <publishTime>07/17/2014 15:03:43</publishTime>
+    </File>
     <File Include="Views/Home/DefectReported.cshtml">
       <publishTime>06/30/2014 13:09:34</publishTime>
     </File>
     <File Include="Views/Home/Details.cshtml">
-      <publishTime>07/03/2014 09:39:34</publishTime>
+      <publishTime>07/17/2014 15:03:31</publishTime>
     </File>
     <File Include="Views/Home/Edit.cshtml">
-      <publishTime>07/01/2014 14:36:15</publishTime>
+      <publishTime>07/16/2014 15:18:40</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/30/2014 10:39:43</publishTime>
+      <publishTime>07/16/2014 17:06:57</publishTime>
     </File>
     <File Include="Views/Home/ListComments.cshtml">
-      <publishTime>07/08/2014 12:07:54</publishTime>
+      <publishTime>07/17/2014 11:58:20</publishTime>
     </File>
     <File Include="Views/Home/ListFollowers.cshtml">
       <publishTime>06/26/2014 15:07:33</publishTime>
@@ -226,7 +259,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/03/2014 14:37:54</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/08/2014 13:04:13</publishTime>
+      <publishTime>07/11/2014 12:48:16</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>07/07/2014 13:30:29</publishTime>
@@ -235,7 +268,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2014 15:31:40</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/10/2014 15:49:34</publishTime>
+      <publishTime>07/16/2014 17:08:54</publishTime>
     </File>
   </ItemGroup>
 </Project>

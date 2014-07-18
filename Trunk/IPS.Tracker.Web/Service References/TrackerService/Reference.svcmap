@@ -23,11 +23,12 @@
     <MetadataSource Address="http://localhost:23247/TrackerService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TrackerService.xsd" MetadataType="Schema" ID="557460e4-b742-4af1-9993-238b8138700b" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TrackerService3.xsd" MetadataType="Schema" ID="27e87bfe-73ce-498b-b8d2-b7bd27862dff" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd3" />
     <MetadataFile FileName="TrackerService1.xsd" MetadataType="Schema" ID="f74e6405-c22d-4487-8b48-d83e5f86d8fe" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd2" />
-    <MetadataFile FileName="TrackerService.disco" MetadataType="Disco" ID="591fb494-8c4b-4009-8aa7-dd1120b0dbdf" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?disco" />
     <MetadataFile FileName="TrackerService2.xsd" MetadataType="Schema" ID="c38e98e9-66e6-4aa4-a249-37187d7baae5" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TrackerService.xsd" MetadataType="Schema" ID="557460e4-b742-4af1-9993-238b8138700b" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd0" />
     <MetadataFile FileName="TrackerService.wsdl" MetadataType="Wsdl" ID="84321d9a-a8b0-44e5-bd7a-6342bd1636d7" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?wsdl" />
+    <MetadataFile FileName="TrackerService.disco" MetadataType="Disco" ID="591fb494-8c4b-4009-8aa7-dd1120b0dbdf" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

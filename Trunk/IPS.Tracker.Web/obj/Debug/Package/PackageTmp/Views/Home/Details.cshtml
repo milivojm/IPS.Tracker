@@ -8,18 +8,16 @@
 
 <div>
     <h4>Zadatak broj @Model.Id</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Naziv
+    <hr />
+    <dl class="dl-horizontal pull-left">
+        <dt>Naziv
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Summary)
         </dd>
 
-        <dt>
-            Opis
+        <dt>Opis
         </dt>
 
         <dd>
@@ -27,48 +25,42 @@
             @Html.Raw(IPS.Tracker.Web.Utils.HtmlUtils.ParseHash(Model.Description))
         </dd>
 
-        <dt>
-            Vrijeme prijave
+        <dt>Vrijeme prijave
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DefectDate)
         </dd>
 
-        <dt>
-            Prioritet
+        <dt>Prioritet
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.PriorityDescription)
         </dd>
 
-        <dt>
-            Stanje
+        <dt>Stanje
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.StateDescription)
         </dd>
 
-        <dt>
-            Zadužen
+        <dt>Zadužen
         </dt>
 
         <dd>
-            <span class="glyphicon glyphicon-user"></span> @Html.DisplayFor(model => model.AssigneeName)
+            <span class="glyphicon glyphicon-user"></span>@Html.DisplayFor(model => model.AssigneeName)
         </dd>
 
-        <dt>
-            Prijavio
+        <dt>Prijavio
         </dt>
 
         <dd>
-            <span class="glyphicon glyphicon-user"></span> @Html.DisplayFor(model => model.ReporterName)
+            <span class="glyphicon glyphicon-user"></span>@Html.DisplayFor(model => model.ReporterName)
         </dd>
 
-        <dt>
-            Oznaka RN
+        <dt>Oznaka RN
         </dt>
 
         <dd>
@@ -80,8 +72,7 @@
             }
         </dd>
 
-        <dt>
-            Naziv RN
+        <dt>Naziv RN
         </dt>
 
         <dd>
@@ -89,7 +80,12 @@
         </dd>
 
     </dl>
+    <div class="pull-right">
+        @Html.Partial("DefectLinks", Model.LinkedDefects)
+    </div>
 </div>
+
+<div class="clearfix"></div>
 
 @Html.Partial("ListComments", Model.DefectComments)
 

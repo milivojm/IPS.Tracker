@@ -18,10 +18,10 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 WorkerDTO currentWorker = GetCurrentWorker(client);
+                List<DefectCommentDTO> list = client.GetLastComments(currentWorker.Id, 20);
                 ViewBag.UserId = currentWorker.Id;
+                return View(list);
             }
-
-            return View();
         }
 
         public ActionResult ReportNewDefect()
@@ -133,6 +133,15 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.GetDefectById(id);
+                defect.LinkedDefects = new List<DefectDTO>();
+
+                foreach (int no in defect.LinkedDefectNumbers)
+                {
+                    DefectDTO d = client.GetDefectById(no);
+
+                    if (d != null)
+                        defect.LinkedDefects.Add(d);
+                }
 
                 if (defect == null)
                     return View("PageNotExist");

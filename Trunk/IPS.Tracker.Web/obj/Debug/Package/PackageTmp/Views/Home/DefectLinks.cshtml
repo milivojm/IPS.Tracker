@@ -1,0 +1,19 @@
+﻿@model List<IPS.Tracker.Web.TrackerService.DefectDTO>
+
+@if (Model.Count > 0)
+{
+    <div>
+        <h5>
+            <span class="glyphicon glyphicon-bookmark"></span> Povezano sa
+        </h5>
+        <ul class="list-unstyled">
+            @foreach (IPS.Tracker.Web.TrackerService.DefectDTO d in Model)
+            {
+                <li>
+                    <small>
+                        @Html.ActionLink("#" + @d.Id + " - " + @d.Summary, "Details", new { id = @d.Id })</small>
+                </li>
+            }
+        </ul>
+    </div>
+}

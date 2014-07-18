@@ -17,5 +17,11 @@ namespace IPS.Tracker.WCF
         public DateTime CommentDate { get; set; }
         [DataMember]
         public string Text { get; set; }
+        [DataMember]
+        public int DefectId { get; set; }
+        [DataMember]
+        public string DefectSummary { get; set; }
+        [DataMember]
+        public string DefectDescription { get; set; }
     }
 }

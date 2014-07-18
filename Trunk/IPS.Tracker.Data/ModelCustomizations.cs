@@ -133,7 +133,11 @@ namespace IPS.Tracker.Data
                 this.StateDescription = state;
             }
 
-            DefectComments.Add(comment);
+            if (comment.IsValid())
+                DefectComments.Add(comment);
+            else
+                comment = null;
+
             return comment;
         }
 
@@ -199,6 +203,32 @@ namespace IPS.Tracker.Data
                 }
             }
         }
+
+        public List<int> GetLinkedDefectNumbers()
+        {
+            List<int> res = new List<int>();
+
+            if (this.DefectComments != null)
+            {
+                foreach (DefectComment dc in DefectComments)
+                {
+                    res.AddRange(dc.GetLinkedDefectNumbers());
+                }
+            }
+
+            if (this.Description != null)
+            {
+                Regex r = new Regex(@"#(\d+)\b");
+                MatchCollection matchCol = r.Matches(Description);
+
+                foreach (Match m in matchCol)
+                {
+                    res.Add(int.Parse(m.Groups[1].Value));
+                }
+            }
+
+            return res.Distinct().ToList();
+        }
     }
 
     public partial class WorkOrder
@@ -220,6 +250,29 @@ namespace IPS.Tracker.Data
                 Text = String.Format("{0}: {1} => {2}", propertyName, oldValue, newValue);
             else
                 Text += String.Format(", {0}: {1} => {2}", propertyName, oldValue, newValue);
+        }
+
+        public bool IsValid()
+        {
+            return !String.IsNullOrEmpty(Text);
+        }
+
+        public IEnumerable<int> GetLinkedDefectNumbers()
+        {
+            List<int> result = new List<int>();
+
+            if (Text != null)
+            {
+                Regex r = new Regex(@"#(\d+)\b");
+                MatchCollection matchCol = r.Matches(Text);
+
+                foreach (Match m in matchCol)
+                {
+                    result.Add(int.Parse(m.Groups[1].Value));
+                }
+            }
+
+            return result;
         }
     }
 

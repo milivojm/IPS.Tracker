@@ -160,6 +160,10 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Web.config" />
+    <Content Include="Views\Home\DefectLinks.cshtml" />
+    <None Include="Service References\TrackerService\TrackerService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
