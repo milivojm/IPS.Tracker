@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TrackerService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" />
+      <xsd:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITrackerService_InitializeNewDefect_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitializeNewDefect" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_InitializeNewDefect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitializeNewDefectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_ReportNewDefect_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportNewDefect" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_ReportNewDefect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportNewDefectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_SaveDefect_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDefect" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_SaveDefect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDefectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefaultAssigneeId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultAssigneeId" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefaultAssigneeId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultAssigneeIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetActiveWorkOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveWorkOrders" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetActiveWorkOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveWorkOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetActiveWorkers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveWorkers" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetActiveWorkers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveWorkersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefectsByWorker_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefectsByWorker" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefectsByWorker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefectsByWorkerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefectById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefectById" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefectById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefectByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefectsByWorkOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefectsByWorkOrder" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefectsByWorkOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefectsByWorkOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_CommentOnDefect_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommentOnDefect" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_CommentOnDefect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommentOnDefectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_SearchDefects_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchDefects" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_SearchDefects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchDefectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetLastComments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastComments" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetLastComments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastCommentsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITrackerService">
+    <wsdl:operation name="InitializeNewDefect">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/InitializeNewDefect" message="tns:ITrackerService_InitializeNewDefect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/InitializeNewDefectResponse" message="tns:ITrackerService_InitializeNewDefect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportNewDefect">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/ReportNewDefect" message="tns:ITrackerService_ReportNewDefect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/ReportNewDefectResponse" message="tns:ITrackerService_ReportNewDefect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDefect">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/SaveDefect" message="tns:ITrackerService_SaveDefect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/SaveDefectResponse" message="tns:ITrackerService_SaveDefect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAssigneeId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetDefaultAssigneeId" message="tns:ITrackerService_GetDefaultAssigneeId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetDefaultAssigneeIdResponse" message="tns:ITrackerService_GetDefaultAssigneeId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetActiveWorkOrders" message="tns:ITrackerService_GetActiveWorkOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetActiveWorkOrdersResponse" message="tns:ITrackerService_GetActiveWorkOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetActiveWorkers" message="tns:ITrackerService_GetActiveWorkers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetActiveWorkersResponse" message="tns:ITrackerService_GetActiveWorkers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefectsByWorker">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetDefectsByWorker" message="tns:ITrackerService_GetDefectsByWorker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetDefectsByWorkerResponse" message="tns:ITrackerService_GetDefectsByWorker_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefectById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetDefectById" message="tns:ITrackerService_GetDefectById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetDefectByIdResponse" message="tns:ITrackerService_GetDefectById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefectsByWorkOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetDefectsByWorkOrder" message="tns:ITrackerService_GetDefectsByWorkOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetDefectsByWorkOrderResponse" message="tns:ITrackerService_GetDefectsByWorkOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommentOnDefect">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/CommentOnDefect" message="tns:ITrackerService_CommentOnDefect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/CommentOnDefectResponse" message="tns:ITrackerService_CommentOnDefect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchDefects">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/SearchDefects" message="tns:ITrackerService_SearchDefects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/SearchDefectsResponse" message="tns:ITrackerService_SearchDefects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastComments">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetLastComments" message="tns:ITrackerService_GetLastComments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetLastCommentsResponse" message="tns:ITrackerService_GetLastComments_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TrackerServiceEndpoint" type="tns:ITrackerService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InitializeNewDefect">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/InitializeNewDefect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportNewDefect">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/ReportNewDefect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDefect">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/SaveDefect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultAssigneeId">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetDefaultAssigneeId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkOrders">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetActiveWorkOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveWorkers">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetActiveWorkers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefectsByWorker">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetDefectsByWorker" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefectById">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetDefectById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefectsByWorkOrder">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetDefectsByWorkOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommentOnDefect">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/CommentOnDefect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDefects">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/SearchDefects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastComments">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetLastComments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrackerService">
+    <wsdl:port name="TrackerServiceEndpoint" binding="tns:TrackerServiceEndpoint">
+      <soap:address location="http://localhost:23247/TrackerService.svc/localhost" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{Summary}</title>
+    <style>
+        body
+        {
+            font-family: arial,sans-serif;
+        }
+
+        p
+        {
+            font-size: 80%;
+            color: #222;
+        }
+
+        h5
+        {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.1;
+            color: #092D6D;
+        }
+
+        .link a
+        {
+            color: #15c;
+        }
+
+        .link p
+        {            
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="text">
+        <h5>Komentar od {Commentator}:</h5>
+        <p>{Description}</p>
+    </div>
+    <div id="link">
+        <p class="link">
+            —<br />
+            Odgovori na ovaj e-mail direktno ili pogledaj više na <a href="{Link}" target="_blank">Podsjetnik</a>.
+        </p>
+    </div>
+</body>
+</html>

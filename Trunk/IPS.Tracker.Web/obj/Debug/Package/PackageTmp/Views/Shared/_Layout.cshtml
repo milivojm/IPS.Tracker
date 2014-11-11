@@ -7,8 +7,9 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/fonts/octicons.css" rel="stylesheet" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -21,13 +22,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
+                </button>               
                 <div class="navbar-brand">
-                    <a href='@Url.Action("Index", "Home")'><span class="mega-octicon octicon-radio-tower"></span></a>
+                    <span class="octicon octicon-radio-tower"></span>
                 </div>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Podsjetnik","Index")</li>
                     <li>@Html.ActionLink("Moji zadaci", "ListProblemsByUser", "Home")</li>
                     <li>@Html.ActionLink("Novi zadatak", "ReportNewDefect", "Home")</li>
                 </ul>

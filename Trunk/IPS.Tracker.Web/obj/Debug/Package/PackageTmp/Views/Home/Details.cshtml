@@ -6,10 +6,20 @@
 
 <h2>Detalji zadatka</h2>
 
+@if (ViewBag.ShowEditBUtton)
+{
+    <div class="toolbox-container pull-left">
+        @Html.ActionLink("Uredi zadatak", "Edit", new { id = ViewBag.Id }, new { @class = "btn btn-danger" })
+    </div>
+
+    <div class="clearfix"></div>
+}
+<hr />
 <div>
-    <h4>Zadatak broj @Model.Id</h4>
-    <hr />
-    <dl class="dl-horizontal pull-left">
+    <dl class="dl-horizontal col-md-9 pull-left">
+        <dt>Broj</dt>
+        <dd>@Model.Id</dd>
+
         <dt>Naziv
         </dt>
 

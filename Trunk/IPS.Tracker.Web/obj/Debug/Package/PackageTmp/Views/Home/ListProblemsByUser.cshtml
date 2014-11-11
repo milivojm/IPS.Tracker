@@ -10,6 +10,12 @@
     @Html.ActionLink("Kreiraj novi zadatak", "ReportNewDefect", null, new { @class = "btn btn-danger" })
 </div>
 
+<div class="pull-right">
+    @Html.ActionLink("Otvoreni", "ListProblemsByUser", new { stateDescription = "Aktivni" }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Riješeni", "ListProblemsByUser", new { stateDescription = "Riješen" }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Moji otvoreni", "ListProblemsByUser", new { stateDescription = "Moji aktivni" }, new { @class = "btn btn-default" })
+</div>
+
 @Html.Partial("ListProblems", Model)
 
 

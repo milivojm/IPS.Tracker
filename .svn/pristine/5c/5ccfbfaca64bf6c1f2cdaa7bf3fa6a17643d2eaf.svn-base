@@ -1,0 +1,92 @@
+﻿@model IPS.Tracker.Web.TrackerService.DefectDTO
+
+@{
+    ViewBag.Title = "Detalji zadatka";
+}
+
+<h2>Detalji zadatka</h2>
+
+<div>
+    <h4>Zadatak broj @Model.Id</h4>
+    <hr />
+    <dl class="dl-horizontal col-md-9 pull-left">
+        <dt>Naziv
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+
+        <dt>Opis
+        </dt>
+
+        <dd>
+            @*@Html.Raw(Html.Encode(Model.Description).Replace("\n","<br/>"))*@
+            @Html.Raw(IPS.Tracker.Web.Utils.HtmlUtils.ParseHash(Model.Description))
+        </dd>
+
+        <dt>Vrijeme prijave
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefectDate)
+        </dd>
+
+        <dt>Prioritet
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriorityDescription)
+        </dd>
+
+        <dt>Stanje
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StateDescription)
+        </dd>
+
+        <dt>Zadužen
+        </dt>
+
+        <dd>
+            <span class="glyphicon glyphicon-user"></span>@Html.DisplayFor(model => model.AssigneeName)
+        </dd>
+
+        <dt>Prijavio
+        </dt>
+
+        <dd>
+            <span class="glyphicon glyphicon-user"></span>@Html.DisplayFor(model => model.ReporterName)
+        </dd>
+
+        <dt>Oznaka RN
+        </dt>
+
+        <dd>
+            @if (Model.WorkOrderId.HasValue)
+            {            
+                <span title="@Model.WorkOrderName">
+                    @Html.ActionLink(Model.WorkOrderLabel, "ListProblemsByWorkOrder", new { workOrderId = Model.WorkOrderId })
+                </span>
+            }
+        </dd>
+
+        <dt>Naziv RN
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkOrderName)
+        </dd>
+
+    </dl>
+    <div class="pull-right">
+        @Html.Partial("DefectLinks", Model.LinkedDefects)
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+@Html.Partial("ListComments", Model.DefectComments)
+
+@Html.Partial("ListFollowers", Model.DefectFollowers)

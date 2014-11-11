@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IPS.Tracker.Model.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="IPSTrackerModelStoreContainer">
+          <EntitySet Name="IPS_DEFECT_COMMENTS" EntityType="IPS.Tracker.Model.Store.IPS_DEFECT_COMMENTS" store:Type="Tables" />
+          <EntitySet Name="IPS_DEFECT_FOLLOWERS" EntityType="IPS.Tracker.Model.Store.IPS_DEFECT_FOLLOWERS" store:Type="Tables" />
+          <EntitySet Name="IPS_DEFECTS" EntityType="IPS.Tracker.Model.Store.IPS_DEFECTS" store:Type="Tables" />
+          <EntitySet Name="IPS_WORK_ORDERS" EntityType="IPS.Tracker.Model.Store.IPS_WORK_ORDERS" store:Type="Tables" />
+          <EntitySet Name="IPS_WORKERS" EntityType="IPS.Tracker.Model.Store.IPS_WORKERS" store:Type="Tables" />
+          <AssociationSet Name="DEF_WO_FK" Association="IPS.Tracker.Model.Store.DEF_WO_FK">
+            <End Role="IPS_WORK_ORDERS" EntitySet="IPS_WORK_ORDERS" />
+            <End Role="IPS_DEFECTS" EntitySet="IPS_DEFECTS" />
+          </AssociationSet>
+          <AssociationSet Name="DEF_WOR_FK1" Association="IPS.Tracker.Model.Store.DEF_WOR_FK1">
+            <End Role="IPS_WORKERS" EntitySet="IPS_WORKERS" />
+            <End Role="IPS_DEFECTS" EntitySet="IPS_DEFECTS" />
+          </AssociationSet>
+          <AssociationSet Name="DEF_WOR_FK2" Association="IPS.Tracker.Model.Store.DEF_WOR_FK2">
+            <End Role="IPS_WORKERS" EntitySet="IPS_WORKERS" />
+            <End Role="IPS_DEFECTS" EntitySet="IPS_DEFECTS" />
+          </AssociationSet>
+          <AssociationSet Name="DFC_DEF_FK" Association="IPS.Tracker.Model.Store.DFC_DEF_FK">
+            <End Role="IPS_DEFECTS" EntitySet="IPS_DEFECTS" />
+            <End Role="IPS_DEFECT_COMMENTS" EntitySet="IPS_DEFECT_COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="DFC_WOR_FK" Association="IPS.Tracker.Model.Store.DFC_WOR_FK">
+            <End Role="IPS_WORKERS" EntitySet="IPS_WORKERS" />
+            <End Role="IPS_DEFECT_COMMENTS" EntitySet="IPS_DEFECT_COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="DFL_DEF_FK" Association="IPS.Tracker.Model.Store.DFL_DEF_FK">
+            <End Role="IPS_DEFECTS" EntitySet="IPS_DEFECTS" />
+            <End Role="IPS_DEFECT_FOLLOWERS" EntitySet="IPS_DEFECT_FOLLOWERS" />
+          </AssociationSet>
+          <AssociationSet Name="DFL_WOR" Association="IPS.Tracker.Model.Store.DFL_WOR">
+            <End Role="IPS_WORKERS" EntitySet="IPS_WORKERS" />
+            <End Role="IPS_DEFECT_FOLLOWERS" EntitySet="IPS_DEFECT_FOLLOWERS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="IPS_DEFECT_COMMENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="10" StoreGeneratedPattern="Identity"/>
+          <Property Name="COMMENTATOR_ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="COMMENT_DATE" Type="date" Nullable="false" />
+          <Property Name="DEFECT_ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="TEXT" Type="varchar2" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="IPS_DEFECT_FOLLOWERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="10" StoreGeneratedPattern="Identity" />
+          <Property Name="DEFECT_ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="FOLLOWER_ID" Type="number" Nullable="false" Precision="10" />
+        </EntityType>
+        <EntityType Name="IPS_DEFECTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="10" StoreGeneratedPattern="Identity"/>
+          <Property Name="PRIORITY" Type="number" Nullable="false" Precision="1" />
+          <Property Name="SUMMARY" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="varchar2" Nullable="false" />
+          <Property Name="WORK_ORDER_ID" Type="number" Precision="10" />
+          <Property Name="REPORTER_ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="ASSIGNEE_ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="DEFECT_FILE" Type="blob" />
+          <Property Name="DEFECT_DATE" Type="date" Nullable="false" />
+          <Property Name="DEFECT_STATE" Type="varchar2" Nullable="false" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="IPS_WORK_ORDERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="INVOICE_ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="PREFIX" Type="varchar2" MaxLength="5" />
+          <Property Name="ORDINAL_NUMBER" Type="number" Nullable="false" Precision="10" />
+          <Property Name="YEAR" Type="number" Nullable="false" Precision="5" />
+          <Property Name="START_DATE" Type="date" Nullable="false" />
+          <Property Name="END_DATE" Type="date" />
+          <Property Name="LEADER" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="100" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="500" />
+          <Property Name="REMARK" Type="varchar2" MaxLength="200" />
+          <Property Name="COMPLETED" Type="varchar2" Nullable="false" MaxLength="1" />
+          <Property Name="DATE_ENTERED" Type="date" />
+          <Property Name="SUBNUMBER" Type="number" Precision="3" />
+          <Property Name="DAILY_FIELD_BONUS" Type="number" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="IPS_WORKERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="USERNAME" Type="varchar2" Nullable="false" MaxLength="200" />
+          <Property Name="ZONE_ID" Type="number" Precision="10" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
+          <Property Name="NAME" Type="varchar2" MaxLength="100" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="250" />
+          <Property Name="ID" Type="number" Nullable="false" Precision="10" />
+          <Property Name="CMS_USER" Type="varchar2" MaxLength="1" />
+          <Property Name="INS_USER" Type="varchar2" MaxLength="1" />
+          <Property Name="INS_ADMINISTRATOR" Type="varchar2" MaxLength="1" />
+          <Property Name="INS_SERVISER" Type="varchar2" MaxLength="1" />
+          <Property Name="INSTRUMENT_ID" Type="number" Precision="6" />
+          <Property Name="INS_UPRAVITELJ_VP" Type="varchar2" MaxLength="1" />
+          <Property Name="RETIRED" Type="varchar2" Nullable="false" MaxLength="1" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="200" />
+          <Property Name="CARDNO" Type="varchar2" MaxLength="10" />
+        </EntityType>
+        <Association Name="DEF_WO_FK">
+          <End Role="IPS_WORK_ORDERS" Type="IPS.Tracker.Model.Store.IPS_WORK_ORDERS" Multiplicity="0..1" />
+          <End Role="IPS_DEFECTS" Type="IPS.Tracker.Model.Store.IPS_DEFECTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORK_ORDERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IPS_DEFECTS">
+              <PropertyRef Name="WORK_ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEF_WOR_FK1">
+          <End Role="IPS_WORKERS" Type="IPS.Tracker.Model.Store.IPS_WORKERS" Multiplicity="1" />
+          <End Role="IPS_DEFECTS" Type="IPS.Tracker.Model.Store.IPS_DEFECTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORKERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IPS_DEFECTS">
+              <PropertyRef Name="REPORTER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEF_WOR_FK2">
+          <End Role="IPS_WORKERS" Type="IPS.Tracker.Model.Store.IPS_WORKERS" Multiplicity="1" />
+          <End Role="IPS_DEFECTS" Type="IPS.Tracker.Model.Store.IPS_DEFECTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORKERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IPS_DEFECTS">
+              <PropertyRef Name="ASSIGNEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DFC_DEF_FK">
+          <End Role="IPS_DEFECTS" Type="IPS.Tracker.Model.Store.IPS_DEFECTS" Multiplicity="1" />
+          <End Role="IPS_DEFECT_COMMENTS" Type="IPS.Tracker.Model.Store.IPS_DEFECT_COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_DEFECTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IPS_DEFECT_COMMENTS">
+              <PropertyRef Name="DEFECT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DFC_WOR_FK">
+          <End Role="IPS_WORKERS" Type="IPS.Tracker.Model.Store.IPS_WORKERS" Multiplicity="1" />
+          <End Role="IPS_DEFECT_COMMENTS" Type="IPS.Tracker.Model.Store.IPS_DEFECT_COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORKERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IPS_DEFECT_COMMENTS">
+              <PropertyRef Name="COMMENTATOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DFL_DEF_FK">
+          <End Role="IPS_DEFECTS" Type="IPS.Tracker.Model.Store.IPS_DEFECTS" Multiplicity="1" />
+          <End Role="IPS_DEFECT_FOLLOWERS" Type="IPS.Tracker.Model.Store.IPS_DEFECT_FOLLOWERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_DEFECTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IPS_DEFECT_FOLLOWERS">
+              <PropertyRef Name="DEFECT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DFL_WOR">
+          <End Role="IPS_WORKERS" Type="IPS.Tracker.Model.Store.IPS_WORKERS" Multiplicity="1" />
+          <End Role="IPS_DEFECT_FOLLOWERS" Type="IPS.Tracker.Model.Store.IPS_DEFECT_FOLLOWERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORKERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IPS_DEFECT_FOLLOWERS">
+              <PropertyRef Name="FOLLOWER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IPS.Tracker.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TrackerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DefectComments" EntityType="IPS.Tracker.Model.DefectComment" />
+          <EntitySet Name="Defects" EntityType="IPS.Tracker.Model.Defect" />
+          <EntitySet Name="WorkOrders" EntityType="IPS.Tracker.Model.WorkOrder" />
+          <EntitySet Name="Workers" EntityType="IPS.Tracker.Model.Worker" />
+          <AssociationSet Name="DFC_WOR_FK" Association="IPS.Tracker.Model.DFC_WOR_FK">
+            <End Role="IPS_WORKERS" EntitySet="Workers" />
+            <End Role="IPS_DEFECT_COMMENTS" EntitySet="DefectComments" />
+          </AssociationSet>
+          <AssociationSet Name="DEF_WO_FK" Association="IPS.Tracker.Model.DEF_WO_FK">
+            <End Role="IPS_WORK_ORDERS" EntitySet="WorkOrders" />
+            <End Role="IPS_DEFECTS" EntitySet="Defects" />
+          </AssociationSet>
+          <AssociationSet Name="DEF_WOR_FK1" Association="IPS.Tracker.Model.DEF_WOR_FK1">
+            <End Role="IPS_WORKERS" EntitySet="Workers" />
+            <End Role="IPS_DEFECTS" EntitySet="Defects" />
+          </AssociationSet>
+          <AssociationSet Name="DEF_WOR_FK2" Association="IPS.Tracker.Model.DEF_WOR_FK2">
+            <End Role="IPS_WORKERS" EntitySet="Workers" />
+            <End Role="IPS_DEFECTS" EntitySet="Defects" />
+          </AssociationSet>
+          <AssociationSet Name="DFC_DEF_FK" Association="IPS.Tracker.Model.DFC_DEF_FK">
+            <End Role="Defect" EntitySet="Defects" />
+            <End Role="DefectComment" EntitySet="DefectComments" />
+          </AssociationSet>
+          <EntitySet Name="DefectFollowers" EntityType="IPS.Tracker.Model.DefectFollower" />
+          <AssociationSet Name="DFL_DEF_FK" Association="IPS.Tracker.Model.DFL_DEF_FK">
+            <End Role="Defect" EntitySet="Defects" />
+            <End Role="IPS_DEFECT_FOLLOWERS" EntitySet="DefectFollowers" />
+          </AssociationSet>
+          <AssociationSet Name="DFL_WOR" Association="IPS.Tracker.Model.DFL_WOR">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="IPS_DEFECT_FOLLOWERS" EntitySet="DefectFollowers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DefectComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CommentatorId" Nullable="false" />
+          <Property Type="DateTime" Name="CommentDate" Nullable="false" />
+          <NavigationProperty Name="Commentator" Relationship="IPS.Tracker.Model.DFC_WOR_FK" FromRole="IPS_DEFECT_COMMENTS" ToRole="IPS_WORKERS" />
+          <NavigationProperty Name="Defect" Relationship="IPS.Tracker.Model.DFC_DEF_FK" FromRole="DefectComment" ToRole="Defect" />
+          <Property Type="Int32" Name="DefectId" Nullable="false" />
+          <Property Type="String" Name="Text" />
+        </EntityType>
+        <EntityType Name="Defect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="Priority" Nullable="false" />
+          <Property Type="String" Name="Summary" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="WorkOrderId" />
+          <Property Type="Int32" Name="ReporterId" Nullable="false" />
+          <Property Type="Int32" Name="AssigneeId" Nullable="false" />
+          <Property Type="Binary" Name="DefectFile" MaxLength="Max" FixedLength="false" />
+          <Property Type="DateTime" Name="DefectDate" Nullable="false" />
+          <Property Type="String" Name="DefectState" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="WorkOrder" Relationship="IPS.Tracker.Model.DEF_WO_FK" FromRole="IPS_DEFECTS" ToRole="IPS_WORK_ORDERS" />
+          <NavigationProperty Name="Reporter" Relationship="IPS.Tracker.Model.DEF_WOR_FK1" FromRole="IPS_DEFECTS" ToRole="IPS_WORKERS" />
+          <NavigationProperty Name="Assignee" Relationship="IPS.Tracker.Model.DEF_WOR_FK2" FromRole="IPS_DEFECTS" ToRole="IPS_WORKERS" />
+          <NavigationProperty Name="DefectComments" Relationship="IPS.Tracker.Model.DFC_DEF_FK" FromRole="Defect" ToRole="DefectComment" />
+          <NavigationProperty Name="DefectFollowers" Relationship="IPS.Tracker.Model.DFL_DEF_FK" FromRole="Defect" ToRole="IPS_DEFECT_FOLLOWERS" />
+        </EntityType>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="InvoiceId" Nullable="false" />
+          <Property Type="String" Name="Prefix" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OrdinalNumber" Nullable="false" />
+          <Property Type="Int16" Name="Year" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="DateTime" Name="EndDate" />
+          <Property Type="String" Name="Leader" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Remark" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Completed" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateEntered" />
+          <Property Type="Int16" Name="Subnumber" />
+          <Property Type="Decimal" Name="DailyFieldBonus" Precision="10" Scale="2" />
+          <NavigationProperty Name="Defects" Relationship="IPS.Tracker.Model.DEF_WO_FK" FromRole="IPS_WORK_ORDERS" ToRole="IPS_DEFECTS" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ZoneId" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CmsUser" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InsUser" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InsAdministrator" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InsServiser" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="InstrumentId" />
+          <Property Type="String" Name="InsUpraviteljVp" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Retired" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CardNo" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DefectComments" Relationship="IPS.Tracker.Model.DFC_WOR_FK" FromRole="IPS_WORKERS" ToRole="IPS_DEFECT_COMMENTS" />
+          <NavigationProperty Name="DefectsReported" Relationship="IPS.Tracker.Model.DEF_WOR_FK1" FromRole="IPS_WORKERS" ToRole="IPS_DEFECTS" />
+          <NavigationProperty Name="DefectsAssigned" Relationship="IPS.Tracker.Model.DEF_WOR_FK2" FromRole="IPS_WORKERS" ToRole="IPS_DEFECTS" />
+          <NavigationProperty Name="IPS_DEFECT_FOLLOWERS" Relationship="IPS.Tracker.Model.DFL_WOR" FromRole="Worker" ToRole="IPS_DEFECT_FOLLOWERS" />
+        </EntityType>
+        <Association Name="DFC_WOR_FK">
+          <End Type="IPS.Tracker.Model.Worker" Role="IPS_WORKERS" Multiplicity="1" />
+          <End Type="IPS.Tracker.Model.DefectComment" Role="IPS_DEFECT_COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORKERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IPS_DEFECT_COMMENTS">
+              <PropertyRef Name="CommentatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEF_WO_FK">
+          <End Type="IPS.Tracker.Model.WorkOrder" Role="IPS_WORK_ORDERS" Multiplicity="0..1" />
+          <End Type="IPS.Tracker.Model.Defect" Role="IPS_DEFECTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORK_ORDERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IPS_DEFECTS">
+              <PropertyRef Name="WorkOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEF_WOR_FK1">
+          <End Type="IPS.Tracker.Model.Worker" Role="IPS_WORKERS" Multiplicity="1" />
+          <End Type="IPS.Tracker.Model.Defect" Role="IPS_DEFECTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORKERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IPS_DEFECTS">
+              <PropertyRef Name="ReporterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEF_WOR_FK2">
+          <End Type="IPS.Tracker.Model.Worker" Role="IPS_WORKERS" Multiplicity="1" />
+          <End Type="IPS.Tracker.Model.Defect" Role="IPS_DEFECTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IPS_WORKERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IPS_DEFECTS">
+              <PropertyRef Name="AssigneeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DFC_DEF_FK">
+          <End Type="IPS.Tracker.Model.Defect" Role="Defect" Multiplicity="1" />
+          <End Type="IPS.Tracker.Model.DefectComment" Role="DefectComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Defect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DefectComment">
+              <PropertyRef Name="DefectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DefectFollower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DefectId" Nullable="false" />
+          <Property Type="Int32" Name="FollowerId" Nullable="false" />
+          <NavigationProperty Name="Defect" Relationship="IPS.Tracker.Model.DFL_DEF_FK" FromRole="IPS_DEFECT_FOLLOWERS" ToRole="Defect" />
+          <NavigationProperty Name="Follower" Relationship="IPS.Tracker.Model.DFL_WOR" FromRole="IPS_DEFECT_FOLLOWERS" ToRole="Worker" />
+        </EntityType>
+        <Association Name="DFL_DEF_FK">
+          <End Type="IPS.Tracker.Model.Defect" Role="Defect" Multiplicity="1" />
+          <End Type="IPS.Tracker.Model.DefectFollower" Role="IPS_DEFECT_FOLLOWERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Defect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IPS_DEFECT_FOLLOWERS">
+              <PropertyRef Name="DefectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DFL_WOR">
+          <End Type="IPS.Tracker.Model.Worker" Role="Worker" Multiplicity="1" />
+          <End Type="IPS.Tracker.Model.DefectFollower" Role="IPS_DEFECT_FOLLOWERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IPS_DEFECT_FOLLOWERS">
+              <PropertyRef Name="FollowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IPSTrackerModelStoreContainer" CdmEntityContainer="TrackerEntities">
+          <EntitySetMapping Name="DefectComments">
+            <EntityTypeMapping TypeName="IPS.Tracker.Model.DefectComment">
+              <MappingFragment StoreEntitySet="IPS_DEFECT_COMMENTS">
+                <ScalarProperty Name="Text" ColumnName="TEXT" />
+                <ScalarProperty Name="DefectId" ColumnName="DEFECT_ID" />
+                <ScalarProperty Name="CommentDate" ColumnName="COMMENT_DATE" />
+                <ScalarProperty Name="CommentatorId" ColumnName="COMMENTATOR_ID" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Defects">
+            <EntityTypeMapping TypeName="IPS.Tracker.Model.Defect">
+              <MappingFragment StoreEntitySet="IPS_DEFECTS">
+                <ScalarProperty Name="DefectState" ColumnName="DEFECT_STATE" />
+                <ScalarProperty Name="DefectDate" ColumnName="DEFECT_DATE" />
+                <ScalarProperty Name="DefectFile" ColumnName="DEFECT_FILE" />
+                <ScalarProperty Name="AssigneeId" ColumnName="ASSIGNEE_ID" />
+                <ScalarProperty Name="ReporterId" ColumnName="REPORTER_ID" />
+                <ScalarProperty Name="WorkOrderId" ColumnName="WORK_ORDER_ID" />
+                <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="Summary" ColumnName="SUMMARY" />
+                <ScalarProperty Name="Priority" ColumnName="PRIORITY" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrders">
+            <EntityTypeMapping TypeName="IPS.Tracker.Model.WorkOrder">
+              <MappingFragment StoreEntitySet="IPS_WORK_ORDERS">
+                <ScalarProperty Name="DailyFieldBonus" ColumnName="DAILY_FIELD_BONUS" />
+                <ScalarProperty Name="Subnumber" ColumnName="SUBNUMBER" />
+                <ScalarProperty Name="DateEntered" ColumnName="DATE_ENTERED" />
+                <ScalarProperty Name="Completed" ColumnName="COMPLETED" />
+                <ScalarProperty Name="Remark" ColumnName="REMARK" />
+                <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Leader" ColumnName="LEADER" />
+                <ScalarProperty Name="EndDate" ColumnName="END_DATE" />
+                <ScalarProperty Name="StartDate" ColumnName="START_DATE" />
+                <ScalarProperty Name="Year" ColumnName="YEAR" />
+                <ScalarProperty Name="OrdinalNumber" ColumnName="ORDINAL_NUMBER" />
+                <ScalarProperty Name="Prefix" ColumnName="PREFIX" />
+                <ScalarProperty Name="InvoiceId" ColumnName="INVOICE_ID" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="IPS.Tracker.Model.Worker">
+              <MappingFragment StoreEntitySet="IPS_WORKERS">
+                <ScalarProperty Name="CardNo" ColumnName="CARDNO" />
+                <ScalarProperty Name="Password" ColumnName="PASSWORD" />
+                <ScalarProperty Name="Retired" ColumnName="RETIRED" />
+                <ScalarProperty Name="InsUpraviteljVp" ColumnName="INS_UPRAVITELJ_VP" />
+                <ScalarProperty Name="InstrumentId" ColumnName="INSTRUMENT_ID" />
+                <ScalarProperty Name="InsServiser" ColumnName="INS_SERVISER" />
+                <ScalarProperty Name="InsAdministrator" ColumnName="INS_ADMINISTRATOR" />
+                <ScalarProperty Name="InsUser" ColumnName="INS_USER" />
+                <ScalarProperty Name="CmsUser" ColumnName="CMS_USER" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+                <ScalarProperty Name="Description" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Email" ColumnName="EMAIL" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZONE_ID" />
+                <ScalarProperty Name="Username" ColumnName="USERNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefectFollowers">
+            <EntityTypeMapping TypeName="IPS.Tracker.Model.DefectFollower">
+              <MappingFragment StoreEntitySet="IPS_DEFECT_FOLLOWERS">
+                <ScalarProperty Name="FollowerId" ColumnName="FOLLOWER_ID" />
+                <ScalarProperty Name="DefectId" ColumnName="DEFECT_ID" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="TrackerModel">
+        <EntityTypeShape EntityType="IPS.Tracker.Model.DefectComment" Width="2.375" PointX="3" PointY="5.875" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="IPS.Tracker.Model.Defect" Width="1.5" PointX="7" PointY="5" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="IPS.Tracker.Model.WorkOrder" Width="2.375" PointX="2.875" PointY="0.75" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="IPS.Tracker.Model.Worker" Width="1.5" PointX="0.75" PointY="4.5" Height="4.480205078125" />
+        <AssociationConnector Association="IPS.Tracker.Model.DFC_WOR_FK" >
+          <ConnectorPoint PointX="2.25" PointY="7.0574446614583328" />
+          <ConnectorPoint PointX="3" PointY="7.0574446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="IPS.Tracker.Model.DEF_WO_FK" >
+          <ConnectorPoint PointX="5.25" PointY="2.7978011067708337" />
+          <ConnectorPoint PointX="7.75" PointY="2.7978011067708337" />
+          <ConnectorPoint PointX="7.75" PointY="5" />
+        </AssociationConnector>
+        <AssociationConnector Association="IPS.Tracker.Model.DEF_WOR_FK1" >
+          <ConnectorPoint PointX="2.25" PointY="5.40625" />
+          <ConnectorPoint PointX="7" PointY="5.40625" />
+        </AssociationConnector>
+        <AssociationConnector Association="IPS.Tracker.Model.DEF_WOR_FK2" >
+          <ConnectorPoint PointX="2.25" PointY="8.6028450520833317" />
+          <ConnectorPoint PointX="7" PointY="8.6028450520833317" />
+        </AssociationConnector>
+        <AssociationConnector Association="IPS.Tracker.Model.DFC_DEF_FK" >
+          <ConnectorPoint PointX="7" PointY="7.0574446614583328" />
+          <ConnectorPoint PointX="5.375" PointY="7.0574446614583328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="IPS.Tracker.Model.DefectFollower" Width="2.25" PointX="9.25" PointY="5.875" Height="1.9802864583333317" />
+        <AssociationConnector Association="IPS.Tracker.Model.DFL_DEF_FK" >
+          <ConnectorPoint PointX="8.5" PointY="6.8651432291666659" />
+          <ConnectorPoint PointX="9.25" PointY="6.8651432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="IPS.Tracker.Model.DFL_WOR" >
+          <ConnectorPoint PointX="2.25" PointY="9.0691536458333317" />
+          <ConnectorPoint PointX="10.375" PointY="9.0691536458333317" />
+          <ConnectorPoint PointX="10.375" PointY="7.8552864583333317" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

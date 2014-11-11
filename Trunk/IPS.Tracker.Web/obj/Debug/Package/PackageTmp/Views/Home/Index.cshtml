@@ -69,14 +69,16 @@
 
                 <div class="media-body">
                     <blockquote>
-                        @if (d.Text == "Otvorio")
-                        { 
-                            @d.DefectDescription;
-                        }
-                        else
-                        {
-                            @d.Text
-                        }
+                        <h6>
+                            @if (d.Text == "Otvorio")
+                            { 
+                                @d.DefectDescription;
+                            }
+                            else
+                            {
+                                @d.Text
+                            }
+                        </h6>
                     </blockquote>
                 </div>
             </li>

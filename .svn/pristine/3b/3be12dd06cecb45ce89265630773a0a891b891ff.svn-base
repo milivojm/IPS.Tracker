@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="DefectDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssigneeId" type="xs:int" />
+      <xs:element minOccurs="0" name="AssigneeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefectComments" nillable="true" type="tns:ArrayOfDefectCommentDTO" />
+      <xs:element minOccurs="0" name="DefectDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefectFile" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="DefectFollowers" nillable="true" type="tns:ArrayOfDefectFollowerDTO" />
+      <xs:element minOccurs="0" name="DefectState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Priority" type="xs:short" />
+      <xs:element minOccurs="0" name="PriorityDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReporterId" type="xs:int" />
+      <xs:element minOccurs="0" name="ReporterName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Summary" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkOrderId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkOrderLabel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkOrderName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DefectDTO" nillable="true" type="tns:DefectDTO" />
+  <xs:complexType name="ArrayOfDefectCommentDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DefectCommentDTO" nillable="true" type="tns:DefectCommentDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDefectCommentDTO" nillable="true" type="tns:ArrayOfDefectCommentDTO" />
+  <xs:complexType name="DefectCommentDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommentDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CommentatorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefectDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefectId" type="xs:int" />
+      <xs:element minOccurs="0" name="DefectSummary" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DefectCommentDTO" nillable="true" type="tns:DefectCommentDTO" />
+  <xs:complexType name="ArrayOfDefectFollowerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DefectFollowerDTO" nillable="true" type="tns:DefectFollowerDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDefectFollowerDTO" nillable="true" type="tns:ArrayOfDefectFollowerDTO" />
+  <xs:complexType name="DefectFollowerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DefectId" type="xs:int" />
+      <xs:element minOccurs="0" name="FollowerId" type="xs:int" />
+      <xs:element minOccurs="0" name="FollowerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DefectFollowerDTO" nillable="true" type="tns:DefectFollowerDTO" />
+  <xs:complexType name="ArrayOfWorkOrderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkOrderDTO" nillable="true" type="tns:WorkOrderDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkOrderDTO" nillable="true" type="tns:ArrayOfWorkOrderDTO" />
+  <xs:complexType name="WorkOrderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Leader" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrdinalNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="SubNumber" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Year" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkOrderDTO" nillable="true" type="tns:WorkOrderDTO" />
+  <xs:complexType name="ArrayOfWorkerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkerDTO" nillable="true" type="tns:WorkerDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkerDTO" nillable="true" type="tns:ArrayOfWorkerDTO" />
+  <xs:complexType name="WorkerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkerDTO" nillable="true" type="tns:WorkerDTO" />
+  <xs:complexType name="ArrayOfDefectDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DefectDTO" nillable="true" type="tns:DefectDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDefectDTO" nillable="true" type="tns:ArrayOfDefectDTO" />
+</xs:schema>
