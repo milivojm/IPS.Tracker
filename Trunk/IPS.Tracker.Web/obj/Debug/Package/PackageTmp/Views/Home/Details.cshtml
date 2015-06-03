@@ -89,6 +89,14 @@
             @Html.DisplayFor(model => model.WorkOrderName)
         </dd>
 
+        @if (Model.DefectFile != null)
+        {
+            <dt>Prilog
+            </dt>
+            <dd>
+                <a href="@ViewBag.DefectFilePath">@Model.DefectFileType</a>
+            </dd>
+        }
     </dl>
     <div class="pull-right">
         @Html.Partial("DefectLinks", Model.LinkedDefects)

@@ -67,6 +67,7 @@
     <Property Name="DEFECT_FILE" Type="blob" />
     <Property Name="DEFECT_DATE" Type="date" Nullable="false" />
     <Property Name="DEFECT_STATE" Type="varchar2" Nullable="false" MaxLength="3" />
+    <Property Name="DEFECT_FILE_TYPE" Type="varchar2" Nullable="true" MaxLength="10" />
   </EntityType>
   <EntityType Name="IPS_WORK_ORDERS">
     <Key>

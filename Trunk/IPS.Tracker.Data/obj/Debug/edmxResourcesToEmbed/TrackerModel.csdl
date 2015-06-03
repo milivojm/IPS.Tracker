@@ -66,6 +66,7 @@
     <NavigationProperty Name="Assignee" Relationship="IPS.Tracker.Model.DEF_WOR_FK2" FromRole="IPS_DEFECTS" ToRole="IPS_WORKERS" />
     <NavigationProperty Name="DefectComments" Relationship="IPS.Tracker.Model.DFC_DEF_FK" FromRole="Defect" ToRole="DefectComment" />
     <NavigationProperty Name="DefectFollowers" Relationship="IPS.Tracker.Model.DFL_DEF_FK" FromRole="Defect" ToRole="IPS_DEFECT_FOLLOWERS" />
+    <Property Type="String" Name="DefectFileType" Nullable="true" />
   </EntityType>
   <EntityType Name="WorkOrder">
     <Key>

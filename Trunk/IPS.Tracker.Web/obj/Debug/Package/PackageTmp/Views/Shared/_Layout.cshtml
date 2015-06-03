@@ -54,7 +54,7 @@
         function search() {
             var url = '@Url.Action("Search", "Home", null, Request.Url.Scheme)';
             var taskId = $("#searchBox").val();
-            var fullUrl = url + "?criteria=" + taskId;
+            var fullUrl = url + "?criteria=" + encodeURIComponent(taskId);
             location.replace(fullUrl);
         }
 

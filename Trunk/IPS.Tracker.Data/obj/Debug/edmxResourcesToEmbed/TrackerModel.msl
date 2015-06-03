@@ -15,6 +15,7 @@
     <EntitySetMapping Name="Defects">
       <EntityTypeMapping TypeName="IPS.Tracker.Model.Defect">
         <MappingFragment StoreEntitySet="IPS_DEFECTS">
+          <ScalarProperty Name="DefectFileType" ColumnName="DEFECT_FILE_TYPE" />
           <ScalarProperty Name="DefectState" ColumnName="DEFECT_STATE" />
           <ScalarProperty Name="DefectDate" ColumnName="DEFECT_DATE" />
           <ScalarProperty Name="DefectFile" ColumnName="DEFECT_FILE" />

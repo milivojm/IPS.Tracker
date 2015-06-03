@@ -14,7 +14,7 @@
         if (String.IsNullOrEmpty(d.WorkOrderName))
             return Html.Raw(String.Empty);
         else
-            return Html.ActionLink(String.IsNullOrEmpty(d.WorkOrderName) ? "-" : d.WorkOrderName, "ListProblemsByWorkOrder", new { workOrderId = d.WorkOrderId });
-    }).Titled("Radni nalog").Sortable(true).SetWidth(250);
+            return Html.ActionLink(String.Format("{0} : {1}",d.WorkOrderName,d.WorkOrderLabel), "ListProblemsByWorkOrder", new { workOrderId = d.WorkOrderId });
+    }).Titled("Radni nalog").Sortable(true).SetWidth(350);
     columns.Add(d => d.AssigneeName).Titled("Zadužen").Sortable(true).SetWidth(150);
 }).WithPaging(10)

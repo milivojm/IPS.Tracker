@@ -71,9 +71,11 @@
             </div>
         </div>
 
+        @Html.HiddenFor(model => model.EditCommentText);
+
         <div class="form-group">
             <div class="col-md-offset-1 col-md-1">
-                <input type="submit" value="Spremi" class="btn btn-danger" />
+                <input id="SaveChanges" type="submit" value="Spremi" class="btn btn-danger" />
             </div>
         </div>
     </div>
@@ -105,6 +107,11 @@
                      $.getJSON(getLeaderIdUrl, { workOrderId: workOrderId }, changeAssignedWorker);
                  }
              });
+
+             $("#SaveChanges").click(function () {
+                 var commentText = $("#commentText").val();
+                 $("#EditCommentText").val(commentText);
+             });
          }
     );
 
@@ -118,7 +125,7 @@
          function saveWorkOrders(response) {
              if (response != null) {
                  for (var i = 0; i < response.length; i++) {
-                     var wo = { label: response[i].Name, value: response[i].Id };
+                     var wo = { label: response[i].Label, value: response[i].Id };
                      //
                      workOrders.push(wo);
                  }
