@@ -38,7 +38,7 @@ namespace IPS.Tracker.Web.Controllers
             }
         }
 
-        [HttpPost()]
+        [HttpPost()]        
         public ActionResult ReportNewDefect(DefectViewModel viewModel)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
@@ -102,6 +102,7 @@ namespace IPS.Tracker.Web.Controllers
         public ActionResult ListProblemsByUser(int? userId, string stateDescription)
         {
             ViewBag.EditMode = true;
+            ViewBag.StateDescription = stateDescription;
 
             if (userId.HasValue)
                 ViewBag.UserId = userId.Value;
@@ -119,32 +120,44 @@ namespace IPS.Tracker.Web.Controllers
                     result = client.GetDefectsByWorker(currentWorker.Id);
                 }
 
-                switch (stateDescription)
-                {
-                    case "Riješen":
-                        result = result.Where(d => d.StateDescription == stateDescription).ToList();
-                        break;
-                    case "Aktivni":
-                        result = result.Where(d => d.StateDescription != "Riješen").ToList();
-                        break;
-                    case "Moji aktivni":
-                        result = result.Where(d => d.StateDescription != "Riješen" && d.AssigneeId == ViewBag.UserId).ToList();
-                        break;
-                    default:
-                        result = result.Where(d => d.StateDescription != "Riješen" && d.AssigneeId == ViewBag.UserId).ToList();
-                        break;
-                }
+                result = ExtractResultByState(stateDescription, result);
 
                 return View(result);
             }
         }
 
-        public ActionResult ListProblemsByWorkOrder(int workOrderId)
+        private List<DefectDTO> ExtractResultByState(string stateDescription, List<DefectDTO> result)
+        {
+            switch (stateDescription)
+            {
+                case "Riješen":
+                    result = result.Where(d => d.StateDescription == stateDescription).ToList();
+                    break;
+                case "Aktivni":
+                    result = result.Where(d => d.StateDescription != "Riješen").ToList();
+                    break;
+                case "Moji aktivni":
+                    result = result.Where(d => d.StateDescription != "Riješen" && d.AssigneeId == ViewBag.UserId).ToList();
+                    break;
+                default:
+                    if (ViewBag.UserId == null)
+                        result = result.Where(d => d.StateDescription != "Riješen").ToList();
+                    else
+                        result = result.Where(d => d.StateDescription != "Riješen" && d.AssigneeId == ViewBag.UserId).ToList();
+                    break;
+            }
+            return result;
+        }
+
+        public ActionResult ListProblemsByWorkOrder(int workOrderId, string stateDescription)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
-                List<DefectDTO> defects = client.GetDefectsByWorkOrder(workOrderId);
-                List<WorkOrderDTO> workOrders = client.GetActiveWorkOrders();
+                List<DefectDTO> defects = client.GetAllDefectsByWorkOrder(workOrderId);
+                List<WorkOrderDTO> workOrders = client.GetAllWorkOrders();
+
+                defects = ExtractResultByState(stateDescription, defects);
+
                 WorkOrderDTO selectedWorkOrder = workOrders.Where(w => w.Id == workOrderId).First();
                 ViewBag.RadniNalog = selectedWorkOrder.Name;
                 return View(defects);

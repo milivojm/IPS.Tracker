@@ -1,4 +1,5 @@
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\bin\AutoMapper.Net4.dll
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\bin\IPS.Tracker.WCF.dll.config
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\bin\IPS.Tracker.WCF.dll
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\bin\IPS.Tracker.WCF.pdb
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\bin\AutoMapper.dll
@@ -10,3 +11,4 @@ C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\bin\AutoMapper.xml
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\obj\Debug\IPS.Tracker.WCF.csprojResolveAssemblyReference.cache
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\obj\Debug\IPS.Tracker.WCF.dll
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\obj\Debug\IPS.Tracker.WCF.pdb
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.WCF\bin\Oracle.ManagedDataAccess.dll

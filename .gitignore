@@ -1,0 +1,6 @@
+.svn
+*.dll
+bin
+obj
+.vs
+packages

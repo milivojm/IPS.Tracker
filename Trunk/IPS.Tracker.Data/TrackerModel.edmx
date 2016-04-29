@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="IPS.Tracker.Model.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="IPS.Tracker.Model.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="IPSTrackerModelStoreContainer">
           <EntitySet Name="IPS_DEFECT_COMMENTS" EntityType="IPS.Tracker.Model.Store.IPS_DEFECT_COMMENTS" store:Type="Tables" />
           <EntitySet Name="IPS_DEFECT_FOLLOWERS" EntityType="IPS.Tracker.Model.Store.IPS_DEFECT_FOLLOWERS" store:Type="Tables" />

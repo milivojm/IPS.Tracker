@@ -220,6 +220,19 @@ namespace IPS.Tracker.WCF
             }
         }
 
+        public List<DefectDTO> GetAllDefectsByWorkOrder(int workOrderId)
+        {
+            using (TrackerEntities e = new TrackerEntities())
+            {
+                var query = from d in e.Defects
+                            where d.WorkOrderId == workOrderId
+                            select d;
+
+                query = query.OrderByDescending(d => d.Priority).ThenBy(d => d.DefectDate);
+
+                return Mapper.Map<List<DefectDTO>>(query.ToList());
+            }
+        }
 
         public DefectCommentDTO CommentOnDefect(int defectId, int workerId, string commentText)
         {
@@ -309,6 +322,19 @@ namespace IPS.Tracker.WCF
 
                 List<DefectCommentDTO> result = comments.Union(defectsOpened).OrderByDescending(d => d.CommentDate).Take(commentNumber).ToList();
                 return result;
+            }
+        }
+
+
+        public List<WorkOrderDTO> GetAllWorkOrders()
+        {
+            using (TrackerEntities e = new TrackerEntities())
+            {
+                var query = from wo in e.WorkOrders
+                            orderby wo.Year, wo.OrdinalNumber descending
+                            select wo;
+
+                return Mapper.Map<List<WorkOrderDTO>>(query.ToList());
             }
         }
     }

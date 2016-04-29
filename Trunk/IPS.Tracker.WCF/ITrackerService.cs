@@ -28,6 +28,9 @@ namespace IPS.Tracker.WCF
         List<WorkOrderDTO> GetActiveWorkOrders();
 
         [OperationContract]
+        List<WorkOrderDTO> GetAllWorkOrders();
+
+        [OperationContract]
         List<WorkerDTO> GetActiveWorkers();
 
         [OperationContract]
@@ -38,6 +41,9 @@ namespace IPS.Tracker.WCF
 
         [OperationContract]
         List<DefectDTO> GetDefectsByWorkOrder(int workOrderId);
+
+        [OperationContract]
+        List<DefectDTO> GetAllDefectsByWorkOrder(int workOrderId);
 
         [OperationContract]
         DefectCommentDTO CommentOnDefect(int defectId, int workerId, string commentText);

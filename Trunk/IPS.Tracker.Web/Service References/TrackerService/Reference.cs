@@ -817,6 +817,9 @@ namespace IPS.Tracker.Web.TrackerService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetActiveWorkOrders", ReplyAction="http://tempuri.org/ITrackerService/GetActiveWorkOrdersResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO> GetActiveWorkOrders();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllWorkOrders", ReplyAction="http://tempuri.org/ITrackerService/GetAllWorkOrdersResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO> GetAllWorkOrders();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetActiveWorkers", ReplyAction="http://tempuri.org/ITrackerService/GetActiveWorkersResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO> GetActiveWorkers();
         
@@ -828,6 +831,9 @@ namespace IPS.Tracker.Web.TrackerService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsByWorkOrder", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsByWorkOrderResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorkOrder(int workOrderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllDefectsByWorkOrder", ReplyAction="http://tempuri.org/ITrackerService/GetAllDefectsByWorkOrderResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllDefectsByWorkOrder(int workOrderId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/CommentOnDefect", ReplyAction="http://tempuri.org/ITrackerService/CommentOnDefectResponse")]
         IPS.Tracker.Web.TrackerService.DefectCommentDTO CommentOnDefect(int defectId, int workerId, string commentText);
@@ -886,6 +892,10 @@ namespace IPS.Tracker.Web.TrackerService {
             return base.Channel.GetActiveWorkOrders();
         }
         
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO> GetAllWorkOrders() {
+            return base.Channel.GetAllWorkOrders();
+        }
+        
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO> GetActiveWorkers() {
             return base.Channel.GetActiveWorkers();
         }
@@ -900,6 +910,10 @@ namespace IPS.Tracker.Web.TrackerService {
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorkOrder(int workOrderId) {
             return base.Channel.GetDefectsByWorkOrder(workOrderId);
+        }
+        
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllDefectsByWorkOrder(int workOrderId) {
+            return base.Channel.GetAllDefectsByWorkOrder(workOrderId);
         }
         
         public IPS.Tracker.Web.TrackerService.DefectCommentDTO CommentOnDefect(int defectId, int workerId, string commentText) {

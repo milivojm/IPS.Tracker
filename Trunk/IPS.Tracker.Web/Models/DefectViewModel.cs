@@ -66,6 +66,7 @@ namespace IPS.Tracker.Web.Models
 
         [Required(ErrorMessage="Opis zadatka je obavezan")]
         [Display(Name = "Opis zadatka *")]
+        [AllowHtml()]
         public string Description { get; set; }
 
         [Display(Name = "Radni nalog")]

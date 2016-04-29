@@ -1,5 +1,7 @@
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\IPS.Tracker.Web.dll.config
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\IPS.Tracker.Web.dll
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\IPS.Tracker.Web.pdb
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\GridMvc.dll
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\Microsoft.Web.Infrastructure.dll
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\System.Web.Helpers.dll
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\System.Web.Mvc.dll
@@ -13,7 +15,6 @@ C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\System.Web.Razor.xml
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\System.Web.WebPages.xml
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\System.Web.WebPages.Deployment.xml
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\System.Web.WebPages.Razor.xml
+C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\obj\Debug\IPS.Tracker.Web.csprojResolveAssemblyReference.cache
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\obj\Debug\IPS.Tracker.Web.dll
 C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\obj\Debug\IPS.Tracker.Web.pdb
-C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\bin\GridMvc.dll
-C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Web\obj\Debug\IPS.Tracker.Web.csprojResolveAssemblyReference.cache
