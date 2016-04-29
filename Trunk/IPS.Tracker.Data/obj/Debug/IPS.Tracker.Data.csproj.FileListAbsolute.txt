@@ -1,6 +1,0 @@
-C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Data\bin\Debug\IPS.Tracker.Data.dll.config
-C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Data\bin\Debug\IPS.Tracker.Data.dll
-C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Data\bin\Debug\IPS.Tracker.Data.pdb
-C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Data\obj\Debug\IPS.Tracker.Data.csprojResolveAssemblyReference.cache
-C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Data\obj\Debug\IPS.Tracker.Data.dll
-C:\Projects\IPS.Tracker\Trunk\IPS.Tracker.Data\obj\Debug\IPS.Tracker.Data.pdb
