@@ -14,7 +14,7 @@ namespace IPS.Tracker.WCF
         [DataMember]
         public string CommentatorName { get; set; }
         [DataMember]
-        public DateTime CommentDate { get; set; }
+        public string CommentDate { get; set; }
         [DataMember]
         public string Text { get; set; }
         [DataMember]

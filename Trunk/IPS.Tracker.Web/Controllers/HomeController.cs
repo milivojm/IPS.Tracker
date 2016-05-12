@@ -16,13 +16,14 @@ namespace IPS.Tracker.Web.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            using (TrackerServiceClient client = new TrackerServiceClient())
+            /*using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 WorkerDTO currentWorker = GetCurrentWorker(client);
-                List<DefectCommentDTO> list = client.GetLastComments(currentWorker.Id, 20);
+                List<DefectCommentDTO> list = client.GetLastComments(currentWorker.Id, 50);
                 ViewBag.UserId = currentWorker.Id;
                 return View(list);
-            }
+            }*/
+            return View();
         }
 
         public ActionResult ReportNewDefect()

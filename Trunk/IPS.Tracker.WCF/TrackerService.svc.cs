@@ -293,7 +293,7 @@ namespace IPS.Tracker.WCF
         }
 
 
-        public List<DefectCommentDTO> GetLastComments(int currentWorkerId, int commentNumber)
+        public List<DefectCommentDTO> GetLastCommentsByWorker(int currentWorkerId, int commentNumber)
         {
             using (TrackerEntities e = new TrackerEntities())
             {
@@ -317,7 +317,7 @@ namespace IPS.Tracker.WCF
 
                 foreach (Defect d in newDefects)
                 {
-                    defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate, DefectId = d.Id, DefectSummary = d.Summary, Text = "Otvorio", DefectDescription = d.Description });
+                    defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate.ToString(), DefectId = d.Id, DefectSummary = d.Summary, Text = "Otvorio", DefectDescription = d.Description });
                 }
 
                 List<DefectCommentDTO> result = comments.Union(defectsOpened).OrderByDescending(d => d.CommentDate).Take(commentNumber).ToList();
@@ -325,6 +325,35 @@ namespace IPS.Tracker.WCF
             }
         }
 
+        public List<DefectCommentDTO> GetLastComments(int commentNumber)
+        {
+            using (TrackerEntities e = new TrackerEntities())
+            {
+                IQueryable<DefectComment> query = (from dc in e.DefectComments
+                                                   from df in e.DefectFollowers
+                                                   where dc.DefectId == df.DefectId
+                                                   orderby dc.CommentDate descending
+                                                   select dc).Take(commentNumber);
+
+                var newDefects = (from d in e.Defects
+                                  from df in e.DefectFollowers
+                                  where d.Id == df.DefectId
+                                  orderby d.DefectDate descending
+                                  select d).Take(commentNumber);
+
+                List<DefectCommentDTO> comments = Mapper.Map<List<DefectCommentDTO>>(query.ToList());
+
+                List<DefectCommentDTO> defectsOpened = new List<DefectCommentDTO>();
+
+                foreach (Defect d in newDefects)
+                {
+                    defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate.ToString(), DefectId = d.Id, DefectSummary = d.Summary, Text = "Otvorio", DefectDescription = d.Description });
+                }
+
+                List<DefectCommentDTO> result = comments.Union(defectsOpened).OrderByDescending(d => d.CommentDate).Take(commentNumber).ToList();
+                return result;
+            }
+        }
 
         public List<WorkOrderDTO> GetAllWorkOrders()
         {
