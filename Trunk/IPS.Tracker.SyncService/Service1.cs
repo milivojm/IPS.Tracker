@@ -106,14 +106,8 @@ namespace IPS.Tracker.SyncService
                             string tag = match.Groups[1].Value;
                             DefectDTO dto = _client.GetDefectById(int.Parse(tag));
 
-                            if (dto.Id != 0)
-                            {
-                                InsertNewComment(msg);
-                            }
-                            else
-                            {
+                            if (dto.Id == 0)
                                 InsertNewDefect(msg);
-                            }
                         }
                         else
                         {
