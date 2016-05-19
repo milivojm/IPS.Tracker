@@ -335,9 +335,7 @@ namespace IPS.Tracker.WCF
                                                    orderby dc.CommentDate descending
                                                    select dc).Take(commentNumber);
 
-                var newDefects = (from d in e.Defects
-                                  from df in e.DefectFollowers
-                                  where d.Id == df.DefectId
+                var newDefects = (from d in e.Defects                                  
                                   orderby d.DefectDate descending
                                   select d).Take(commentNumber);
 
