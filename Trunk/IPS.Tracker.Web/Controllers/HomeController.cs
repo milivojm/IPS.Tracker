@@ -39,7 +39,7 @@ namespace IPS.Tracker.Web.Controllers
             }
         }
 
-        [HttpPost()]        
+        [HttpPost()]
         public ActionResult ReportNewDefect(DefectViewModel viewModel)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
@@ -100,33 +100,33 @@ namespace IPS.Tracker.Web.Controllers
             return View();
         }
 
-        public ActionResult ListProblemsByUser(int? userId, string stateDescription)
+        public ActionResult ListProblemsByUser(int? userId, string stateDescription = "Aktivni", int page = 0)
         {
             ViewBag.EditMode = true;
             ViewBag.StateDescription = stateDescription;
-
-            if (userId.HasValue)
-                ViewBag.UserId = userId.Value;
+            ViewBag.UserId = userId;
+            ViewBag.Page = page;
 
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 List<DefectDTO> result;
 
                 if (userId.HasValue)
-                    result = client.GetDefectsByWorker(userId.Value);
+                    result = client.GetDefectsByWorker(userId.Value, page, defectsPerPage, stateDescription);
                 else
                 {
                     WorkerDTO currentWorker = GetCurrentWorker(client);
                     ViewBag.UserId = currentWorker.Id;
-                    result = client.GetDefectsByWorker(currentWorker.Id);
+                    result = client.GetDefectsByWorker(currentWorker.Id, page, defectsPerPage, stateDescription);
                 }
 
-                result = ExtractResultByState(stateDescription, result);
+                // result = ExtractResultByState(stateDescription, result);
 
                 return View(result);
             }
         }
 
+        /*
         private List<DefectDTO> ExtractResultByState(string stateDescription, List<DefectDTO> result)
         {
             switch (stateDescription)
@@ -149,15 +149,16 @@ namespace IPS.Tracker.Web.Controllers
             }
             return result;
         }
+        */
 
-        public ActionResult ListProblemsByWorkOrder(int workOrderId, string stateDescription)
+        public ActionResult ListProblemsByWorkOrder(int workOrderId, string stateDescription, int page)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
-                List<DefectDTO> defects = client.GetAllDefectsByWorkOrder(workOrderId);
+                List<DefectDTO> defects = client.GetDefectsByWorkOrder(workOrderId, stateDescription, page);
                 List<WorkOrderDTO> workOrders = client.GetAllWorkOrders();
 
-                defects = ExtractResultByState(stateDescription, defects);
+                // defects = ExtractResultByState(stateDescription, defects);
 
                 WorkOrderDTO selectedWorkOrder = workOrders.Where(w => w.Id == workOrderId).First();
                 ViewBag.RadniNalog = selectedWorkOrder.Name;

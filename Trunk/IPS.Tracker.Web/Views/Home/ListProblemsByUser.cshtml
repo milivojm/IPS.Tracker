@@ -13,11 +13,14 @@
 <div class="pull-right">
     @Html.ActionLink("Otvoreni", "ListProblemsByUser", new { stateDescription = "Aktivni" }, new { @class = "btn btn-default" })
     @Html.ActionLink("Riješeni", "ListProblemsByUser", new { stateDescription = "Riješen" }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Moji otvoreni", "ListProblemsByUser", new { stateDescription = "Moji aktivni" }, new { @class = "btn btn-default" })
 </div>
 
 <div class="clearfix "></div>
 
 @Html.Partial("ListProblems", Model)
 
+@if (ViewBag.Page > 0) { 
+    @Html.ActionLink("<", "ListProblemsByUser", new { userId = ViewBag.UserId, stateDescription = ViewBag.StateDescription, page = (ViewBag.Page - 1) }, new { @class = "btn btn-default" })
+}
 
+@Html.ActionLink(">", "ListProblemsByUser", new { userId = ViewBag.UserId, stateDescription = ViewBag.StateDescription, page = (ViewBag.Page + 1) }, new { @class = "btn btn-default" })

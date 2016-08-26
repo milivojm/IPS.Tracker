@@ -115,20 +115,21 @@ namespace IPS.Tracker.WCF
             // client.Send(mailMessage);
         }
 
-        public List<DefectDTO> GetDefectsByWorker(int workerId)
+        public List<DefectDTO> GetDefectsByWorker(int workerId, int pageNumber, int defectsPerPage, string state)
         {
             using (TrackerEntities e = new TrackerEntities())
             {
-                //var query = from w in e.Defects
-                //            where w.AssigneeId == workerId
-                //            orderby w.Priority descending, w.DefectDate
-                //            select w;
-
                 var query = from df in e.DefectFollowers
                             where df.FollowerId == workerId
                             select df.Defect;
 
-                query = query.OrderByDescending(d => d.Priority).ThenBy(d => d.DefectDate);
+                if (state == "Riješen")
+                    query = query.Where(d => d.DefectState == "CLS");
+
+                if (state == "Aktivni")
+                    query = query.Where(d => d.DefectState != "CLS");
+
+                query = query.OrderByDescending(d => d.Priority).ThenBy(d => d.DefectDate).Skip(pageNumber * defectsPerPage).Take(defectsPerPage);
 
                 return Mapper.Map<List<DefectDTO>>(query.ToList());
             }
@@ -205,28 +206,19 @@ namespace IPS.Tracker.WCF
             //client.Send(mailMessage);
         }
 
-        public List<DefectDTO> GetDefectsByWorkOrder(int workOrderId)
-        {
-            using (TrackerEntities e = new TrackerEntities())
-            {
-                var query = from d in e.Defects
-                            where d.WorkOrderId == workOrderId
-                            && d.DefectState != "CLS"
-                            select d;
-
-                query = query.OrderByDescending(d => d.Priority).ThenBy(d => d.DefectDate);
-
-                return Mapper.Map<List<DefectDTO>>(query.ToList());
-            }
-        }
-
-        public List<DefectDTO> GetAllDefectsByWorkOrder(int workOrderId)
+        public List<DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page)
         {
             using (TrackerEntities e = new TrackerEntities())
             {
                 var query = from d in e.Defects
                             where d.WorkOrderId == workOrderId
                             select d;
+
+                if (state == "Riješen")
+                    query = query.Where(d => d.DefectState == "CLS");
+
+                if (state == "Aktivni")
+                    query = query.Where(d => d.DefectState != "CLS");
 
                 query = query.OrderByDescending(d => d.Priority).ThenBy(d => d.DefectDate);
 
@@ -335,7 +327,7 @@ namespace IPS.Tracker.WCF
                                                    orderby dc.CommentDate descending
                                                    select dc).Take(commentNumber);
 
-                var newDefects = (from d in e.Defects                                  
+                var newDefects = (from d in e.Defects
                                   orderby d.DefectDate descending
                                   select d).Take(commentNumber);
 
