@@ -95,7 +95,7 @@ namespace IPS.Tracker.WCF
         private void SendNotification(Defect defect)
         {
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("ips@gzr.hr", defect.Reporter.Name, Encoding.Unicode);
+            mailMessage.From = new MailAddress("ips@gzr.hr", "ips@gzr.hr", Encoding.Unicode);
 
             string detailsUrl = ConfigurationManager.AppSettings["DetailsUrl"];
 
@@ -178,7 +178,7 @@ namespace IPS.Tracker.WCF
                 return;
 
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("ips@gzr.hr", defectComment.Commentator.Name, Encoding.Unicode);
+            mailMessage.From = new MailAddress("ips@gzr.hr", "ips@gzr.hr", Encoding.Unicode);
 
             foreach (DefectFollower df in defect.DefectFollowers)
             {

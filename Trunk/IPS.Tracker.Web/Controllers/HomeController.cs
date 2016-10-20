@@ -151,7 +151,7 @@ namespace IPS.Tracker.Web.Controllers
         }
         */
 
-        public ActionResult ListProblemsByWorkOrder(int workOrderId, string stateDescription, int page)
+        public ActionResult ListProblemsByWorkOrder(int workOrderId, string stateDescription = "Aktivni", int page = 0)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
