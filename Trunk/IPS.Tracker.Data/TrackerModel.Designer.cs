@@ -514,6 +514,30 @@ namespace IPS.Tracker.Data
         private global::System.String _DefectFileType;
         partial void OnDefectFileTypeChanging(global::System.String value);
         partial void OnDefectFileTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> SprintNo
+        {
+            get
+            {
+                return _SprintNo;
+            }
+            set
+            {
+                OnSprintNoChanging(value);
+                ReportPropertyChanging("SprintNo");
+                _SprintNo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SprintNo");
+                OnSprintNoChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _SprintNo;
+        partial void OnSprintNoChanging(Nullable<global::System.Int16> value);
+        partial void OnSprintNoChanged();
 
         #endregion
 

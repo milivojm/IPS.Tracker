@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" />
+      <xsd:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITrackerService_InitializeNewDefect_InputMessage">
@@ -36,6 +37,12 @@
   </wsdl:message>
   <wsdl:message name="ITrackerService_GetActiveWorkOrders_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetActiveWorkOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetAllWorkOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWorkOrders" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetAllWorkOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWorkOrdersResponse" />
   </wsdl:message>
   <wsdl:message name="ITrackerService_GetActiveWorkers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetActiveWorkers" />
@@ -73,6 +80,12 @@
   <wsdl:message name="ITrackerService_SearchDefects_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchDefectsResponse" />
   </wsdl:message>
+  <wsdl:message name="ITrackerService_GetLastCommentsByWorker_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastCommentsByWorker" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetLastCommentsByWorker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastCommentsByWorkerResponse" />
+  </wsdl:message>
   <wsdl:message name="ITrackerService_GetLastComments_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLastComments" />
   </wsdl:message>
@@ -100,6 +113,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetActiveWorkOrders" message="tns:ITrackerService_GetActiveWorkOrders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetActiveWorkOrdersResponse" message="tns:ITrackerService_GetActiveWorkOrders_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllWorkOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetAllWorkOrders" message="tns:ITrackerService_GetAllWorkOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetAllWorkOrdersResponse" message="tns:ITrackerService_GetAllWorkOrders_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetActiveWorkers">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetActiveWorkers" message="tns:ITrackerService_GetActiveWorkers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetActiveWorkersResponse" message="tns:ITrackerService_GetActiveWorkers_OutputMessage" />
@@ -123,6 +140,10 @@
     <wsdl:operation name="SearchDefects">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/SearchDefects" message="tns:ITrackerService_SearchDefects_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/SearchDefectsResponse" message="tns:ITrackerService_SearchDefects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastCommentsByWorker">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetLastCommentsByWorker" message="tns:ITrackerService_GetLastCommentsByWorker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetLastCommentsByWorkerResponse" message="tns:ITrackerService_GetLastCommentsByWorker_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetLastComments">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetLastComments" message="tns:ITrackerService_GetLastComments_InputMessage" />
@@ -169,6 +190,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetActiveWorkOrders">
       <soap:operation soapAction="http://tempuri.org/ITrackerService/GetActiveWorkOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWorkOrders">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetAllWorkOrders" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -223,6 +253,15 @@
     </wsdl:operation>
     <wsdl:operation name="SearchDefects">
       <soap:operation soapAction="http://tempuri.org/ITrackerService/SearchDefects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastCommentsByWorker">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetLastCommentsByWorker" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

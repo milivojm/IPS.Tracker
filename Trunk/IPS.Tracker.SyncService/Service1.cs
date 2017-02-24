@@ -136,7 +136,7 @@ namespace IPS.Tracker.SyncService
 
                 if (reporter != null)
                 {
-                    _client.ReportNewDefect(msg.Subject, msg.Body, null, reporter.Id, reporter.Id, 0, null);
+                    _client.ReportNewDefect(msg.Subject, msg.Body, null, reporter.Id, reporter.Id, 0, null, null, null);
                 }
             }
         }

@@ -131,6 +131,9 @@
     <None Include="Service References\TrackerService\TrackerService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\TrackerService\TrackerService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">

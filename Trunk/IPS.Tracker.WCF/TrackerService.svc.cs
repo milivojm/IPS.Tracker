@@ -40,7 +40,7 @@ namespace IPS.Tracker.WCF
             }
         }
 
-        public DefectDTO ReportNewDefect(string summary, string description, int? workOrderId, int assigneeId, int reporterId, short priority, byte[] defectFile, string fileContentType)
+        public DefectDTO ReportNewDefect(string summary, string description, int? workOrderId, int assigneeId, int reporterId, short priority, int? sprint, byte[] defectFile, string fileContentType)
         {
             using (TrackerEntities e = new TrackerEntities())
             {
@@ -53,6 +53,8 @@ namespace IPS.Tracker.WCF
                 newDefect.AssigneeId = assigneeId;
                 newDefect.ReporterId = reporterId;
                 newDefect.Priority = priority;
+                //newDefect.SprintNo = (short) sprint;
+                newDefect.SprintNo = (short?) sprint;
                 newDefect.DefectFile = defectFile;
                 newDefect.SubscribeFollower(assigneeId);
                 newDefect.SubscribeFollower(reporterId);
@@ -119,9 +121,9 @@ namespace IPS.Tracker.WCF
         {
             using (TrackerEntities e = new TrackerEntities())
             {
-                var query = from df in e.DefectFollowers
-                            where df.FollowerId == workerId
-                            select df.Defect;
+                var query = from d in e.Defects
+                            where d.AssigneeId == workerId
+                            select d;
 
                 if (state == "Riješen")
                     query = query.Where(d => d.DefectState == "CLS");
@@ -148,7 +150,8 @@ namespace IPS.Tracker.WCF
             }
         }
 
-        public DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, string state)
+        //DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state);
+        public DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state)
         {
             using (TrackerEntities e = new TrackerEntities())
             {
@@ -158,8 +161,7 @@ namespace IPS.Tracker.WCF
                                  where d.Id == id
                                  select d).First();
 
-
-                DefectComment comment = defect.Change(summary, description, workOrderId, assigneeId, changedById, priority, state);
+                DefectComment comment = defect.Change(summary, description, workOrderId, assigneeId, changedById, priority, sprint, state);
 
                 e.SaveChanges();
                 SendNotification(comment);

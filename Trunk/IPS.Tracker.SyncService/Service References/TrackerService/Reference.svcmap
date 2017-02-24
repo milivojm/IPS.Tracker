@@ -5,7 +5,7 @@
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
-    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateInternalTypes>true</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
     <CollectionMappings>
@@ -23,11 +23,12 @@
     <MetadataSource Address="http://localhost:23247/TrackerService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TrackerService.xsd" MetadataType="Schema" ID="f8fd54ca-d009-4ddf-a441-7aabb66b3528" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TrackerService3.xsd" MetadataType="Schema" ID="4631e4e5-e4d3-4ab0-98c4-76cdac945c35" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd3" />
     <MetadataFile FileName="TrackerService1.xsd" MetadataType="Schema" ID="feeeb9c5-c958-423b-8e9d-3ee69b3a9f6b" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd2" />
-    <MetadataFile FileName="TrackerService.disco" MetadataType="Disco" ID="44938103-8051-4a54-94c6-03714ea4184e" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?disco" />
     <MetadataFile FileName="TrackerService2.xsd" MetadataType="Schema" ID="d8ad178b-e7c2-40d0-90ee-83a59cbf866c" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TrackerService.xsd" MetadataType="Schema" ID="f8fd54ca-d009-4ddf-a441-7aabb66b3528" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?xsd=xsd0" />
     <MetadataFile FileName="TrackerService.wsdl" MetadataType="Wsdl" ID="87991b87-cf22-4cdc-8612-a7a243aa85b0" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?wsdl" />
+    <MetadataFile FileName="TrackerService.disco" MetadataType="Disco" ID="44938103-8051-4a54-94c6-03714ea4184e" SourceId="1" SourceUrl="http://localhost:23247/TrackerService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

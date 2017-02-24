@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:23247/TrackerService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="DefectDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="AssigneeId" type="xs:int" />
@@ -7,14 +8,17 @@
       <xs:element minOccurs="0" name="DefectComments" nillable="true" type="tns:ArrayOfDefectCommentDTO" />
       <xs:element minOccurs="0" name="DefectDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DefectFile" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="DefectFileType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DefectFollowers" nillable="true" type="tns:ArrayOfDefectFollowerDTO" />
       <xs:element minOccurs="0" name="DefectState" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="LinkedDefectNumbers" nillable="true" type="q1:ArrayOfint" />
       <xs:element minOccurs="0" name="Priority" type="xs:short" />
       <xs:element minOccurs="0" name="PriorityDescription" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReporterId" type="xs:int" />
       <xs:element minOccurs="0" name="ReporterName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SprintNo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="StateDescription" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Summary" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WorkOrderId" nillable="true" type="xs:int" />

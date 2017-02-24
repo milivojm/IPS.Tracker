@@ -73,6 +73,7 @@
           <Property Name="DEFECT_DATE" Type="date" Nullable="false" />
           <Property Name="DEFECT_STATE" Type="varchar2" Nullable="false" MaxLength="3" />
           <Property Name="DEFECT_FILE_TYPE" Type="varchar2" Nullable="true" MaxLength="10" />
+          <Property Name="SPRINT_NO" Type="number" Nullable="true" Precision="5" />
         </EntityType>
         <EntityType Name="IPS_WORK_ORDERS">
           <Key>
@@ -269,6 +270,7 @@
           <NavigationProperty Name="DefectComments" Relationship="IPS.Tracker.Model.DFC_DEF_FK" FromRole="Defect" ToRole="DefectComment" />
           <NavigationProperty Name="DefectFollowers" Relationship="IPS.Tracker.Model.DFL_DEF_FK" FromRole="Defect" ToRole="IPS_DEFECT_FOLLOWERS" />
           <Property Type="String" Name="DefectFileType" Nullable="true" />
+          <Property Name="SprintNo" Type="Int16" Nullable="true" />
         </EntityType>
         <EntityType Name="WorkOrder">
           <Key>
@@ -429,6 +431,7 @@
           <EntitySetMapping Name="Defects">
             <EntityTypeMapping TypeName="IPS.Tracker.Model.Defect">
               <MappingFragment StoreEntitySet="IPS_DEFECTS">
+                <ScalarProperty Name="SprintNo" ColumnName="SPRINT_NO" />
                 <ScalarProperty Name="DefectFileType" ColumnName="DEFECT_FILE_TYPE" />
                 <ScalarProperty Name="DefectState" ColumnName="DEFECT_STATE" />
                 <ScalarProperty Name="DefectDate" ColumnName="DEFECT_DATE" />

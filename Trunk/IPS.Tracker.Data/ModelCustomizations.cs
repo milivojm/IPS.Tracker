@@ -76,7 +76,7 @@ namespace IPS.Tracker.Data
             }
         }
 
-        public DefectComment Change(string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, string state)
+        public DefectComment Change(string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state)
         {
             DefectComment comment = new DefectComment();
             comment.CommentatorId = changedById;
@@ -112,6 +112,11 @@ namespace IPS.Tracker.Data
                 comment.AddChange("radni nalog", oldWorkOrderLabel, WorkOrder.Label);
             }
 
+            if (this.SprintNo != sprint)
+            {
+                this.SprintNo = (short?)sprint;
+            }
+
             if (this.AssigneeId != assigneeId)
             {
                 string oldAssignee = this.Assignee.Name;
@@ -126,7 +131,7 @@ namespace IPS.Tracker.Data
                 this.Priority = priority;
                 comment.AddChange("prioritet", oldPriority, this.PriorityDescription);
             }
-
+            
             if (this.StateDescription != state)
             {
                 comment.AddChange("stanje", StateDescription, state);

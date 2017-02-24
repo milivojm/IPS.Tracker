@@ -41,6 +41,8 @@ namespace IPS.Tracker.Web.Models
             Id = defect.Id;
             ReporterName = defect.ReporterName;
 
+            SprintNumber = defect.SprintNo;
+
             Comments = defect.DefectComments.OrderByDescending(d => d.CommentDate).ToList();
             Followers = defect.DefectFollowers;
 
@@ -77,6 +79,9 @@ namespace IPS.Tracker.Web.Models
         [Required(ErrorMessage="Zaduženje je obavezno")]
         [Display(Name = "Zadužen *")]
         public int AssigneeId { get; set; }
+
+        [Display(Name = "Sprint")]
+        public int? SprintNumber { get; set; }
 
         public HttpPostedFileBase UploadedFile { get; set; }
 

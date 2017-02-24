@@ -45,6 +45,8 @@ namespace IPS.Tracker.WCF
         public string StateDescription { get; set; }
         [DataMember]
         public List<DefectCommentDTO> DefectComments { get; set; }
+        [DataMember] 
+        public int? SprintNo { get; set; }
         [DataMember]
         public List<DefectFollowerDTO> DefectFollowers { get; set; }
         [DataMember]

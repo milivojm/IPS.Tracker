@@ -56,8 +56,7 @@ namespace IPS.Tracker.Web.Controllers
                     str.Read(buffer, 0, viewModel.UploadedFile.ContentLength);
                 }
 
-
-                DefectDTO defect = client.ReportNewDefect(viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, buffer, contentType);
+                DefectDTO defect = client.ReportNewDefect(viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId,viewModel.SprintNumber, buffer, contentType);
                 return RedirectToAction("DefectReported", "Home", new { defectId = defect.Id });
             }
         }
@@ -224,7 +223,7 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 WorkerDTO currentWorker = GetCurrentWorker(client);
-                DefectDTO defect = client.SaveDefect(viewModel.Id, viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.StateDescription);
+                DefectDTO defect = client.SaveDefect(viewModel.Id, viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.SprintNumber, viewModel.StateDescription);
 
                 if (!String.IsNullOrEmpty(viewModel.EditCommentText))
                 {

@@ -57,6 +57,13 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.SprintNumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-1">
+                @Html.TextBoxFor(model => model.SprintNumber, new { @class = "form-control", id = "SprintNumber" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <span class="btn btn-default btn-file">Priloži datoteku
                     <input type="file" name="UploadedFile" />
@@ -73,9 +80,11 @@
     </div>
 }
 
-<link href="~/jquery-ui-1.10.4.custom/css/custom-theme/jquery-ui-1.10.4.custom.min.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="~/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js" type="text/javascript"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+
 <script type="text/javascript">
+
     workOrders = [];
 
     $(document).ready(
