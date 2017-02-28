@@ -37,6 +37,9 @@ namespace IPS.Tracker.WCF
         List<DefectDTO> GetDefectsByWorker(int workerId, int pageNumber, int defectsPerPage, string state);
 
         [OperationContract]
+        List<DefectDTO> GetAllDefectsByWorker(int workerId, string state);
+
+        [OperationContract]
         DefectDTO GetDefectById(int defectId);
 
         [OperationContract]

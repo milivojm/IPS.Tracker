@@ -16,6 +16,8 @@
         else
             return Html.ActionLink(String.Format("{0} : {1}", d.WorkOrderName, d.WorkOrderLabel), "ListProblemsByWorkOrder", new { workOrderId = d.WorkOrderId, stateDescription = ViewBag.StateDescription });
     }).Titled("Radni nalog").Sortable(false).SetWidth(350);
-    columns.Add(d => d.AssigneeName).Titled("Zadužen").Sortable(false).SetWidth(150).Encoded(false).Sanitized(false).RenderValueAs(d => Html.ActionLink(d.AssigneeName,"ListProblemsByUser",new { userId = d.AssigneeId}));
-    columns.Add(d => d.SprintNo).Titled("Sprint").Sortable(false).SetWidth(50);
-}).WithPaging(10)
+    columns.Add(d => d.AssigneeName).Titled("Zadužen").Sortable(false).SetWidth(150).Encoded(false).Sanitized(false).RenderValueAs(d => Html.ActionLink(d.AssigneeName, "ListProblemsByUser", new { userId = d.AssigneeId }));
+    columns.Add(d => d.SprintNo).Titled("Sprint").Sortable(false).SetWidth(50).Css("text-right");
+})
+<!--}).WithPaging(10)-->
+<!--WithPaging(5,2)-->

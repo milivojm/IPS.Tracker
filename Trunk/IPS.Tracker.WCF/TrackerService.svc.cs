@@ -259,27 +259,47 @@ namespace IPS.Tracker.WCF
                     query = from d in e.Defects
                             where d.Id == taskId
                             select d;
-                else
+                
+                else //prvo potrazi broj sprinta
                 {
-                    Regex reg = new Regex(@"^#(\d+)$");
+                    Regex sprintReg = new Regex("[A-Za-z]*(?i)Sprint[0-9]*");
 
-                    if (reg.IsMatch(searchTerm))
+                    if (sprintReg.IsMatch(searchTerm))
                     {
-                        int workOrderNo = int.Parse(reg.Match(searchTerm).Groups[1].Value);
+                        string SprintNo = Regex.Replace(searchTerm, @"\D", "");
+
+                        int sprint = int.Parse(SprintNo);
 
                         query = from d in e.Defects
-                                where d.WorkOrder.OrdinalNumber == workOrderNo
+                                where d.SprintNo == sprint
                                 orderby d.DefectDate descending
                                 select d;
                     }
-                    else
+
+                    else //ako ne nađeš sprint pod tim brojem radi ono što si prije radio
                     {
-                        query = from d in e.Defects
-                                where d.Summary.ToUpper().Contains(searchTerm.ToUpper())
-                                || d.Description.ToUpper().Contains(searchTerm.ToUpper())
-                                orderby d.DefectDate descending
-                                select d;
+                        Regex reg = new Regex(@"^#(\d+)$");
+
+                        if (reg.IsMatch(searchTerm))
+                        {
+                            int workOrderNo = int.Parse(reg.Match(searchTerm).Groups[1].Value);
+
+                            query = from d in e.Defects
+                                    where d.WorkOrder.OrdinalNumber == workOrderNo
+                                    orderby d.DefectDate descending
+                                    select d;
+                        }
+                        else
+                        {
+                            query = from d in e.Defects
+                                    where d.Summary.ToUpper().Contains(searchTerm.ToUpper())
+                                    || d.Description.ToUpper().Contains(searchTerm.ToUpper())
+                                    orderby d.DefectDate descending
+                                    select d;
+                        }
+
                     }
+
                 }
 
                 return Mapper.Map<List<DefectDTO>>(query.ToList());
@@ -356,6 +376,26 @@ namespace IPS.Tracker.WCF
                             select wo;
 
                 return Mapper.Map<List<WorkOrderDTO>>(query.ToList());
+            }
+        }
+
+        public List<DefectDTO> GetAllDefectsByWorker(int workerId, string state)
+        {
+            using (TrackerEntities e = new TrackerEntities())
+            {
+                var query = from d in e.Defects
+                            where d.AssigneeId == workerId
+                            select d;
+
+                if (state == "Riješen")
+                    query = query.Where(d => d.DefectState == "CLS");
+
+                if (state == "Aktivni")
+                    query = query.Where(d => d.DefectState != "CLS");
+
+                query = query.OrderByDescending(d => d.Priority).ThenBy(d => d.DefectDate);
+
+                return Mapper.Map<List<DefectDTO>>(query.ToList());
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using IPS.Tracker.Web.Models;
 using IPS.Tracker.Web.TrackerService;
+using PagedList;
 
 namespace IPS.Tracker.Web.Controllers
 {
@@ -56,7 +57,7 @@ namespace IPS.Tracker.Web.Controllers
                     str.Read(buffer, 0, viewModel.UploadedFile.ContentLength);
                 }
 
-                DefectDTO defect = client.ReportNewDefect(viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId,viewModel.SprintNumber, buffer, contentType);
+                DefectDTO defect = client.ReportNewDefect(viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.SprintNumber, buffer, contentType);
                 return RedirectToAction("DefectReported", "Home", new { defectId = defect.Id });
             }
         }
@@ -99,29 +100,33 @@ namespace IPS.Tracker.Web.Controllers
             return View();
         }
 
-        public ActionResult ListProblemsByUser(int? userId, string stateDescription = "Aktivni", int page = 0)
+        public ActionResult ListProblemsByUser(int? userId, string stateDescription = "Aktivni", int page = 1)
         {
             ViewBag.EditMode = true;
             ViewBag.StateDescription = stateDescription;
             ViewBag.UserId = userId;
-            ViewBag.Page = page;
+            // ViewBag.Page = page;
 
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 List<DefectDTO> result;
 
+
                 if (userId.HasValue)
-                    result = client.GetDefectsByWorker(userId.Value, page, defectsPerPage, stateDescription);
+                    //    result = client.GetDefectsByWorker(userId.Value, page - 1, defectsPerPage, stateDescription);
+                    result = client.GetAllDefectsByWorker(userId.Value, stateDescription);
                 else
                 {
                     WorkerDTO currentWorker = GetCurrentWorker(client);
                     ViewBag.UserId = currentWorker.Id;
-                    result = client.GetDefectsByWorker(currentWorker.Id, page, defectsPerPage, stateDescription);
+                    result = client.GetAllDefectsByWorker(currentWorker.Id, stateDescription);
                 }
 
                 // result = ExtractResultByState(stateDescription, result);
 
-                return View(result);
+                //return View(result);
+
+                return View(result.ToPagedList(page, defectsPerPage));
             }
         }
 

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<IPS.Tracker.Web.TrackerService.DefectDTO>
+﻿@model PagedList.IPagedList<IPS.Tracker.Web.TrackerService.DefectDTO>
+@using PagedList.Mvc; 
 
 @{
     ViewBag.Title = "Pregled mojih zadataka";
@@ -19,10 +20,8 @@
 
 @Html.Partial("ListProblems", Model)
 
-@if (ViewBag.Page > 0) { 
-    @Html.ActionLink("<", "ListProblemsByUser", new { userId = ViewBag.UserId, stateDescription = ViewBag.StateDescription, page = (ViewBag.Page - 1) }, new { @class = "btn btn-default" })
-}
+@Html.PagedListPager(Model,
+  x => Url.Action("ListProblemsByUser", new { userId = ViewBag.UserId, stateDescription = ViewBag.StateDescription, page = x }))
+<!--
 
-@Html.ActionLink(">", "ListProblemsByUser", new { userId = ViewBag.UserId, stateDescription = ViewBag.StateDescription, page = (ViewBag.Page + 1) }, new { @class = "btn btn-default" })
-
-<!--<td class="grid-cell" data-name="SprintNo" align="center"></td>-->
+    -->
