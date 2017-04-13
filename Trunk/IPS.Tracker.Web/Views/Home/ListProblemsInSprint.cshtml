@@ -23,6 +23,6 @@
         if (!d.SprintNo.HasValue)
             return Html.Raw(String.Empty);
         else
-            return Html.ActionLink(d.SprintNo.ToString(), "Search", new { criteria = String.Format("sprint {0}",d.SprintNo) });
+            return Html.ActionLink(d.SprintNo.ToString(), "Search", new { criteria = String.Format("sprint {0}", d.SprintNo) });
     }).Titled("Sprint").Sortable(false).SetWidth(50).Css("text-right");
 })

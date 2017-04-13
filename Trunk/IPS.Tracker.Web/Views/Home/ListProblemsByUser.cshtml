@@ -22,6 +22,3 @@
 
 @Html.PagedListPager(Model,
   x => Url.Action("ListProblemsByUser", new { userId = ViewBag.UserId, stateDescription = ViewBag.StateDescription, page = x }))
-<!--
-
-    -->

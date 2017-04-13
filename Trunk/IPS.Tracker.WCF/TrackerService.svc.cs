@@ -262,7 +262,7 @@ namespace IPS.Tracker.WCF
                 
                 else //prvo potrazi broj sprinta
                 {
-                    Regex sprintReg = new Regex("[A-Za-z]*(?i)Sprint[0-9]*");
+                    Regex sprintReg = new Regex("[A-Za-z]*(?i)Sprint.*[0-9].*");
 
                     if (sprintReg.IsMatch(searchTerm))
                     {
@@ -376,6 +376,21 @@ namespace IPS.Tracker.WCF
                             select wo;
 
                 return Mapper.Map<List<WorkOrderDTO>>(query.ToList());
+            }
+        }
+        
+        public List<DefectDTO> GetMaxValueSprintDefects()
+        {
+            using (TrackerEntities e = new TrackerEntities())
+            {
+                var maxvalue = (from w in e.Defects
+                                select w.SprintNo).Max();
+
+                var query = from w in e.Defects
+                            where w.SprintNo == maxvalue 
+                            select w;
+
+                return Mapper.Map<List<DefectDTO>>(query.ToList());
             }
         }
 

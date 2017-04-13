@@ -56,5 +56,8 @@ namespace IPS.Tracker.WCF
 
         [OperationContract]
         List<DefectCommentDTO> GetLastComments(int commentNumber);
+
+        [OperationContract]
+        List<DefectDTO> GetMaxValueSprintDefects();
     }
 }

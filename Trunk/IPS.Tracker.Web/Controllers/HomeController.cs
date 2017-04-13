@@ -170,6 +170,15 @@ namespace IPS.Tracker.Web.Controllers
             }
         }
 
+        public ActionResult ListProblemsInSprint()
+        {
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                List<DefectDTO> defects = client.GetMaxValueSprintDefects();                              
+                return View(defects.ToPagedList(1, 10));
+            }
+        }
+
         public ActionResult Details(int id)
         {
             ViewBag.Id = id;
@@ -265,5 +274,7 @@ namespace IPS.Tracker.Web.Controllers
                 return View(results);
             }
         }
+
+       
     }
 }
