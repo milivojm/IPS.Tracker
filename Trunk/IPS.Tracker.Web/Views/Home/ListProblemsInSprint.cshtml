@@ -1,6 +1,7 @@
 ﻿<script src="~/Scripts/knockout-3.1.0.js"></script>
-@model IEnumerable<IPS.Tracker.Web.TrackerService.DefectDTO>
+@model PagedList.IPagedList<IPS.Tracker.Web.TrackerService.DefectDTO>
 @using GridMvc.Html
+@using PagedList.Mvc;
 
 @Html.Grid(Model).Columns(columns =>
 {
@@ -26,3 +27,6 @@
             return Html.ActionLink(d.SprintNo.ToString(), "Search", new { criteria = String.Format("sprint {0}", d.SprintNo) });
     }).Titled("Sprint").Sortable(false).SetWidth(50).Css("text-right");
 })
+
+@Html.PagedListPager(Model,
+  x => Url.Action("ListProblemsInSprint", new { page = x }))

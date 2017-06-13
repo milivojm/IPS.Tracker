@@ -170,12 +170,12 @@ namespace IPS.Tracker.Web.Controllers
             }
         }
 
-        public ActionResult ListProblemsInSprint()
+        public ActionResult ListProblemsInSprint(int page = 1)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 List<DefectDTO> defects = client.GetMaxValueSprintDefects();                              
-                return View(defects.ToPagedList(1, 10));
+                return View(defects.ToPagedList(page, 10));
             }
         }
 
