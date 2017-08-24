@@ -40,14 +40,12 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
-.toolbox-container
-{
+.toolbox-container {
     height: 40px;
     padding-bottom: 5px;
 }
 
-dt, dd
-{
+dt, dd {
     padding-top: 2px;
     padding-bottom: 2px;
 }
@@ -57,23 +55,22 @@ dt, dd
     overflow: hidden;
 }
 
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-}
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
 
-.left-margin
-{
+.left-margin {
     margin-left: 20px;
 }

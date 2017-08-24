@@ -1,28 +1,33 @@
 ﻿<script src="~/Scripts/knockout-3.1.0.js"></script>
 @model IEnumerable<IPS.Tracker.Web.TrackerService.DefectDTO>
-@using GridMvc.Html
 
-@Html.Grid(Model).Columns(columns =>
-{
-    columns.Add(d => d.Id).Encoded(false).Sanitized(false).Titled("Broj").Sortable(false).SetWidth(40).RenderValueAs(d => Html.ActionLink(d.Id.ToString(), "Details", new { id = d.Id }));
-    columns.Add(d => d.PriorityDescription).Titled("Prioritet").Sortable(false).SetWidth(50);
-    columns.Add(d => d.DefectDate).Titled("Datum prijave").Sortable(false).Format("{0:dd.MM.yyyy}").SetWidth(60);
-    columns.Add(d => d.StateDescription).Titled("Stanje zadatka").Sortable(false).SetWidth(50);
-    columns.Add(d => d.Summary).Titled("Naziv").Sortable(false);
-    columns.Add(d => d.WorkOrderName).Encoded(false).Sanitized(false).RenderValueAs(d =>
-    {
-        if (String.IsNullOrEmpty(d.WorkOrderName))
-            return Html.Raw(String.Empty);
-        else
-            return Html.ActionLink(String.Format("{0} : {1}", d.WorkOrderName, d.WorkOrderLabel), "ListProblemsByWorkOrder", new { workOrderId = d.WorkOrderId, stateDescription = ViewBag.StateDescription });
-    }).Titled("Radni nalog").Sortable(false).SetWidth(350);
-    columns.Add(d => d.AssigneeName).Titled("Zadužen").Sortable(false).SetWidth(150).Encoded(false).Sanitized(false).RenderValueAs(d => Html.ActionLink(d.AssigneeName, "ListProblemsByUser", new { userId = d.AssigneeId }));
+@{
+    var grid = new WebGrid(defaultSort: "Priority");
+    grid.Bind(Model, columnNames: new[] { "Id", "Priority", "PriorityDescription", "DefectDate", "StateDescription", "Summary", "WorkOrderName", "AssigneeName", "SprintNo" });
+}
 
-    columns.Add(d => d.SprintNo).Encoded(false).Sanitized(false).RenderValueAs(d =>
-    {
-        if (!d.SprintNo.HasValue)
-            return Html.Raw(String.Empty);
-        else
-            return Html.ActionLink(d.SprintNo.ToString(), "Search", new { criteria = String.Format("sprint {0}",d.SprintNo) });
-    }).Titled("Sprint").Sortable(false).SetWidth(50).Css("text-right");
-})
+<div>
+    @grid.GetHtml(
+        tableStyle: "table",
+        columns: grid.Columns(
+            grid.Column(columnName: "Id", header: "Broj", style: "col-md-1", format: d => Html.ActionLink(((int)d.Id).ToString(), "Details", new { id = d.Id})),
+            grid.Column(columnName: "PriorityDescription", header: "Prioritet", style: "col-md-1"),
+            grid.Column(columnName: "StateDescription", header: "Stanje", style: "col-md-1"),
+            grid.Column(columnName: "Summary", header: "Naziv", style: "col-md-3"),
+            grid.Column(columnName: "WorkOrderName", header: "Radni nalog", style: "col-md-3", format: d =>
+            {
+                if (string.IsNullOrEmpty(d.WorkOrderName))
+                    return Html.Raw(String.Empty);
+                else
+                    return Html.Raw(Html.ActionLink(string.Format("{0} : {1}", (string)d.WorkOrderName, (string)d.WorkOrderLabel), "ListProblemsByWorkOrder", new { workOrderId = d.WorkOrderId, stateDescription = ViewBag.StateDescription }));
+            }),
+            grid.Column(columnName: "AssigneeName", header: "Zadužen", style: "col-md-2", format: d => Html.ActionLink((string)d.AssigneeName, "ListProblemsByUser", new { userId = d.AssigneeId })),
+            grid.Column(columnName: "SprintNo", header: "Sprint", style: "col-md-1", format: d => {
+                if (!((int?)d.SprintNo).HasValue)
+                    return Html.Raw(String.Empty);
+                else
+                    return Html.ActionLink((string)d.SprintNo.ToString(), "Search", new { criteria = string.Format("sprint {0}", d.SprintNo) });
+            })
+        )
+    )
+</div>

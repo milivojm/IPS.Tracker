@@ -1,0 +1,21 @@
+Application: GZR.VisestambeneZgrade.UI.exe
+Framework Version: v4.0.30319
+Description: The process was terminated due to an unhandled exception.
+Exception Info: System.Data.ProviderIncompatibleException
+Stack:
+   at System.Data.Common.DbProviderServices.GetProviderFactory(System.Data.Common.DbConnection)
+   at System.Data.Entity.ModelConfiguration.Utilities.DbConnectionExtensions.GetProviderInvariantName(System.Data.Common.DbConnection)
+   at System.Data.Entity.Internal.InternalConnection.get_ProviderName()
+   at System.Data.Entity.Internal.LazyInternalConnection.get_ProviderName()
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(System.Type)
+   at System.Data.Entity.Internal.Linq.InternalSet`1[[System.__Canon, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]].Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1[[System.__Canon, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]].get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1[[System.__Canon, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]].System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.OrderBy[[System.__Canon, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.__Canon, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]](System.Linq.IQueryable`1<System.__Canon>, System.Linq.Expressions.Expression`1<System.Func`2<System.__Canon,System.__Canon>>)
+   at GZR.VisestambeneZgrade.Repository.ProjektRepository.GetAll()
+   at GZR.VisestambeneZgrade.UI.Presenters.ProjektSelectorPresenter..ctor(GZR.VisestambeneZgrade.UI.IProjektSelectorView)
+   at GZR.VisestambeneZgrade.UI.Program.Main()
+
+
+For more information, see Help and Support Center at http://go.microsoft.com/fwlink/events.asp.

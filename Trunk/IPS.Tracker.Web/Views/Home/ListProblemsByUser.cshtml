@@ -1,8 +1,7 @@
-﻿@model PagedList.IPagedList<IPS.Tracker.Web.TrackerService.DefectDTO>
-@using PagedList.Mvc; 
+﻿@model List<IPS.Tracker.Web.TrackerService.DefectDTO>
 
 @{
-    ViewBag.Title = "Pregled mojih zadataka";
+    ViewBag.Title = "Pregled mojih zadataka"; 
 }
 
 <h2>Moji zadaci</h2>
@@ -13,12 +12,9 @@
 
 <div class="pull-right">
     @Html.ActionLink("Otvoreni", "ListProblemsByUser", new { stateDescription = "Aktivni" }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Riješeni", "ListProblemsByUser", new { stateDescription = "Riješen" }, new { @class = "btn btn-default" })
+    @*@Html.ActionLink("Riješeni", "ListProblemsByUser", new { stateDescription = "Riješen" }, new { @class = "btn btn-default" })*@
 </div>
 
 <div class="clearfix "></div>
 
 @Html.Partial("ListProblems", Model)
-
-@Html.PagedListPager(Model,
-  x => Url.Action("ListProblemsByUser", new { userId = ViewBag.UserId, stateDescription = ViewBag.StateDescription, page = x }))

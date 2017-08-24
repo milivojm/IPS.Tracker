@@ -124,9 +124,9 @@ namespace IPS.Tracker.Web.Controllers
 
                 // result = ExtractResultByState(stateDescription, result);
 
-                //return View(result);
+                return View(result);
 
-                return View(result.ToPagedList(page, defectsPerPage));
+                // return View(result.ToPagedList(page, defectsPerPage));
             }
         }
 
@@ -174,8 +174,9 @@ namespace IPS.Tracker.Web.Controllers
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
-                List<DefectDTO> defects = client.GetMaxValueSprintDefects();                              
-                return View(defects.ToPagedList(page, 10));
+                List<DefectDTO> defects = client.GetMaxValueSprintDefects();
+                // return View(defects.ToPagedList(page, 10));
+                return View(defects);
             }
         }
 
