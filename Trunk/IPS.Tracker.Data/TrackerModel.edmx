@@ -108,6 +108,7 @@
           <Property Name="CMS_USER" Type="varchar2" MaxLength="1" />
           <Property Name="INS_USER" Type="varchar2" MaxLength="1" />
           <Property Name="INS_ADMINISTRATOR" Type="varchar2" MaxLength="1" />
+          <Property Name="TRACKER_ADMIN" Type="varchar2" MaxLength="1" />
           <Property Name="INS_SERVISER" Type="varchar2" MaxLength="1" />
           <Property Name="INSTRUMENT_ID" Type="number" Precision="6" />
           <Property Name="INS_UPRAVITELJ_VP" Type="varchar2" MaxLength="1" />
@@ -316,6 +317,7 @@
           <NavigationProperty Name="DefectsReported" Relationship="IPS.Tracker.Model.DEF_WOR_FK1" FromRole="IPS_WORKERS" ToRole="IPS_DEFECTS" />
           <NavigationProperty Name="DefectsAssigned" Relationship="IPS.Tracker.Model.DEF_WOR_FK2" FromRole="IPS_WORKERS" ToRole="IPS_DEFECTS" />
           <NavigationProperty Name="IPS_DEFECT_FOLLOWERS" Relationship="IPS.Tracker.Model.DFL_WOR" FromRole="Worker" ToRole="IPS_DEFECT_FOLLOWERS" />
+          <Property Name="TrackerAdmin" Type="String" Nullable="false" FixedLength="true" MaxLength="1" Unicode="false" />
         </EntityType>
         <Association Name="DFC_WOR_FK">
           <End Type="IPS.Tracker.Model.Worker" Role="IPS_WORKERS" Multiplicity="1" />
@@ -470,6 +472,7 @@
           <EntitySetMapping Name="Workers">
             <EntityTypeMapping TypeName="IPS.Tracker.Model.Worker">
               <MappingFragment StoreEntitySet="IPS_WORKERS">
+                <ScalarProperty Name="TrackerAdmin" ColumnName="TRACKER_ADMIN" />
                 <ScalarProperty Name="CardNo" ColumnName="CARDNO" />
                 <ScalarProperty Name="Password" ColumnName="PASSWORD" />
                 <ScalarProperty Name="Retired" ColumnName="RETIRED" />

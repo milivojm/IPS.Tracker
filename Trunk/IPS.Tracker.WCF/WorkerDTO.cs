@@ -17,5 +17,8 @@ namespace IPS.Tracker.WCF
 
         [DataMember]
         public string Username { get; set; }
+
+        [DataMember]
+        public string TrackerAdmin { get; set; }
     }
 }

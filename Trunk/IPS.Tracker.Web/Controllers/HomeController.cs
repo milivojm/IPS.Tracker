@@ -57,7 +57,14 @@ namespace IPS.Tracker.Web.Controllers
                     str.Read(buffer, 0, viewModel.UploadedFile.ContentLength);
                 }
 
-                DefectDTO defect = client.ReportNewDefect(viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.SprintNumber, buffer, contentType);
+                int assigneeId;
+
+                if (viewModel.SelectedWorkOrderId.HasValue)
+                    assigneeId = client.GetDefaultAssigneeId(viewModel.SelectedWorkOrderId.Value);
+                else
+                    assigneeId = currentWorker.Id;
+
+                DefectDTO defect = client.ReportNewDefect(viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, assigneeId, currentWorker.Id, 1, null, buffer, contentType);
                 return RedirectToAction("DefectReported", "Home", new { defectId = defect.Id });
             }
         }
@@ -175,7 +182,8 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 List<DefectDTO> defects = client.GetMaxValueSprintDefects();
-                // return View(defects.ToPagedList(page, 10));
+                WorkerDTO worker = GetCurrentWorker(client);
+                ViewBag.IsAdministrator = worker.TrackerAdmin == "D";
                 return View(defects);
             }
         }
@@ -200,10 +208,20 @@ namespace IPS.Tracker.Web.Controllers
 
                 WorkerDTO currentWorker = GetCurrentWorker(client);
 
-                if (defect.DefectFollowers.Any(df => df.FollowerId == currentWorker.Id))
-                    ViewBag.ShowEditBUtton = true;
+                //if (defect.DefectFollowers.Any(df => df.FollowerId == currentWorker.Id))
+                //    ViewBag.ShowEditBUtton = true;
+                //else
+                //    ViewBag.ShowEditBUtton = false;
+
+                if (defect.WorkOrderId.HasValue)
+                {
+                    int leaderId = client.GetDefaultAssigneeId(defect.WorkOrderId.Value);
+                    ViewBag.ShowEditButton = (defect.AssigneeId == currentWorker.Id) || (leaderId == currentWorker.Id);
+                }
                 else
-                    ViewBag.ShowEditBUtton = false;
+                {
+                    ViewBag.ShowEditButton = (defect.AssigneeId == currentWorker.Id) || (defect.ReporterId == currentWorker.Id);
+                }
 
                 if (defect.DefectFile != null)
                 {
@@ -226,8 +244,20 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.GetDefectById(id);
+                WorkerDTO currentWorker = GetCurrentWorker(client);
+                bool planningAllowed = false;
+
+                if (defect.WorkOrderId.HasValue)
+                {
+                    int leaderId = client.GetDefaultAssigneeId(defect.WorkOrderId.Value);
+                    planningAllowed = (leaderId == currentWorker.Id);
+                }
+                else
+                    planningAllowed = (defect.ReporterId == currentWorker.Id);
+
                 DefectViewModel viewModel = new DefectViewModel(defect);
                 viewModel.Workers = client.GetActiveWorkers();
+                viewModel.PlanningAllowed = planningAllowed;
                 return View(viewModel);
             }
         }
@@ -276,6 +306,18 @@ namespace IPS.Tracker.Web.Controllers
             }
         }
 
-       
+        public ActionResult CloseSprint()
+        {
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                // List<DefectDTO> defects = client.GetMaxValueSprintDefects();
+                WorkerDTO worker = GetCurrentWorker(client);
+
+                if (worker.TrackerAdmin == "D")
+                    client.CloseSprint();
+
+                return RedirectToAction("ListProblemsInSprint");
+            }
+        }
     }
 }

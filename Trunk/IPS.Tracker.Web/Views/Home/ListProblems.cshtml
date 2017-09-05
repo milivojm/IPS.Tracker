@@ -3,6 +3,7 @@
 
 @{
     var grid = new WebGrid(defaultSort: "Priority");
+    grid.SortDirection = SortDirection.Descending;
     grid.Bind(Model, columnNames: new[] { "Id", "Priority", "PriorityDescription", "DefectDate", "StateDescription", "Summary", "WorkOrderName", "AssigneeName", "SprintNo" });
 }
 

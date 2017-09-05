@@ -54,7 +54,7 @@ namespace IPS.Tracker.WCF
                 newDefect.ReporterId = reporterId;
                 newDefect.Priority = priority;
                 //newDefect.SprintNo = (short) sprint;
-                newDefect.SprintNo = (short?) sprint;
+                newDefect.SprintNo = (short?)sprint;
                 newDefect.DefectFile = defectFile;
                 newDefect.SubscribeFollower(assigneeId);
                 newDefect.SubscribeFollower(reporterId);
@@ -259,7 +259,7 @@ namespace IPS.Tracker.WCF
                     query = from d in e.Defects
                             where d.Id == taskId
                             select d;
-                
+
                 else //prvo potrazi broj sprinta
                 {
                     Regex sprintReg = new Regex("[A-Za-z]*(?i)Sprint.*[0-9].*");
@@ -378,7 +378,7 @@ namespace IPS.Tracker.WCF
                 return Mapper.Map<List<WorkOrderDTO>>(query.ToList());
             }
         }
-        
+
         public List<DefectDTO> GetMaxValueSprintDefects()
         {
             using (TrackerEntities e = new TrackerEntities())
@@ -387,10 +387,29 @@ namespace IPS.Tracker.WCF
                                 select w.SprintNo).Max();
 
                 var query = from w in e.Defects
-                            where w.SprintNo == maxvalue 
+                            where w.SprintNo == maxvalue
                             select w;
 
                 return Mapper.Map<List<DefectDTO>>(query.ToList());
+            }
+        }
+
+        public void CloseSprint()
+        {
+            using (TrackerEntities e = new TrackerEntities())
+            {
+                var maxvalue = (from w in e.Defects
+                                select w.SprintNo).Max();
+
+                var query = from w in e.Defects
+                            where w.SprintNo == maxvalue
+                            && w.DefectState != "CLS"
+                            select w;
+
+                foreach (var openDefect in query)
+                    openDefect.SprintNo = (short)((maxvalue ?? 0) + 1);
+
+                e.SaveChanges();
             }
         }
 

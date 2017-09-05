@@ -1150,12 +1150,14 @@ namespace IPS.Tracker.Data
         /// <param name="username">Initial value of the Username property.</param>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="retired">Initial value of the Retired property.</param>
-        public static Worker CreateWorker(global::System.String username, global::System.Int32 id, global::System.String retired)
+        /// <param name="trackerAdmin">Initial value of the TrackerAdmin property.</param>
+        public static Worker CreateWorker(global::System.String username, global::System.Int32 id, global::System.String retired, global::System.String trackerAdmin)
         {
             Worker worker = new Worker();
             worker.Username = username;
             worker.Id = id;
             worker.Retired = retired;
+            worker.TrackerAdmin = trackerAdmin;
             return worker;
         }
 
@@ -1525,6 +1527,30 @@ namespace IPS.Tracker.Data
         private global::System.String _CardNo;
         partial void OnCardNoChanging(global::System.String value);
         partial void OnCardNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TrackerAdmin
+        {
+            get
+            {
+                return _TrackerAdmin;
+            }
+            set
+            {
+                OnTrackerAdminChanging(value);
+                ReportPropertyChanging("TrackerAdmin");
+                _TrackerAdmin = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TrackerAdmin");
+                OnTrackerAdminChanged();
+            }
+        }
+        private global::System.String _TrackerAdmin;
+        partial void OnTrackerAdminChanging(global::System.String value);
+        partial void OnTrackerAdminChanged();
 
         #endregion
 

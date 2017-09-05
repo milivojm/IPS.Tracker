@@ -124,5 +124,7 @@ namespace IPS.Tracker.Web.Models
         public List<DefectFollowerDTO> Followers { get; set; }
 
         public string EditCommentText { get; set; }
+
+        public bool PlanningAllowed { get; set; }
     }
 }

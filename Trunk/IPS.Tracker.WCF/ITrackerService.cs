@@ -59,5 +59,8 @@ namespace IPS.Tracker.WCF
 
         [OperationContract]
         List<DefectDTO> GetMaxValueSprintDefects();
+
+        [OperationContract]
+        void CloseSprint();
     }
 }

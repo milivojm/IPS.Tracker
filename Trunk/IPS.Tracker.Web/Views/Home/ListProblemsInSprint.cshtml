@@ -2,3 +2,8 @@
 @model IEnumerable<IPS.Tracker.Web.TrackerService.DefectDTO>
 
 @Html.Partial("ListProblems", Model)
+
+@if (ViewBag.IsAdministrator)
+{
+    @Html.ActionLink("Zatvori sprint", "CloseSprint", new { }, new { @class = "btn btn-danger" })
+}
