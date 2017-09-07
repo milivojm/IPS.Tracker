@@ -216,11 +216,11 @@ namespace IPS.Tracker.Web.Controllers
                 if (defect.WorkOrderId.HasValue)
                 {
                     int leaderId = client.GetDefaultAssigneeId(defect.WorkOrderId.Value);
-                    ViewBag.ShowEditButton = (defect.AssigneeId == currentWorker.Id) || (leaderId == currentWorker.Id);
+                    ViewBag.ShowEditButton = (defect.AssigneeId == currentWorker.Id) || (leaderId == currentWorker.Id) || (currentWorker.TrackerAdmin == "D");
                 }
                 else
                 {
-                    ViewBag.ShowEditButton = (defect.AssigneeId == currentWorker.Id) || (defect.ReporterId == currentWorker.Id);
+                    ViewBag.ShowEditButton = (defect.AssigneeId == currentWorker.Id) || (defect.ReporterId == currentWorker.Id) || (currentWorker.TrackerAdmin == "D");
                 }
 
                 if (defect.DefectFile != null)
@@ -257,7 +257,7 @@ namespace IPS.Tracker.Web.Controllers
 
                 DefectViewModel viewModel = new DefectViewModel(defect);
                 viewModel.Workers = client.GetActiveWorkers();
-                viewModel.PlanningAllowed = planningAllowed;
+                viewModel.PlanningAllowed = planningAllowed || currentWorker.TrackerAdmin == "D";
                 return View(viewModel);
             }
         }
