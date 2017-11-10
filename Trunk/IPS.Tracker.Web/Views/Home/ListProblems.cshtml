@@ -10,7 +10,7 @@
     @grid.GetHtml(
         tableStyle: "table",
         columns: grid.Columns(
-            grid.Column(columnName: "Id", header: "Broj", style: "col-md-1", format: d => Html.ActionLink(((int)d.Id).ToString(), "Details", new { id = d.Id})),
+            grid.Column(columnName: "Id", header: "Broj", style: "col-md-1", format: d => Html.ActionLink(((int)d.Id).ToString(), "Details", new { id = d.Id })),
             grid.Column(columnName: "PriorityDescription", header: "Prioritet", style: "col-md-1"),
             grid.Column(columnName: "StateDescription", header: "Stanje", style: "col-md-1"),
             grid.Column(columnName: "Summary", header: "Naziv", style: "col-md-3"),
@@ -22,7 +22,8 @@
                     return Html.Raw(Html.ActionLink(string.Format("{0} : {1}", (string)d.WorkOrderName, (string)d.WorkOrderLabel), "ListProblemsByWorkOrder", new { workOrderId = d.WorkOrderId, stateDescription = ViewBag.StateDescription }));
             }),
             grid.Column(columnName: "AssigneeName", header: "Zadužen", style: "col-md-2", format: d => Html.ActionLink((string)d.AssigneeName, "ListProblemsByUser", new { userId = d.AssigneeId })),
-            grid.Column(columnName: "SprintNo", header: "Sprint", style: "col-md-1", format: d => {
+            grid.Column(columnName: "SprintNo", header: "Sprint", style: "col-md-1", format: d =>
+            {
                 if (!((int?)d.SprintNo).HasValue)
                     return Html.Raw(String.Empty);
                 else

@@ -74,3 +74,25 @@ dt, dd {
 .left-margin {
     margin-left: 20px;
 }
+
+.problem-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    position: relative;
+    transition: background-color 140ms ease-in-out, border-color 75ms ease-in-out;
+}
+
+.kanban-header {
+    padding: 20px 20px 10px 20px;
+}
+
+.kanban-board {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}

@@ -177,14 +177,27 @@ namespace IPS.Tracker.Web.Controllers
             }
         }
 
-        public ActionResult ListProblemsInSprint(int page = 1)
+        public ActionResult ListProblemsInSprint(bool onlyMine = false)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 List<DefectDTO> defects = client.GetMaxValueSprintDefects();
                 WorkerDTO worker = GetCurrentWorker(client);
                 ViewBag.IsAdministrator = worker.TrackerAdmin == "D";
-                return View(defects);
+
+                ListProblemsBoardViewModel viewModel = new ListProblemsBoardViewModel();
+
+                viewModel.SprintCompletion = Math.Round((decimal)defects.Count(d => d.DefectState == "CLS") * 100 / defects.Count, 0);
+
+                if (onlyMine)
+                    viewModel.Defects = defects.Where(d => d.AssigneeId == worker.Id);
+                else
+                    viewModel.Defects = defects;
+
+                if (defects.Count > 0)
+                    viewModel.SprintNo = defects[0].SprintNo;
+
+                return View(viewModel);
             }
         }
 

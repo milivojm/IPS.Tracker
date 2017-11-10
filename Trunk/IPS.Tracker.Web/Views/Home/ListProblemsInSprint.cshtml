@@ -1,9 +1,23 @@
 ﻿<script src="~/Scripts/knockout-3.1.0.js"></script>
-@model IEnumerable<IPS.Tracker.Web.TrackerService.DefectDTO>
+@model IPS.Tracker.Web.Models.ListProblemsBoardViewModel
 
-@Html.Partial("ListProblems", Model)
+<div class="row kanban-header">
+    <div class="col-md-4">
+        <h2>Sprint @Model.SprintNo</h2>
+        <p>Završeno @Model.SprintCompletion%</p>
+    </div>
 
-@if (ViewBag.IsAdministrator)
-{
-    @Html.ActionLink("Zatvori sprint", "CloseSprint", new { }, new { @class = "btn btn-danger" })
-}
+    <div class="col-md-8 clearfix">
+        <div class="pull-right">
+            @Html.ActionLink("Samo moji", "ListProblemsInSprint", new { onlyMine = true }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Svi", "ListProblemsInSprint", new { onlyMine = false }, new { @class = "btn btn-default" })
+            @if (ViewBag.IsAdministrator)
+            {
+                @Html.ActionLink("Zatvori sprint", "CloseSprint", new { }, new { @class = "btn btn-danger" })
+            }
+        </div>
+    </div>
+</div>
+
+@Html.Partial("ListProblemsBoard", Model.Defects)
+

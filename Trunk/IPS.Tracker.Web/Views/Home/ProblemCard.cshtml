@@ -1,0 +1,20 @@
+﻿@model IPS.Tracker.Web.TrackerService.DefectDTO
+
+<div class="problem-card @Model.PriorityClass">
+    <section class="row" title="@Model.Description">
+        <div class="col-md-9">@Model.Summary</div>
+        <div class="col-md-3">
+            @Html.ActionLink(Model.Id.ToString(), "Details", new { id = Model.Id })
+        </div>
+    </section>
+    <div class="problem-details">
+        <div class="row">
+            <div class="col-md-10"><small title="@Model.WorkOrderName">@Model.WorkOrderName.Substring(0, Math.Min(30, Model.WorkOrderName.Length))</small></div>
+            <div class="col-md-2">
+                <div class="pull-right">
+                    <small class="text-info" title="@Model.AssigneeName">@Model.AssigneeInitials</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
