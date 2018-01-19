@@ -9,7 +9,18 @@
     </section>
     <div class="problem-details">
         <div class="row">
-            <div class="col-md-10"><small title="@Model.WorkOrderName">@Model.WorkOrderName.Substring(0, Math.Min(30, Model.WorkOrderName.Length))</small></div>
+            <div class="col-md-10">
+                <small title="@Model.WorkOrderName">
+                    @if (!string.IsNullOrEmpty(Model.WorkOrderName))
+                    {
+                        @Model.WorkOrderName.Substring(0, Math.Min(30, Model.WorkOrderName.Length))
+                    }
+                    else
+                    {
+                        <text>-</text>
+                    }
+                </small>
+            </div>
             <div class="col-md-2">
                 <div class="pull-right">
                     <small class="text-info" title="@Model.AssigneeName">@Model.AssigneeInitials</small>
