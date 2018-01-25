@@ -114,7 +114,8 @@ namespace IPS.Tracker.Data
 
             if (this.SprintNo != sprint)
             {
-                this.SprintNo = (short?)sprint;
+                comment.AddChange("Sprint No", SprintNo.ToString(), sprint.ToString());
+                this.SprintNo = (short?)sprint;                
             }
 
             if (this.AssigneeId != assigneeId)
