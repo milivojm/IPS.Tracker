@@ -121,7 +121,7 @@ namespace IPS.Tracker.Web.Models
 
         public List<DefectCommentDTO> Comments { get; set; }
 
-        public List<DefectFollowerDTO> Followers { get; set; }
+        public List<WorkerDTO> Followers { get; set; }
 
         public string EditCommentText { get; set; }
 
