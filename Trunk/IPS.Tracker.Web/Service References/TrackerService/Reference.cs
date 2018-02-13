@@ -41,7 +41,7 @@ namespace IPS.Tracker.Web.TrackerService {
         private string DefectFileTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectFollowerDTO> DefectFollowersField;
+        private System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO> DefectFollowersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DefectStateField;
@@ -174,7 +174,7 @@ namespace IPS.Tracker.Web.TrackerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectFollowerDTO> DefectFollowers {
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO> DefectFollowers {
             get {
                 return this.DefectFollowersField;
             }
@@ -521,24 +521,24 @@ namespace IPS.Tracker.Web.TrackerService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DefectFollowerDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkerDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
     [System.SerializableAttribute()]
-    public partial class DefectFollowerDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class WorkerDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DefectIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FollowerIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FollowerNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TrackerAdminField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -551,45 +551,6 @@ namespace IPS.Tracker.Web.TrackerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DefectId {
-            get {
-                return this.DefectIdField;
-            }
-            set {
-                if ((this.DefectIdField.Equals(value) != true)) {
-                    this.DefectIdField = value;
-                    this.RaisePropertyChanged("DefectId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FollowerId {
-            get {
-                return this.FollowerIdField;
-            }
-            set {
-                if ((this.FollowerIdField.Equals(value) != true)) {
-                    this.FollowerIdField = value;
-                    this.RaisePropertyChanged("FollowerId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FollowerName {
-            get {
-                return this.FollowerNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FollowerNameField, value) != true)) {
-                    this.FollowerNameField = value;
-                    this.RaisePropertyChanged("FollowerName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
             get {
                 return this.IdField;
@@ -598,6 +559,45 @@ namespace IPS.Tracker.Web.TrackerService {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TrackerAdmin {
+            get {
+                return this.TrackerAdminField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TrackerAdminField, value) != true)) {
+                    this.TrackerAdminField = value;
+                    this.RaisePropertyChanged("TrackerAdmin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
                 }
             }
         }
@@ -723,99 +723,6 @@ namespace IPS.Tracker.Web.TrackerService {
                 if ((this.YearField.Equals(value) != true)) {
                     this.YearField = value;
                     this.RaisePropertyChanged("Year");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WorkerDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
-    [System.SerializableAttribute()]
-    public partial class WorkerDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TrackerAdminField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TrackerAdmin {
-            get {
-                return this.TrackerAdminField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TrackerAdminField, value) != true)) {
-                    this.TrackerAdminField = value;
-                    this.RaisePropertyChanged("TrackerAdmin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
                 }
             }
         }
