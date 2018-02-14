@@ -1,0 +1,92 @@
+﻿@model IPS.Tracker.Web.Models.ReleaseViewModel
+
+@{
+    ViewBag.Title = "Nova verzija";
+}
+
+<h2>Nova verzija aplikacije</h2>
+
+@using (Html.BeginForm("NewRelease", "Home", FormMethod.Post))
+{    
+    <div class="form-horizontal">
+                    
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.ReleaseNo)                    
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(m => m.ReleaseNo, new {@class = "form-control"})
+            </div>                
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.EstDateOfRelease)                
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(m => m.EstDateOfRelease, new { @class = "form-control", type = "date" })
+            </div>
+        </div>        
+
+        @* todo : lista zadataka unutar relese-a 
+            -dodati u listu dto-a elemente iz liste zadataka (čekati da se promijeni backend dio)
+            -dodati linkove za svaki task unutar liste 
+            -dodati "briši link pored svakog unosa"            
+            *@
+
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.ReleaseListDefectDTO)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Broj zadatka" id="brojzadatka" />
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" onclick="dodajZadatak()">Dodaj zadatak</button>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-4">
+                <ul class="list-group" id="listazadataka">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>        
+
+        @*
+    <div class="form-group">
+        <input type="submit" value="Spremi zadatke za novu verziju" class="btn btn-danger"/>
+    </div>
+        *@
+        <div class="form-group">
+            <input type="button" value="Spremi zadatke za novu verziju" class="btn btn-danger" onclick="test()" />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function dodajZadatak() {
+        var taskid = document.getElementById("brojzadatka").value;
+                
+        if (taskid.length > 0) {
+            $('#listazadataka').append('<li class="list-group-item">' + taskid + '<a id = "brisiZadatak" href="#" onclick ="brisiZadatak();">Obrisi' + '</li>');
+
+            document.getElementById("brojzadatka").value = "";
+        }        
+    }
+
+    function brisiZadatak() {        
+    }
+    
+    function test() {
+        var lista = document.getElementById("listazadataka").value;
+        console.log(lista);
+    }
+
+</script>

@@ -229,6 +229,8 @@
     <Content Include="Views\Home\ListProblemsInSprint.cshtml" />
     <Content Include="Views\Home\ProblemCard.cshtml" />
     <Content Include="Views\Home\ListProblemsBoard.cshtml" />
+    <Content Include="Views\Home\Releases.cshtml" />
+    <Content Include="Views\Home\NewRelease.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -245,6 +247,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ListProblemsBoardViewModel.cs" />
+    <Compile Include="Models\ReleaseViewModel.cs" />
     <Compile Include="Models\WorkOrderDTO.cs" />
     <Compile Include="Models\DefectDTO.cs" />
     <Compile Include="Models\Priority.cs" />

@@ -332,5 +332,21 @@ namespace IPS.Tracker.Web.Controllers
                 return RedirectToAction("ListProblemsInSprint");
             }
         }
+        
+        public ActionResult Releases()
+        {
+            return View();
+        }
+
+        public ActionResult NewRelease()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewRelease(ReleaseViewModel release)
+        {
+            return View();
+        }
     }
 }
