@@ -9,11 +9,12 @@ namespace IPS.Tracker.Web.Models
 {
     public class ReleaseViewModel
     {
+        [Required(ErrorMessage ="Broj verzije je obavezan!")]
         [Display(Name = "Broj verzije")]
-        public int ReleaseNo { get; set; }
+        public string ReleaseNo { get; set; }
         [Display(Name ="Procjena datuma dostupnosti")]
-        public DateTime? EstDateOfRelease { get; set; }
+        public DateTime? EstDateOfRelease { get; set; }        
         [Display(Name ="Lista zadataka za verziju")]
-        public List<DefectDTO> ReleaseListDefectDTO { get; set; }
+        public string[] ReleaseListDefectId { get; set; }
     }
 }

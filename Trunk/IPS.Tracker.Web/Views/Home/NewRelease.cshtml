@@ -9,14 +9,18 @@
 @using (Html.BeginForm("NewRelease", "Home", FormMethod.Post))
 {    
     <div class="form-horizontal">
-                    
+                   
+        @Html.ValidationSummary(true)                 
         <div class="form-group">
             <div class="col-md-2">
-                @Html.LabelFor(m => m.ReleaseNo)                    
+                @Html.LabelFor(m => m.ReleaseNo)                   
             </div>
             <div class="col-md-2">
                 @Html.TextBoxFor(m => m.ReleaseNo, new {@class = "form-control"})
-            </div>                
+            </div>    
+            <div class="col-md-2">
+                @Html.ValidationMessageFor(m => m.ReleaseNo)                
+            </div>            
         </div>
         <div class="form-group">
             <div class="col-md-2">
@@ -25,68 +29,93 @@
             <div class="col-md-2">
                 @Html.TextBoxFor(m => m.EstDateOfRelease, new { @class = "form-control", type = "date" })
             </div>
-        </div>        
-
-        @* todo : lista zadataka unutar relese-a 
-            -dodati u listu dto-a elemente iz liste zadataka (čekati da se promijeni backend dio)
-            -dodati linkove za svaki task unutar liste 
-            -dodati "briši link pored svakog unosa"            
-            *@
-
+        </div>               
         <div class="form-group">
             <div class="col-md-12">
-                @Html.LabelFor(m => m.ReleaseListDefectDTO)
+                @Html.LabelFor(m => m.ReleaseListDefectId)  
+                @Html.ValidationMessageFor(m => m.ReleaseListDefectId)                                         
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="Broj zadatka" id="brojzadatka" />
+            <div class="col-md-2">                
+                <input type="text" class="form-control" placeholder="Broj zadatka" id="brojzadatka" />                              
             </div>
             <div class="col-md-2">
-                <button type="button" class="btn btn-primary" onclick="dodajZadatak()">Dodaj zadatak</button>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-md-4">
-                <ul class="list-group" id="listazadataka">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
+                <button type="button" class="btn btn-primary" onclick="addTask()">Dodaj zadatak</button>
             </div>
         </div>        
-
-        @*
-    <div class="form-group">
-        <input type="submit" value="Spremi zadatke za novu verziju" class="btn btn-danger"/>
-    </div>
-        *@
         <div class="form-group">
-            <input type="button" value="Spremi zadatke za novu verziju" class="btn btn-danger" onclick="test()" />
+            <div class="col-md-4">
+                <ul class="list-group" id="listazadataka"></ul>
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class="col-md-4">
+                <input type="submit" value="Spremi" class="btn btn-danger" />
+            </div>            
         </div>
     </div>
 }
 
 <script type="text/javascript">
-    function dodajZadatak() {
-        var taskid = document.getElementById("brojzadatka").value;
-                
-        if (taskid.length > 0) {
-            $('#listazadataka').append('<li class="list-group-item">' + taskid + '<a id = "brisiZadatak" href="#" onclick ="brisiZadatak();">Obrisi' + '</li>');
+    
+    var idlist = [];
 
-            document.getElementById("brojzadatka").value = "";
-        }        
+    function addTask() {                    
+        if (validateTaskId())
+        {
+            var taskid = document.getElementById("brojzadatka").value;
+
+            if (taskid.length > 0) {                
+                $('#listazadataka').append('<li class="list-group-item" id ="' + taskid + '" ">' + taskid + '<a href="#" onclick ="deleteTask(' + taskid + ');"><span class="pull-right">Obrisi</span>' + '</li>');
+
+                //clear input field
+                document.getElementById("brojzadatka").value = "";
+
+                //set task id input field to default value
+                idlist.push(taskid);
+
+                //print out task list to console
+                console.log(idlist);
+            }
+        }
+
+        //if validation failed
+        else {
+            //todo : add warning message 
+        }
+               
     }
 
-    function brisiZadatak() {        
+    function deleteTask(param) {        
+        var index = idlist.indexOf(param.toString());
+                
+        //remove element from array
+        idlist.remove(index);                    
+        
+        //remove element from ui
+        $("#" + param).remove();
+
+        //list items
+        console.log(idlist);
+    }
+
+    function validateTaskId() {
+        var taskid = document.getElementById("brojzadatka").value;
+        var regex = new RegExp('^[0-9]+$');
+
+        if(regex.exec(taskid)) {            
+            return true;
+        }
+        else {
+            return false;            
+        }
     }
     
-    function test() {
-        var lista = document.getElementById("listazadataka").value;
-        console.log(lista);
-    }
-
+    //helper function for removing elements from array 
+    Array.prototype.remove = function (from, to) {
+        var rest = this.slice((to || from) + 1 || this.length);
+        this.length = from < 0 ? this.length + from : from;
+        return this.push.apply(this, rest);
+    };
 </script>
