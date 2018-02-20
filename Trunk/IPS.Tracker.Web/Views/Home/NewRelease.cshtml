@@ -16,7 +16,7 @@
                 @Html.LabelFor(m => m.ReleaseNo)                   
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(m => m.ReleaseNo, new {@class = "form-control"})
+                @Html.TextBoxFor(m => m.ReleaseNo, new {@class = "form-control" , id="releaseNo"})
             </div>    
             <div class="col-md-2">
                 @Html.ValidationMessageFor(m => m.ReleaseNo)                
@@ -27,7 +27,7 @@
                 @Html.LabelFor(m => m.EstDateOfRelease)                
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(m => m.EstDateOfRelease, new { @class = "form-control", type = "date" })
+                @Html.TextBoxFor(m => m.EstDateOfRelease, new { @class = "form-control", type = "date", id="estDateOfRelease" })
             </div>
         </div>               
         <div class="form-group">
@@ -51,7 +51,7 @@
         </div>        
         <div class="form-group">
             <div class="col-md-4">
-                <input type="submit" value="Spremi" class="btn btn-danger" />
+                <input type="button" value="Spremi" class="btn btn-danger" id="saveButton" />
             </div>            
         </div>
     </div>
@@ -67,7 +67,7 @@
             var taskid = document.getElementById("brojzadatka").value;
 
             if (taskid.length > 0) {                
-                $('#listazadataka').append('<li class="list-group-item" id ="' + taskid + '" ">' + taskid + '<a href="#" onclick ="deleteTask(' + taskid + ');"><span class="pull-right">Obrisi</span>' + '</li>');
+                $('#listazadataka').append('<li class="list-group-item" id ="' + taskid + '" ">' + taskid + '<a href="#" onclick ="deleteTask(' + taskid + ');"><span class="pull-right">Obriši</span>' + '</li>');
 
                 //clear input field
                 document.getElementById("brojzadatka").value = "";
@@ -81,10 +81,10 @@
         }
 
         //if validation failed
-        else {
-            //todo : add warning message 
-        }
-               
+        else
+        {
+            alert("Morate unijeti broj zadatka!");
+        }               
     }
 
     function deleteTask(param) {        
@@ -111,6 +111,28 @@
             return false;            
         }
     }
+
+    $("#saveButton").click(function (e) {        
+        var jsonObject = {
+            "ReleaseNo": ($("#releaseNo").val()),
+            "EstDateOfRelease": ($("#estDateOfRelease").val()),
+            "ReleaseListDefectId": idlist
+        }
+
+        $.ajax({
+            url: "@Url.Action("NewRelease")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (response) {
+                alert(response);
+            },
+            success: function (response) {
+                alert(response);
+            }
+        });
+    });
     
     //helper function for removing elements from array 
     Array.prototype.remove = function (from, to) {
