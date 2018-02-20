@@ -346,7 +346,16 @@ namespace IPS.Tracker.Web.Controllers
         [HttpPost]
         public ActionResult NewRelease(ReleaseViewModel release)
         {
-            return View();
+            if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
+            {
+                return Json("Nova verzija je uspješno kreirana");
+
+                // todo : redirect to "Releases" action after creation of release
+            }
+            else
+            {
+                return Json("Nova verzija nije uspješno kreirana");
+            }            
         }
     }
 }

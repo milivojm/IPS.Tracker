@@ -6,7 +6,7 @@
 
 <h2>Nova verzija aplikacije</h2>
 
-@using (Html.BeginForm("NewRelease", "Home", FormMethod.Post))
+@using (Html.BeginForm("NewRelease", "Home"))
 {    
     <div class="form-horizontal">
                    
@@ -16,7 +16,7 @@
                 @Html.LabelFor(m => m.ReleaseNo)                   
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(m => m.ReleaseNo, new {@class = "form-control" , id="releaseNo"})
+                @Html.TextBoxFor(m => m.ReleaseNo, new {@class = "form-control" , id = "releaseNo"})
             </div>    
             <div class="col-md-2">
                 @Html.ValidationMessageFor(m => m.ReleaseNo)                
@@ -27,7 +27,7 @@
                 @Html.LabelFor(m => m.EstDateOfRelease)                
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(m => m.EstDateOfRelease, new { @class = "form-control", type = "date", id="estDateOfRelease" })
+                @Html.TextBoxFor(m => m.EstDateOfRelease, new { @class = "form-control", type = "date", id = "estDateOfRelease" })
             </div>
         </div>               
         <div class="form-group">
@@ -74,9 +74,6 @@
 
                 //set task id input field to default value
                 idlist.push(taskid);
-
-                //print out task list to console
-                console.log(idlist);
             }
         }
 
@@ -94,10 +91,7 @@
         idlist.remove(index);                    
         
         //remove element from ui
-        $("#" + param).remove();
-
-        //list items
-        console.log(idlist);
+        $("#" + param).remove();       
     }
 
     function validateTaskId() {
