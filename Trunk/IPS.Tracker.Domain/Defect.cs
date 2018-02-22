@@ -21,7 +21,7 @@ namespace IPS.Tracker.Domain
         public Defect()
         {
             _defectDate = DateTime.Now;
-            _defectState = "OPN";
+            _defectState = DefectStateConstants.Open;
             _priority = 0;
             _comments = new List<DefectComment>();
             _followers = new List<Worker>();
@@ -51,38 +51,43 @@ namespace IPS.Tracker.Domain
             {
                 switch (_defectState)
                 {
-                    case "OPN":
-                        return "Novi";
-                    case "PRO":
-                        return "Ispravljen";
-                    //case "TST":
-                    //    return "Testirati";
-                    case "INV":
-                        return "Neispravan";
-                    case "CLS":
-                        return "Riješen";
+                    case DefectStateConstants.Open:
+                        return "Open";
+                    case DefectStateConstants.NeedsReview:
+                        return "Needs review";
+                    case DefectStateConstants.Reviewed:
+                        return "Reviewed";
+                    case DefectStateConstants.NeedsQATesting:
+                        return "Needs QA test";
+                    case DefectStateConstants.NeedsImprovements:
+                        return "Needs improvements";
+                    case DefectStateConstants.Resolved:
+                        return "Resolved";
                     default:
-                        return "Nepoznat";
+                        return "Unknown";
                 }
             }
             set
             {
                 switch (value)
                 {
-                    case "Novi":
-                        _defectState = "OPN";
+                    case "Open":
+                        _defectState = DefectStateConstants.Open;
                         break;
-                    case "Ispravljen":
-                        _defectState = "PRO";
+                    case "Needs review":
+                        _defectState = DefectStateConstants.NeedsReview;
                         break;
-                    //case "Testirati":
-                    //    DefectState = "TST";
-                    //    break;
-                    case "Neispravan":
-                        _defectState = "INV";
+                    case "Reviewed":
+                        _defectState = DefectStateConstants.Reviewed;
                         break;
-                    case "Riješen":
-                        _defectState = "CLS";
+                    case "Needs QA test":
+                        _defectState = DefectStateConstants.NeedsQATesting;
+                        break;
+                    case "Needs improvements":
+                        _defectState = DefectStateConstants.NeedsImprovements;
+                        break;
+                    case "Resolved":
+                        _defectState = DefectStateConstants.Resolved;
                         break;
                 }
             }
@@ -333,6 +338,16 @@ namespace IPS.Tracker.Domain
                     return d => d._followers;
                 }
             }
+        }
+
+        public static class DefectStateConstants
+        {
+            public const string Open = "OPN";
+            public const string NeedsReview = "NRE";
+            public const string Reviewed = "REV";
+            public const string NeedsQATesting = "PRO";
+            public const string Resolved = "CLS";
+            public const string NeedsImprovements = "INV";
         }
     }
 }
