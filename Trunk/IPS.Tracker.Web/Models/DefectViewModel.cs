@@ -19,16 +19,17 @@ namespace IPS.Tracker.Web.Models
         public DefectViewModel(DefectDTO defect)
         {
             _priorities = new List<Priority>();
-            _priorities.Add(new Priority() { Id = 0, Name = "Nizak" });
-            _priorities.Add(new Priority() { Id = 1, Name = "Srednji" });
-            _priorities.Add(new Priority() { Id = 2, Name = "Visok" });
+            _priorities.Add(new Priority() { Id = 0, Name = "Low" });
+            _priorities.Add(new Priority() { Id = 1, Name = "Normal" });
+            _priorities.Add(new Priority() { Id = 2, Name = "High" });
 
             _defectStates = new List<string>();
-            _defectStates.Add("Novi");
-            _defectStates.Add("Ispravljen");
-            // _defectStates.Add("Testirati");
-            _defectStates.Add("Neispravan");
-            _defectStates.Add("Riješen");
+            _defectStates.Add("Open");
+            _defectStates.Add("Needs review");
+            _defectStates.Add("Reviewed");
+            _defectStates.Add("Needs QA test");
+            _defectStates.Add("Needs improvements");
+            _defectStates.Add("Resolved");
 
             SelectedPriorityId = defect.Priority;
             Summary = defect.Summary;
