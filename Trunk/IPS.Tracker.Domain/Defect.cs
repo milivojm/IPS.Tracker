@@ -34,13 +34,13 @@ namespace IPS.Tracker.Domain
                 switch (_priority)
                 {
                     case 0:
-                        return "Nizak";
+                        return "Low";
                     case 1:
-                        return "Srednji";
+                        return "Normal";
                     case 2:
-                        return "Visok";
+                        return "High";
                     default:
-                        return "Nepoznat";
+                        return "Unknown";
                 }
             }
         }
@@ -127,13 +127,13 @@ namespace IPS.Tracker.Domain
 
             if (Summary != summary)
             {
-                comment.AddChange("naslov", Summary, summary);
+                comment.AddChange("summary", Summary, summary);
                 Summary = summary;
             }
 
             if (Description != description)
             {
-                comment.AddChange("opis", Description, description);
+                comment.AddChange("description", Description, description);
                 Description = description;
                 CheckForNewFollowers(summary);
             }
@@ -145,15 +145,15 @@ namespace IPS.Tracker.Domain
                 if (WorkOrder != null)
                     oldWorkOrderLabel = WorkOrder.Label;
                 else
-                    oldWorkOrderLabel = "(prazno)";
+                    oldWorkOrderLabel = "(blank)";
 
                 WorkOrderId = newWorkOrder.Id;
-                comment.AddChange("radni nalog", oldWorkOrderLabel, newWorkOrder.Label);
+                comment.AddChange("work order", oldWorkOrderLabel, newWorkOrder.Label);
             }
             else if (newWorkOrder == null && WorkOrderId.HasValue)
             {
                 // situacija kad se RN stavi na blank!
-                comment.AddChange("radni nalog", WorkOrder.Label, "(prazno)");
+                comment.AddChange("work order", WorkOrder.Label, "(blank)");
                 WorkOrderId = null;
             }
 
@@ -168,19 +168,19 @@ namespace IPS.Tracker.Domain
                 string oldAssignee = Assignee.Name;
                 AssigneeId = newAssignee.Id;
                 SubscribeFollower(newAssignee);
-                comment.AddChange("zadužen", oldAssignee, newAssignee.Name);
+                comment.AddChange("assignee", oldAssignee, newAssignee.Name);
             }
 
             if (_priority != priority)
             {
                 string oldPriority = this.PriorityDescription;
                 _priority = priority;
-                comment.AddChange("prioritet", oldPriority, PriorityDescription);
+                comment.AddChange("priority", oldPriority, PriorityDescription);
             }
 
             if (StateDescription != state)
             {
-                comment.AddChange("stanje", StateDescription, state);
+                comment.AddChange("state", StateDescription, state);
                 StateDescription = state;
             }
 

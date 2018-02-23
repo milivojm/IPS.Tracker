@@ -271,7 +271,6 @@
     <Content Include="Views\Home\ListComments.cshtml" />
     <Content Include="Views\Home\ListFollowers.cshtml" />
     <Content Include="Views\Home\ListProblemsByWorkOrder.cshtml" />
-    <Content Include="Views\Home\ListProblemsOld.cshtml" />
     <Content Include="Views\Home\CommentRow.cshtml" />
     <Content Include="Views\Home\PageNotExist.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />

@@ -51,7 +51,7 @@ namespace IPS.Tracker.Web.Models
                 Comments = new List<DefectCommentDTO>();
         }
 
-        [Display(Name = "Prioritet *")]
+        [Display(Name = "Priority *")]
         public short SelectedPriorityId { get; set; }
 
         public IEnumerable<SelectListItem> Priorities
@@ -62,23 +62,23 @@ namespace IPS.Tracker.Web.Models
             }
         }
 
-        [Required(ErrorMessage="Naziv je obavezan")]
-        [StringLength(50,ErrorMessage="Najviše 50 znakova")]
-        [Display(Name = "Naziv *")]
+        [Required(ErrorMessage="Summary is mandatory")]
+        [StringLength(50,ErrorMessage="Max 50 characters")]
+        [Display(Name = "Summary *")]
         public string Summary { get; set; }
 
-        [Required(ErrorMessage="Opis zadatka je obavezan")]
-        [Display(Name = "Opis zadatka *")]
+        [Required(ErrorMessage="Description is mandatory")]
+        [Display(Name = "Description *")]
         [AllowHtml()]
         public string Description { get; set; }
 
-        [Display(Name = "Radni nalog")]
+        [Display(Name = "Work order")]
         public string SelectedWorkOrderName { get; set; }
 
         public int? SelectedWorkOrderId { get; set; }
 
-        [Required(ErrorMessage="Zaduženje je obavezno")]
-        [Display(Name = "Zadužen *")]
+        [Required(ErrorMessage="Assignee is mandatory")]
+        [Display(Name = "Assigned to *")]
         public int AssigneeId { get; set; }
 
         [Display(Name = "Sprint")]
@@ -100,7 +100,7 @@ namespace IPS.Tracker.Web.Models
             }
         }
 
-        [Display(Name = "Stanje")]
+        [Display(Name = "State")]
         public string StateDescription
         {
             get;
@@ -117,7 +117,7 @@ namespace IPS.Tracker.Web.Models
 
         public int Id { get; set; }
 
-        [Display(Name = "Prijavio")]
+        [Display(Name = "Reported by")]
         public string ReporterName { get; set; }
 
         public List<DefectCommentDTO> Comments { get; set; }

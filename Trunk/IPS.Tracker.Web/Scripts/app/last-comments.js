@@ -10,7 +10,7 @@ var CommentSelector = React.createClass({
         return (
             <div className="dropdown">
                 <button className="btn btn-default btn-sm dropdown-toggle pull-right" type="button" data-toggle="dropdown">
-                    {this.props.selectedOption} komentara <span className="caret"></span>
+                    {this.props.selectedOption} comments <span className="caret"></span>
                 </button>
                 <ul className="dropdown-menu pull-right" >
                     <li><a href="#" onClick={this.selectOption}>20</a></li>

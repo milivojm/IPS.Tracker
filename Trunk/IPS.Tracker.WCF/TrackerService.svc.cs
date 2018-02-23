@@ -59,7 +59,6 @@ namespace IPS.Tracker.WCF
             newDefect.AssigneeId = assigneeId;
             newDefect.ReporterId = reporterId;
             newDefect.Priority = priority;
-            //newDefect.SprintNo = (short) sprint;
             newDefect.SprintNo = (short?)sprint;
             newDefect.DefectFile = defectFile;
             Worker assignee = _repository.Workers.First(w => w.Id == assigneeId);
@@ -105,7 +104,7 @@ namespace IPS.Tracker.WCF
             foreach (var df in defect.DefectFollowers)
                 mailMessage.To.Add(new MailAddress(df.Email));
 
-            mailMessage.Subject = String.Format("[{0}] {1} (#{2})", defect.WorkOrder != null ? defect.WorkOrder.Name : "Neodređeni radni nalog", defect.Summary, defect.Id);
+            mailMessage.Subject = String.Format("[{0}] {1} (#{2})", defect.WorkOrder != null ? defect.WorkOrder.Name : "No work order", defect.Summary, defect.Id);
             string html = File.ReadAllText(GetPhysicalPath("MailTemplates\\NewDefect.html"));
             mailMessage.IsBodyHtml = true;
             html = html.Replace("{Summary}", defect.Summary);
@@ -192,7 +191,7 @@ namespace IPS.Tracker.WCF
 
             string detailsUrl = ConfigurationManager.AppSettings["DetailsUrl"];
 
-            mailMessage.Subject = string.Format("[{0}] {1} (#{2})", defect.WorkOrder != null ? defect.WorkOrder.Name : "Neodređeni radni nalog", defect.Summary, defect.Id);
+            mailMessage.Subject = string.Format("[{0}] {1} (#{2})", defect.WorkOrder != null ? defect.WorkOrder.Name : "Unknown work order", defect.Summary, defect.Id);
             string html = File.ReadAllText(GetPhysicalPath("MailTemplates\\NewComment.html"));
             mailMessage.IsBodyHtml = true;
             html = html.Replace("{Summary}", defect.Summary);
@@ -319,7 +318,7 @@ namespace IPS.Tracker.WCF
 
             foreach (Defect d in newDefects)
             {
-                defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate, DefectId = d.Id, DefectSummary = d.Summary, Text = "Otvorio", DefectDescription = d.Description });
+                defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate, DefectId = d.Id, DefectSummary = d.Summary, Text = "Reported", DefectDescription = d.Description });
             }
 
             List<DefectCommentDTO> result = comments.Union(defectsOpened).OrderByDescending(d => d.CommentDate).Take(commentNumber).ToList();
@@ -345,7 +344,7 @@ namespace IPS.Tracker.WCF
 
             foreach (Defect d in newDefects)
             {
-                defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate, DefectId = d.Id, DefectSummary = d.Summary, Text = "Otvorio", DefectDescription = d.Description });
+                defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate, DefectId = d.Id, DefectSummary = d.Summary, Text = "Reported", DefectDescription = d.Description });
             }
 
             List<DefectCommentDTO> result = comments.Union(defectsOpened).OrderByDescending(d => d.CommentDate).Take(commentNumber).ToList();
