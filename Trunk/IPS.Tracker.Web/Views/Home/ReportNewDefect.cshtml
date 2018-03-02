@@ -1,18 +1,16 @@
 ﻿@model IPS.Tracker.Web.Models.DefectViewModel
 
 @{
-    ViewBag.Title = "Kreiraj novi zadatak";
+    ViewBag.Title = "Report new issue";
 }
 
-<h2>Kreiraj novi zadatak</h2>
+<h2>Report new issue</h2>
 
 @using (Html.BeginForm("ReportNewDefect", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Problem</h4>
-        <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
             @Html.LabelFor(model => model.Summary, new { @class = "control-label col-md-2" })

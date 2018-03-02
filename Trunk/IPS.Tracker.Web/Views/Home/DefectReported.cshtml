@@ -2,8 +2,8 @@
      ViewBag.Title = "Zadatak kreiran";
 }
 
-<h2>Zadatak kreiran</h2>
+<h2>Issue reported</h2>
 
 <div class="alert alert-success">
-    Uspješno se kreirali zadatak broj @ViewBag.DefectId. Možete ga pogledati @Html.ActionLink("ovdje", "Details", new { id = ViewBag.DefectId }).
+    You've successfully reported new issue - number @ViewBag.DefectId. You can see issue details @Html.ActionLink("here", "Details", new { id = ViewBag.DefectId }).
 </div>

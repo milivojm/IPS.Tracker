@@ -185,9 +185,7 @@ namespace IPS.Tracker.Web.Controllers
                 WorkerDTO worker = GetCurrentWorker(client);
                 ViewBag.IsAdministrator = worker.TrackerAdmin == "D";
 
-                ListProblemsBoardViewModel viewModel = new ListProblemsBoardViewModel();
-
-                viewModel.SprintCompletion = Math.Round((decimal)defects.Count(d => d.DefectState == "CLS") * 100 / defects.Count, 0);
+                ListProblemsBoardViewModel viewModel = new ListProblemsBoardViewModel();                
 
                 if (onlyMine)
                     viewModel.Defects = defects.Where(d => d.AssigneeId == worker.Id);
@@ -195,7 +193,13 @@ namespace IPS.Tracker.Web.Controllers
                     viewModel.Defects = defects;
 
                 if (defects.Count > 0)
+                {
                     viewModel.SprintNo = defects[0].SprintNo;
+                    viewModel.SprintCompletion = Math.Round((decimal)defects.Count(d => d.DefectState == "CLS") * 100 / defects.Count, 0);
+                } else
+                {
+                    viewModel.Message = "No sprint created";
+                }
 
                 return View(viewModel);
             }
