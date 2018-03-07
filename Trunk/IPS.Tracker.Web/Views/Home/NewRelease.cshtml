@@ -1,137 +1,17 @@
-﻿@model IPS.Tracker.Web.Models.ReleaseViewModel
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <!--todo : replace with bundle-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>        
+</head>
+<body>
+    <div id="root"></div>
+        <script type="text/babel" src="~/Scripts/app/App.jsx">
+    </script>      
+</body>
+</html>
 
-@{
-    ViewBag.Title = "Nova verzija";
-}
-
-<h2>Nova verzija aplikacije</h2>
-
-@using (Html.BeginForm("NewRelease", "Home"))
-{    
-    <div class="form-horizontal">
-                   
-        @Html.ValidationSummary(true)                 
-        <div class="form-group">
-            <div class="col-md-2">
-                @Html.LabelFor(m => m.ReleaseNo)                   
-            </div>
-            <div class="col-md-2">
-                @Html.TextBoxFor(m => m.ReleaseNo, new {@class = "form-control" , id = "releaseNo"})
-            </div>    
-            <div class="col-md-2">
-                @Html.ValidationMessageFor(m => m.ReleaseNo)                
-            </div>            
-        </div>
-        <div class="form-group">
-            <div class="col-md-2">
-                @Html.LabelFor(m => m.EstDateOfRelease)                
-            </div>
-            <div class="col-md-2">
-                @Html.TextBoxFor(m => m.EstDateOfRelease, new { @class = "form-control", type = "date", id = "estDateOfRelease" })
-            </div>
-        </div>               
-        <div class="form-group">
-            <div class="col-md-12">
-                @Html.LabelFor(m => m.ReleaseListDefectId)  
-                @Html.ValidationMessageFor(m => m.ReleaseListDefectId)                                         
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-2">                
-                <input type="text" class="form-control" placeholder="Broj zadatka" id="brojzadatka" />                              
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-primary" onclick="addTask()">Dodaj zadatak</button>
-            </div>
-        </div>        
-        <div class="form-group">
-            <div class="col-md-4">
-                <ul class="list-group" id="listazadataka"></ul>
-            </div>
-        </div>        
-        <div class="form-group">
-            <div class="col-md-4">
-                <input type="button" value="Spremi" class="btn btn-danger" id="saveButton" />
-            </div>            
-        </div>
-    </div>
-}
-
-<script type="text/javascript">
-    
-    var idlist = [];
-
-    function addTask() {                    
-        if (validateTaskId())
-        {
-            var taskid = document.getElementById("brojzadatka").value;
-
-            if (taskid.length > 0) {                
-                $('#listazadataka').append('<li class="list-group-item" id ="' + taskid + '" ">' + taskid + '<a href="#" onclick ="deleteTask(' + taskid + ');"><span class="pull-right">Obriši</span>' + '</li>');
-
-                //clear input field
-                document.getElementById("brojzadatka").value = "";
-
-                //set task id input field to default value
-                idlist.push(taskid);
-            }
-        }
-
-        //if validation failed
-        else
-        {
-            alert("Morate unijeti broj zadatka!");
-        }               
-    }
-
-    function deleteTask(param) {        
-        var index = idlist.indexOf(param.toString());
-                
-        //remove element from array
-        idlist.remove(index);                    
-        
-        //remove element from ui
-        $("#" + param).remove();       
-    }
-
-    function validateTaskId() {
-        var taskid = document.getElementById("brojzadatka").value;
-        var regex = new RegExp('^[0-9]+$');
-
-        if(regex.exec(taskid)) {            
-            return true;
-        }
-        else {
-            return false;            
-        }
-    }
-
-    $("#saveButton").click(function (e) {        
-        var jsonObject = {
-            "ReleaseNo": ($("#releaseNo").val()),
-            "EstDateOfRelease": ($("#estDateOfRelease").val()),
-            "ReleaseListDefectId": idlist
-        }
-
-        $.ajax({
-            url: "@Url.Action("NewRelease")",
-            type: "POST",
-            data: JSON.stringify(jsonObject),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            error: function (response) {
-                alert(response);
-            },
-            success: function (response) {
-                alert(response);
-            }
-        });
-    });
-    
-    //helper function for removing elements from array 
-    Array.prototype.remove = function (from, to) {
-        var rest = this.slice((to || from) + 1 || this.length);
-        this.length = from < 0 ? this.length + from : from;
-        return this.push.apply(this, rest);
-    };
-</script>
