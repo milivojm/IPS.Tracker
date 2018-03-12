@@ -128,6 +128,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ReleaseDTO.cs" />
     <Compile Include="TrackerService.svc.cs">
       <DependentUpon>TrackerService.svc</DependentUpon>
     </Compile>

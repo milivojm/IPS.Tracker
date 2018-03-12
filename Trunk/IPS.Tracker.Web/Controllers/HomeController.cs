@@ -337,7 +337,7 @@ namespace IPS.Tracker.Web.Controllers
         {
             return View();
         }
-
+                
         public ActionResult NewRelease()
         {
             return View();
@@ -346,16 +346,30 @@ namespace IPS.Tracker.Web.Controllers
         [HttpPost]
         public ActionResult NewRelease(ReleaseViewModel release)
         {
-            if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
+            using (TrackerServiceClient client = new TrackerServiceClient())
             {
-                return Json("Nova verzija je uspješno kreirana");
+                //todo : check if release no already exists
+                
+                //CREATE DTO    
+                
+                
 
-                // todo : redirect to "Releases" action after creation of release
+                //redirect to releases 
             }
-            else
-            {
-                return Json("Nova verzija nije uspješno kreirana");
-            }            
+
+                /*
+                if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
+                {
+                    return Json("Nova verzija je uspješno kreirana");
+
+                    // todo : redirect to "Releases" action after creation of release
+                }
+                else
+                {
+                    return Json("Nova verzija nije uspješno kreirana");
+                } 
+                */
+                return View();           
         }
     }
 }

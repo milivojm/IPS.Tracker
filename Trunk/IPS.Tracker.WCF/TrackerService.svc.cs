@@ -405,5 +405,11 @@ namespace IPS.Tracker.WCF
 
             return Mapper.Map<List<DefectDTO>>(query.ToList());
         }
+
+        public ReleaseDTO SaveRelease(int id, DateTime? date)
+        {
+            Release release = new Release();
+            return Mapper.Map<ReleaseDTO>(release);
+        }
     }
 }

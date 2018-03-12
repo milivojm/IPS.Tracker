@@ -59,8 +59,28 @@ class App extends React.Component {
  
 
   handleSubmit(event) {
-    console.log("slanje podataka" + this.state);
-    event.preventDefault();
+    var data = {
+        ReleaseListDefectId: this.state.taskList,
+        ReleaseNo: this.stete.releaseDate,
+        EstDateOfRelease: this.state.releaseDate
+    }
+          
+    var url = "/Home/NewRelease";    
+    
+    $.ajax({
+        type: 'POST',
+        url: url,
+        dataType: 'json',
+        data: data,
+        cache: false,
+        success: function (data) {
+            this.setState({ data: data });
+        }.bind(this),
+        error: function (xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+        }.bind(this)
+    });    
+    
   }
 
   render() {
@@ -120,6 +140,8 @@ class ReleaseNumber extends React.Component {
         this.state = {
             releaseNumber: ''
         }
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event) {

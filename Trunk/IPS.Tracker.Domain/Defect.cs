@@ -233,6 +233,7 @@ namespace IPS.Tracker.Domain
         public string Description { get; set; }
 
         public int? WorkOrderId { get; set; }
+        public int? ReleaseId { get; set; }
 
         public int? SprintNo { get; set; }
 

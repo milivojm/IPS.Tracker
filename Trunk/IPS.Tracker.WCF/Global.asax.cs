@@ -30,6 +30,7 @@ namespace IPS.Tracker.WCF
                 cfg.CreateMap<WorkOrder, WorkOrderDTO>();
                 cfg.CreateMap<Worker, WorkerDTO>();
                 cfg.CreateMap<DefectComment, DefectCommentDTO>();
+                cfg.CreateMap<Release, ReleaseDTO>();
             });
         }
 
