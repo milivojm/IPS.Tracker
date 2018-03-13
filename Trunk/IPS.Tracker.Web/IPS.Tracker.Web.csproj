@@ -282,6 +282,9 @@
     </Content>
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Service References\TrackerService\IPS.Tracker.Web.TrackerService.ReleaseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\TrackerService\TrackerService.disco" />
     <None Include="Service References\TrackerService\configuration91.svcinfo" />
     <None Include="Service References\TrackerService\configuration.svcinfo" />
