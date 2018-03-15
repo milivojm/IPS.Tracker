@@ -638,7 +638,7 @@ namespace IPS.Tracker.Web.TrackerService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ReleaseDateField;
+        private System.Nullable<System.DateTime> ReleaseDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ReleaseVersionField;
@@ -654,7 +654,7 @@ namespace IPS.Tracker.Web.TrackerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ReleaseDate {
+        public System.Nullable<System.DateTime> ReleaseDate {
             get {
                 return this.ReleaseDateField;
             }

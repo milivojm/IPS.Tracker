@@ -12,6 +12,6 @@ namespace IPS.Tracker.WCF
         [DataMember]
         public string ReleaseVersion { get; set; }
         [DataMember]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
     }
 }
