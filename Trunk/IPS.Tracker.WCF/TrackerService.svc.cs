@@ -406,11 +406,11 @@ namespace IPS.Tracker.WCF
             return Mapper.Map<List<DefectDTO>>(query.ToList());
         }
 
-        public ReleaseDTO SaveRelease(int id, DateTime? date)
+        public ReleaseDTO SaveRelease(string releaseVersion, DateTime? date)
         {            
             Release release = new Release();
 
-            release.Id = id;
+            release.ReleaseVersion = releaseVersion;
             release.ReleaseDate = date;
 
             _repository.AddRelease(release);

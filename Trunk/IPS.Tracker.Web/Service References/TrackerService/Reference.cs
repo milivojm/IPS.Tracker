@@ -828,7 +828,7 @@ namespace IPS.Tracker.Web.TrackerService {
         IPS.Tracker.Web.TrackerService.DefectDTO SaveDefect(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveReleaseResponse")]
-        IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(int id, System.Nullable<System.DateTime> date);
+        IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(string releaseVersion, System.Nullable<System.DateTime> date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefaultAssigneeId", ReplyAction="http://tempuri.org/ITrackerService/GetDefaultAssigneeIdResponse")]
         int GetDefaultAssigneeId(int workOrderId);
@@ -912,8 +912,8 @@ namespace IPS.Tracker.Web.TrackerService {
             return base.Channel.SaveDefect(id, summary, description, workOrderId, assigneeId, changedById, priority, sprint, state);
         }
         
-        public IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(int id, System.Nullable<System.DateTime> date) {
-            return base.Channel.SaveRelease(id, date);
+        public IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(string releaseVersion, System.Nullable<System.DateTime> date) {
+            return base.Channel.SaveRelease(releaseVersion, date);
         }
         
         public int GetDefaultAssigneeId(int workOrderId) {

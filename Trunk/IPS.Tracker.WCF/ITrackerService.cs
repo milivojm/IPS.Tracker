@@ -22,7 +22,7 @@ namespace IPS.Tracker.WCF
         DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state);
 
         [OperationContract]
-        ReleaseDTO SaveRelease(int id, DateTime? date);
+        ReleaseDTO SaveRelease(string releaseVersion, DateTime? date);
 
         [OperationContract]
         int GetDefaultAssigneeId(int workOrderId);

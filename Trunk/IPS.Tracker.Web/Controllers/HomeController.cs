@@ -352,8 +352,8 @@ namespace IPS.Tracker.Web.Controllers
 
                 //CREATE DTO                 
                 ReleaseDTO dto = new ReleaseDTO();
-                dto.Id = Int32.Parse(release.ReleaseNo);
-                client.SaveRelease(dto.Id, dto.ReleaseDate);
+                dto.ReleaseVersion = release.ReleaseNo;
+                client.SaveRelease(dto.ReleaseVersion, dto.ReleaseDate);
                 //redirect to releases 
             }
 
