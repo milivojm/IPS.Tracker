@@ -13,5 +13,6 @@ namespace IPS.Tracker.Domain
         IQueryable<Worker> Workers { get; }
         void Save();
         void AddDefect(Defect defect);
+        void AddRelease(Release release);
     }
 }

@@ -638,10 +638,10 @@ namespace IPS.Tracker.Web.TrackerService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
+        private System.DateTime ReleaseDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ReleaseDateField;
+        private string ReleaseVersionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -654,19 +654,6 @@ namespace IPS.Tracker.Web.TrackerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime ReleaseDate {
             get {
                 return this.ReleaseDateField;
@@ -675,6 +662,19 @@ namespace IPS.Tracker.Web.TrackerService {
                 if ((this.ReleaseDateField.Equals(value) != true)) {
                     this.ReleaseDateField = value;
                     this.RaisePropertyChanged("ReleaseDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ReleaseVersion {
+            get {
+                return this.ReleaseVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReleaseVersionField, value) != true)) {
+                    this.ReleaseVersionField = value;
+                    this.RaisePropertyChanged("ReleaseVersion");
                 }
             }
         }

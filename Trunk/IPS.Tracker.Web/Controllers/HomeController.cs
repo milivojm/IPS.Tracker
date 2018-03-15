@@ -341,35 +341,39 @@ namespace IPS.Tracker.Web.Controllers
         public ActionResult NewRelease()
         {
             return View();
-        }
-
+        }   
+                
         [HttpPost]
         public ActionResult NewRelease(ReleaseViewModel release)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 //todo : check if release no already exists
-                
-                //CREATE DTO    
-                
-                
 
+                //CREATE DTO                 
+                ReleaseDTO dto = new ReleaseDTO();
+                dto.Id = Int32.Parse(release.ReleaseNo);
+                client.SaveRelease(dto.Id, dto.ReleaseDate);
                 //redirect to releases 
             }
 
-                /*
-                if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
-                {
-                    return Json("Nova verzija je uspješno kreirana");
+            /*
+            if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
+            {
+                return Json("Nova verzija je uspješno kreirana");
 
-                    // todo : redirect to "Releases" action after creation of release
-                }
-                else
-                {
-                    return Json("Nova verzija nije uspješno kreirana");
-                } 
-                */
-                return View();           
+                // todo : redirect to "Releases" action after creation of release
+            }
+            else
+            {
+                return Json("Nova verzija nije uspješno kreirana");
+            } 
+            
+            */
+            
+            return View();
         }
+        
+        
     }
 }

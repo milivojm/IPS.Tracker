@@ -68,7 +68,7 @@ namespace IPS.Tracker.WCF
             newDefect.SubscribeFollower(reporter);
             newDefect.CheckForNewFollowers(description);
             newDefect.DefectFileType = fileContentType;
-            _repository.AddDefect(newDefect);
+            _repository.AddDefect(newDefect);            
             _repository.Save();
 
             SendNotification(newDefect);
@@ -407,8 +407,15 @@ namespace IPS.Tracker.WCF
         }
 
         public ReleaseDTO SaveRelease(int id, DateTime? date)
-        {
+        {            
             Release release = new Release();
+
+            release.Id = id;
+            release.ReleaseDate = date;
+
+            _repository.AddRelease(release);
+            _repository.Save();
+
             return Mapper.Map<ReleaseDTO>(release);
         }
     }

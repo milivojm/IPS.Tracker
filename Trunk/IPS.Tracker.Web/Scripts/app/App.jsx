@@ -50,25 +50,31 @@ class App extends React.Component {
     })
   }
 
-
   handleAddTask(task) {      
       this.setState({
           taskList: this.state.taskList.concat(task)
       })
-  }  
- 
+  }   
 
   handleSubmit(event) {
     var data = {
         ReleaseListDefectId: this.state.taskList,
-        ReleaseNo: this.stete.releaseDate,
-        EstDateOfRelease: this.state.releaseDate
-    }
-          
-    var url = "/Home/NewRelease";    
+        ReleaseNo: this.state.releaseNumber.releaseNumber,
+        EstDateOfRelease: this.state.releaseDate.releaseDate
+    }    
+
+    var arr = [];
     
-    $.ajax({
-        type: 'POST',
+    for (var i = 0; i < this.state.taskList.length; i++) {        
+        arr[i] = this.state.taskList[i].taskNo;        
+    }
+    
+    data.ReleaseListDefectId = arr;
+          
+    var url = "/Home/NewRelease";            
+        
+    $.ajax({        
+        method: "POST",
         url: url,
         dataType: 'json',
         data: data,
@@ -79,8 +85,7 @@ class App extends React.Component {
         error: function (xhr, status, err) {
             console.error(this.props.url, status, err.toString());
         }.bind(this)
-    });    
-    
+    });                   
   }
 
   render() {

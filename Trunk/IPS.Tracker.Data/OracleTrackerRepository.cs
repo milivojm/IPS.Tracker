@@ -136,8 +136,9 @@ namespace IPS.Tracker.Data
             #region Release
             modelBuilder.Entity<Release>().HasKey(k => k.Id);
             modelBuilder.Entity<Release>().Property(k => k.Id).HasColumnName("ID").IsRequired();
+            modelBuilder.Entity<Release>().Property(k => k.ReleaseVersion).HasColumnName("RELEASE_VERSION");
             modelBuilder.Entity<Release>().Property(k => k.ReleaseDate).HasColumnName("RELEASE_DATE");
-            modelBuilder.Entity<Release>().ToTable("IPS_RELEASES");
+            modelBuilder.Entity<Release>().ToTable("IPS_RELEASE");
             #endregion
         }
 

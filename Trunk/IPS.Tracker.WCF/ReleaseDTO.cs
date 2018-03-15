@@ -10,7 +10,7 @@ namespace IPS.Tracker.WCF
     public class ReleaseDTO
     {
         [DataMember]
-        public int Id { get; set; }
+        public string ReleaseVersion { get; set; }
         [DataMember]
         public DateTime ReleaseDate { get; set; }
     }
