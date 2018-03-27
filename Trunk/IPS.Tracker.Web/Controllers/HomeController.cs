@@ -343,12 +343,6 @@ namespace IPS.Tracker.Web.Controllers
             return View();
         }
 
-        public void OnReleaseCreated(object source, int args)
-        {
-
-        }
-
-
         [HttpPost]
         public ActionResult NewRelease(ReleaseViewModel release)
         {
@@ -357,18 +351,15 @@ namespace IPS.Tracker.Web.Controllers
                 //todo : check if exists release with same version name 
                                 
                 ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                
-
-                //CREATE DEFECT DTO FOR LIST OF TASKS
+                
                 for (int i = 0; i < release.ReleaseListDefectId.Length; i++)
-                {
-                    //find defect by id
-
+                {                    
                     DefectDTO defectDto = new DefectDTO();
-
-                    //todo : get id of current created release
-                    // defectDto.ReleaseId = 
+                    defectDto = client.GetDefectById(Int32.Parse(release.ReleaseListDefectId[i]));
+                    defectDto.ReleaseId = test.Id;
+                    client.AddDefectToRelease(defectDto);                    
                 }
- 
+               
                 //redirect to releases 
             }
 

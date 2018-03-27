@@ -887,6 +887,9 @@ namespace IPS.Tracker.Web.TrackerService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/CloseSprint", ReplyAction="http://tempuri.org/ITrackerService/CloseSprintResponse")]
         void CloseSprint();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/AddDefectToRelease", ReplyAction="http://tempuri.org/ITrackerService/AddDefectToReleaseResponse")]
+        void AddDefectToRelease(IPS.Tracker.Web.TrackerService.DefectDTO dto);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -986,6 +989,10 @@ namespace IPS.Tracker.Web.TrackerService {
         
         public void CloseSprint() {
             base.Channel.CloseSprint();
+        }
+        
+        public void AddDefectToRelease(IPS.Tracker.Web.TrackerService.DefectDTO dto) {
+            base.Channel.AddDefectToRelease(dto);
         }
     }
 }

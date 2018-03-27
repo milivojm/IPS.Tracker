@@ -163,6 +163,17 @@ namespace IPS.Tracker.WCF
             return Mapper.Map<DefectDTO>(defect);
         }
 
+        public void AddDefectToRelease(DefectDTO dto)
+        {
+            Defect defect = (from d in _repository.Defects
+                             where d.Id == dto.Id
+                             select d).First();
+
+            defect.ReleaseId = dto.ReleaseId;
+
+            _repository.Save();
+        }
+
         private void SendNotification(DefectComment defectComment)
         {
             if (defectComment == null)

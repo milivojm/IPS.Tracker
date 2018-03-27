@@ -116,6 +116,12 @@
   <wsdl:message name="ITrackerService_CloseSprint_OutputMessage">
     <wsdl:part name="parameters" element="tns:CloseSprintResponse" />
   </wsdl:message>
+  <wsdl:message name="ITrackerService_AddDefectToRelease_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDefectToRelease" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_AddDefectToRelease_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDefectToReleaseResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITrackerService">
     <wsdl:operation name="InitializeNewDefect">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/InitializeNewDefect" message="tns:ITrackerService_InitializeNewDefect_InputMessage" />
@@ -188,6 +194,10 @@
     <wsdl:operation name="CloseSprint">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/CloseSprint" message="tns:ITrackerService_CloseSprint_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/CloseSprintResponse" message="tns:ITrackerService_CloseSprint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDefectToRelease">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/AddDefectToRelease" message="tns:ITrackerService_AddDefectToRelease_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/AddDefectToReleaseResponse" message="tns:ITrackerService_AddDefectToRelease_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TrackerServiceEndpoint" type="tns:ITrackerService">
@@ -347,6 +357,15 @@
     </wsdl:operation>
     <wsdl:operation name="CloseSprint">
       <soap:operation soapAction="http://tempuri.org/ITrackerService/CloseSprint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDefectToRelease">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/AddDefectToRelease" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

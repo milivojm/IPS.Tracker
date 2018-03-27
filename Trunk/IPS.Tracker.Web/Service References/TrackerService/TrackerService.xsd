@@ -265,4 +265,16 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddDefectToRelease">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="dto" nillable="true" type="q17:DefectDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDefectToReleaseResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
