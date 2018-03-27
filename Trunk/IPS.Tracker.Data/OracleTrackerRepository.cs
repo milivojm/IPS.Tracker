@@ -31,7 +31,7 @@ namespace IPS.Tracker.Data
         
         public void AddRelease(Release release)
         {
-            ReleaseSet.Add(release);
+            ReleaseSet.Add(release);            
         } 
 
         public IQueryable<Defect> Defects

@@ -63,6 +63,7 @@
   <xs:element name="WorkerDTO" nillable="true" type="tns:WorkerDTO" />
   <xs:complexType name="ReleaseDTO">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="ReleaseDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ReleaseVersion" nillable="true" type="xs:string" />
     </xs:sequence>
