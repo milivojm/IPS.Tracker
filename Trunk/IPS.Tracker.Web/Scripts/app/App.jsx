@@ -1,17 +1,9 @@
-﻿var taskList = [
-  {
-      taskNo: '1'
-  },
-  {
-      taskNo: '45'
-  },
-  {
-      taskNo: '564'
-  }
-]
+﻿var taskList = []
 
 var releaseNumber = '';
 var releaseDate = '';
+
+var submitDisabled = true;
 
 class App extends React.Component {
 
@@ -31,6 +23,13 @@ class App extends React.Component {
   }
 
     handleAddReleaseNumber(number) {
+        if (number.releaseNumber !== "") {
+            submitDisabled = false;
+        }
+        else {
+            submitDisabled = true;
+        }
+
         this.setState({
             releaseNumber: number
         })
@@ -128,7 +127,7 @@ class App extends React.Component {
           <div className="form-group">
             <form onSubmit={this.handleSubmit}>
               <label>
-                <input type="submit" value="Save" className="btn btn-danger"></input>
+                <input type="submit" value="Save" className="btn btn-danger" disabled={submitDisabled}></input>
               </label>
             </form>
           </div>
@@ -163,7 +162,7 @@ class ReleaseNumber extends React.Component {
             <label className="col-md-2">Release number</label>
             <div className="col-md-2">
               <form>
-                <input className="form-control" type="text" value={this.state.releaseNumber} onChange={this.handleChange}></input>
+                <input className="form-control" type="text" value={this.state.releaseNumber} onChange={this.handleChange}  placeholder="*Required*"></input>
               </form>
             </div>
           </div>
@@ -190,11 +189,22 @@ class TaskInput extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        this.props.onAddTask(this.state);
-        this.setState({
-            taskNo: ''
-        })
+        const re = /^[0-9\b]+$/;
+
+        if (re.test(this.state.taskNo) && this.state.taskNo !== '') {
+            event.preventDefault();
+            this.props.onAddTask(this.state);
+            this.setState({
+                taskNo: ''
+            })
+        }
+
+        else {
+            this.setState({
+                taskNo: ''
+            })
+            event.preventDefault();
+        }
     }
 
     render() {
