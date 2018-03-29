@@ -426,5 +426,13 @@ namespace IPS.Tracker.WCF
             return Mapper.Map<ReleaseDTO>(release);
         }
 
+        public List<DefectDTO> GetDefectsBySearchTerm(string term)
+        {
+            var query = from d in _repository.Defects
+                        where d.Id.ToString().Contains(term)
+                        select d;
+
+            return Mapper.Map<List<DefectDTO>>(query.ToList());
+        }
     }
 }

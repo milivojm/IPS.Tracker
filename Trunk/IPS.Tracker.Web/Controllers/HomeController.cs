@@ -343,6 +343,16 @@ namespace IPS.Tracker.Web.Controllers
             return View();
         }
 
+        public JsonResult GetDefects(string data)
+        {            
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                List<DefectDTO> defects = client.GetDefectsBySearchTerm(data);
+
+                return Json(defects, JsonRequestBehavior.AllowGet);
+            }            
+        }
+
         [HttpPost]
         public ActionResult NewRelease(ReleaseViewModel release)
         {

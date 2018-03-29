@@ -168,6 +168,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetDefectsBySearchTerm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="term" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDefectsBySearchTermResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetDefectsBySearchTermResult" nillable="true" type="q11:ArrayOfDefectDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetDefectsByWorkOrder">
     <xs:complexType>
       <xs:sequence>
@@ -180,7 +194,7 @@
   <xs:element name="GetDefectsByWorkOrderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetDefectsByWorkOrderResult" nillable="true" type="q11:ArrayOfDefectDTO" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetDefectsByWorkOrderResult" nillable="true" type="q12:ArrayOfDefectDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -196,7 +210,7 @@
   <xs:element name="CommentOnDefectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="CommentOnDefectResult" nillable="true" type="q12:DefectCommentDTO" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="CommentOnDefectResult" nillable="true" type="q13:DefectCommentDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -210,7 +224,7 @@
   <xs:element name="SearchDefectsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="SearchDefectsResult" nillable="true" type="q13:ArrayOfDefectDTO" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="SearchDefectsResult" nillable="true" type="q14:ArrayOfDefectDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -225,7 +239,7 @@
   <xs:element name="GetLastCommentsByWorkerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetLastCommentsByWorkerResult" nillable="true" type="q14:ArrayOfDefectCommentDTO" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetLastCommentsByWorkerResult" nillable="true" type="q15:ArrayOfDefectCommentDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -239,7 +253,7 @@
   <xs:element name="GetLastCommentsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetLastCommentsResult" nillable="true" type="q15:ArrayOfDefectCommentDTO" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetLastCommentsResult" nillable="true" type="q16:ArrayOfDefectCommentDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -251,7 +265,7 @@
   <xs:element name="GetMaxValueSprintDefectsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetMaxValueSprintDefectsResult" nillable="true" type="q16:ArrayOfDefectDTO" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="GetMaxValueSprintDefectsResult" nillable="true" type="q17:ArrayOfDefectDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -268,7 +282,7 @@
   <xs:element name="AddDefectToRelease">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="dto" nillable="true" type="q17:DefectDTO" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF" minOccurs="0" name="dto" nillable="true" type="q18:DefectDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

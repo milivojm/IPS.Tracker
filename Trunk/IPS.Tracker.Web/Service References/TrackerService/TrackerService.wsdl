@@ -74,6 +74,12 @@
   <wsdl:message name="ITrackerService_GetDefectById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDefectByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefectsBySearchTerm_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefectsBySearchTerm" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetDefectsBySearchTerm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefectsBySearchTermResponse" />
+  </wsdl:message>
   <wsdl:message name="ITrackerService_GetDefectsByWorkOrder_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDefectsByWorkOrder" />
   </wsdl:message>
@@ -166,6 +172,10 @@
     <wsdl:operation name="GetDefectById">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetDefectById" message="tns:ITrackerService_GetDefectById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetDefectByIdResponse" message="tns:ITrackerService_GetDefectById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefectsBySearchTerm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetDefectsBySearchTerm" message="tns:ITrackerService_GetDefectsBySearchTerm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetDefectsBySearchTermResponse" message="tns:ITrackerService_GetDefectsBySearchTerm_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetDefectsByWorkOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetDefectsByWorkOrder" message="tns:ITrackerService_GetDefectsByWorkOrder_InputMessage" />
@@ -294,6 +304,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDefectById">
       <soap:operation soapAction="http://tempuri.org/ITrackerService/GetDefectById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefectsBySearchTerm">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetDefectsBySearchTerm" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

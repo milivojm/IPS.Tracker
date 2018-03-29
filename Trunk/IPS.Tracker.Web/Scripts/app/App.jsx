@@ -193,6 +193,25 @@ class TaskInput extends React.Component {
     }
 
     handleChange(event) {
+
+        var url = "/Home/GetDefects";
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            dataType: 'json',
+            data: {data: event.target.value},
+            cache: false,
+            success: function (data) {
+                //this.setState({ data: data });
+                console.log(data);
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+
+
         this.setState({
             taskNo: event.target.value
         })

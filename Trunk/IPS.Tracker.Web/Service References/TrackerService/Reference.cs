@@ -867,6 +867,9 @@ namespace IPS.Tracker.Web.TrackerService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectById", ReplyAction="http://tempuri.org/ITrackerService/GetDefectByIdResponse")]
         IPS.Tracker.Web.TrackerService.DefectDTO GetDefectById(int defectId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsBySearchTerm", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsBySearchTermResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsBySearchTerm(string term);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsByWorkOrder", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsByWorkOrderResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page);
         
@@ -961,6 +964,10 @@ namespace IPS.Tracker.Web.TrackerService {
         
         public IPS.Tracker.Web.TrackerService.DefectDTO GetDefectById(int defectId) {
             return base.Channel.GetDefectById(defectId);
+        }
+        
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsBySearchTerm(string term) {
+            return base.Channel.GetDefectsBySearchTerm(term);
         }
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page) {
