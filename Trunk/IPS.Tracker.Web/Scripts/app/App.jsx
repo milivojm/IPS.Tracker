@@ -93,6 +93,7 @@ class App extends React.Component {
         <div className="form-horizontal">
           <div className="form-group">
             <h2>New App Release</h2>
+              <hr />
           </div>
         </div>
         <div className="form-horizontal">
@@ -106,32 +107,41 @@ class App extends React.Component {
           </div>
           </div>
           <div className="form-horizontal">
-          <div className="form-group">
-            <TaskInput onAddTask={this.handleAddTask}></TaskInput>
-            <div className="col-md-4-offset-0">
-              <ul className="list-group col-md-4">
-                  {this.state.taskList.map((task, index) =>
-                  <li className="list-group-item" key={index}>{task.taskNo}
-                    <span className="pull-right">
-                      <button className="btn btn-xs btn-danger" onClick={this.handleRemoveTask.bind(this, index)}><span className="glyphicon glyphicon-trash"></span> Delete</button>
-                    </span>
-                  </li>
-                  )}
-              </ul>
-            </div>
+              <div className="form-group">            
+                  <TaskInput onAddTask={this.handleAddTask}></TaskInput>                
+              </div>
           </div>
-          </div>
-
-
-        <div className="form-horizontal">
-          <div className="form-group">
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                <input type="submit" value="Save" className="btn btn-danger" disabled={submitDisabled}></input>
-              </label>
-            </form>
-          </div>
-        </div>
+            <div className="form-horizontal">
+                <div className="form-group">
+                    <div className="label-control col-md-2"></div>
+                    <div className="col-md-4-offset-0">
+                        <div className="form-group">
+                            <ul className="list-group col-md-4">
+                                {this.state.taskList.map((task, index) =>
+                                <li className="list-group-item" key={index}>{task.taskNo}
+                                <span className="pull-right">
+                                    <button className="btn btn-xs btn-danger" onClick={this.handleRemoveTask.bind(this, index)}><span className="glyphicon glyphicon-trash"></span> Delete</button>
+                                </span>
+                                </li>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>                      
+                    
+            <div className="form-horizontal">
+                <div className="form-group">
+                    <div className="col-md-2"></div>
+                         <div className="col-md-4">
+                            <form onSubmit={this.handleSubmit}>
+                              <label>
+                                <input type="submit" value="Save" className="btn btn-danger" disabled={submitDisabled}></input>
+                              </label>
+                            </form>
+                        </div>
+                </div>         
+            </div>            
       </div>
     );
   }
@@ -159,8 +169,8 @@ class ReleaseNumber extends React.Component {
     render() {
         return (
           <div className="form-group row">
-            <label className="col-md-2">Release number</label>
-            <div className="col-md-2">
+            <label className="control-label col-md-2">Release version*</label>
+            <div className="col-md-4">
               <form>
                 <input className="form-control" type="text" value={this.state.releaseNumber} onChange={this.handleChange}  placeholder="*Required*"></input>
               </form>
@@ -209,36 +219,30 @@ class TaskInput extends React.Component {
 
     render() {
         return (
-          <div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label">
-                <h4>Release task list</h4>
-            </label>
-          </div>
-          <div className="form-group row">
-            <div className="col-md-6">
-              <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <div className="col-md-4">
-                    <input name="taskNo"
-        type="text"
-        className="form-control"
-        id="inputTaskNo"
-        value={this.state.taskNo}
-        onChange={this.handleChange}
-        placeholder="Task Number">
-</input>
-</div>
-<div className="col-md-4">
-  <button type="submit" className="btn btn-success">Add Task</button>
-</div>
-</div>
-</form>
-</div>
-</div>
-</div>
+          <div className="form-group">   
+                 <form className="form-inline">
+                     <div className="">
+                         <label className="control-label col-md-2">
+                             Release task list
+                         </label>
+                     </div>
+                     <div className="col-md-4">
+                         <form onSubmit={this.handleSubmit}>
+                             <input name="taskNo"
+                                    type="text"
+                                    className="form-control"
+                                    id="inputTaskNo"
+                                    value={this.state.taskNo}
+                                    onChange={this.handleChange}
+                                    placeholder="Task Number">
+                             </input>
+                             <button type="submit" className="btn btn-success">Add Task</button>                 
+                         </form>                         
+                        </div>                     
+                 </form>
+          </div>                                                    
       )
-  }
+    }
 }
 
 class ReleaseDate extends React.Component {
@@ -263,8 +267,8 @@ class ReleaseDate extends React.Component {
     render() {
         return (
           <div className="form-group row">
-            <label className="col-md-2">Release date</label>
-            <div className="col-md-2">
+            <label className="control-label col-md-2">Release date*</label>
+            <div className="col-md-4">
               <form>
                 <input className="form-control" type="date" value={this.state.releaseDate} onChange={this.handleChange}></input>
               </form>
