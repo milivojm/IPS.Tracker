@@ -49,6 +49,9 @@ namespace IPS.Tracker.WCF
         List<DefectDTO> GetDefectsBySearchTerm(string term);
 
         [OperationContract]
+        List<DefectDTO> GetAllDefects();
+
+        [OperationContract]
         List<DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page);
 
         [OperationContract]

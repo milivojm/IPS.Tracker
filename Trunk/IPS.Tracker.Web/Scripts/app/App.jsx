@@ -5,6 +5,8 @@ var releaseDate = '';
 
 var submitDisabled = true;
 
+var selectedOption = '';
+
 class App extends React.Component {
 
   constructor(props) {
@@ -13,13 +15,15 @@ class App extends React.Component {
     this.state = {
         taskList,
         releaseNumber,
-        releaseDate
+        releaseDate,
+        selectedOption,       
     };
 
     this.handleAddTask = this.handleAddTask.bind(this);    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleAddReleaseNumber = this.handleAddReleaseNumber.bind(this);
     this.handleAddReleaseDate = this.handleAddReleaseDate.bind(this);
+    this.handleSelectTest = this.handleSelectTest.bind(this);
   }
 
     handleAddReleaseNumber(number) {
@@ -39,6 +43,12 @@ class App extends React.Component {
         this.setState({
             releaseDate: date
         })
+    }
+
+    handleSelectTest(task) {        
+        this.setState({            
+            taskList: this.state.taskList.concat(task)
+        })        
     }
 
   handleRemoveTask(index) {
@@ -107,10 +117,20 @@ class App extends React.Component {
           </div>
           </div>
           <div className="form-horizontal">
+          <div className="form-group">
+            <SelectTest onSelectTest={this.handleSelectTest}></SelectTest>
+          </div>
+          </div>
+          
+          
+          {/*           
+          <div className="form-horizontal">
               <div className="form-group">            
                   <TaskInput onAddTask={this.handleAddTask}></TaskInput>                
               </div>
-          </div>
+          </div>                    
+          */}
+              
             <div className="form-horizontal">
                 <div className="form-group">
                     <div className="label-control col-md-2"></div>
@@ -180,7 +200,8 @@ class ReleaseNumber extends React.Component {
   }
 }
 
-class TaskInput extends React.Component {
+class TaskInput extends React.Component {        
+
     constructor(props) {
         super(props);
 
@@ -193,7 +214,6 @@ class TaskInput extends React.Component {
     }
 
     handleChange(event) {
-
         var url = "/Home/GetDefects";
 
         $.ajax({
@@ -202,15 +222,13 @@ class TaskInput extends React.Component {
             dataType: 'json',
             data: {data: event.target.value},
             cache: false,
-            success: function (data) {
-                //this.setState({ data: data });
+            success: function (data) {               
                 console.log(data);
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
-
 
         this.setState({
             taskNo: event.target.value
@@ -295,6 +313,78 @@ class ReleaseDate extends React.Component {
           </div>
       )
   }
+}
+
+class SelectTest extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            taskNo: ''            
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
+    handleChange(taskNo) {      
+
+        this.setState({
+            taskNo: taskNo.value
+            }, () => {
+            this.props.onSelectTest(this.state);
+            })        
+    }
+
+    componentDidMount() {        
+        var url = "/Home/GetDefects";
+        
+        var items = [{
+            value: '',
+            label: ''
+        }];
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            dataType: 'json',
+            data: { data: event.target.value },
+            cache: false,
+            success: function (data) {                
+                
+                for(var i = 0; i < data.length; i++) {                    
+                    items.push({
+                        "value": data[i].Id,
+                        "label": data[i].Id + ' - ' + data[i].Summary
+                    })                    
+                }                
+
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+
+        return items;                
+    }
+
+    render() {
+        const taskNo = this.state;
+        const value = taskNo && taskNo.value;
+        var options = this.componentDidMount();
+
+        return (
+
+            <div className="form-group row">
+                <label className="control-label col-md-2">Release task list*</label>
+                <div className="col-md-4">
+                     <Select name="form-field-name"
+                             value={value}
+                             onChange={this.handleChange}                       
+                             options={options}/>                                                  
+                </div>
+            </div>         
+        )
+    }
 }
 
 ReactDOM.render(

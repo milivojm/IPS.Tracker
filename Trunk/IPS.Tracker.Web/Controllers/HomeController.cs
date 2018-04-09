@@ -347,7 +347,9 @@ namespace IPS.Tracker.Web.Controllers
         {            
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
-                List<DefectDTO> defects = client.GetDefectsBySearchTerm(data);
+                //List<DefectDTO> defects = client.GetDefectsBySearchTerm(data);
+
+                List<DefectDTO> defects = client.GetAllDefects();
 
                 return Json(defects, JsonRequestBehavior.AllowGet);
             }            

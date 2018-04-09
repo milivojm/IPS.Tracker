@@ -434,5 +434,13 @@ namespace IPS.Tracker.WCF
 
             return Mapper.Map<List<DefectDTO>>(query.ToList());
         }
+
+        public List<DefectDTO> GetAllDefects()
+        {
+            var query = from d in _repository.Defects
+                        select d;
+
+            return Mapper.Map<List<DefectDTO>>(query.ToList());
+        }
     }
 }
