@@ -120,8 +120,7 @@ class App extends React.Component {
           <div className="form-group">
             <SelectTest onSelectTest={this.handleSelectTest}></SelectTest>
           </div>
-          </div>
-          
+          </div>          
           
           {/*           
           <div className="form-horizontal">
@@ -341,27 +340,19 @@ class SelectTest extends React.Component {
         var items = [{
             value: '',
             label: ''
-        }];
+        }];        
 
-        $.ajax({
-            method: "POST",
-            url: url,
-            dataType: 'json',
-            data: { data: event.target.value },
-            cache: false,
-            success: function (data) {                
-                
-                for(var i = 0; i < data.length; i++) {                    
+        axios.get(url)
+            .then(function (response) {                
+                for (var i = 0; i < response.data.length; i++) {
                     items.push({
-                        "value": data[i].Id,
-                        "label": data[i].Id + ' - ' + data[i].Summary
-                    })                    
-                }                
-
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
+                        "value": response.data[i].Id,
+                        "label": response.data[i].Id + ' - ' + response.data[i].Summary
+                    })
+                }
+         })
+        .catch(function (error) {
+            console.log(error);
         });
 
         return items;                
