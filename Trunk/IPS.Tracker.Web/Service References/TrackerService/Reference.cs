@@ -62,6 +62,9 @@ namespace IPS.Tracker.Web.TrackerService {
         private string PriorityDescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ReleaseIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ReporterIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -260,6 +263,19 @@ namespace IPS.Tracker.Web.TrackerService {
                 if ((object.ReferenceEquals(this.PriorityDescriptionField, value) != true)) {
                     this.PriorityDescriptionField = value;
                     this.RaisePropertyChanged("PriorityDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ReleaseId {
+            get {
+                return this.ReleaseIdField;
+            }
+            set {
+                if ((this.ReleaseIdField.Equals(value) != true)) {
+                    this.ReleaseIdField = value;
+                    this.RaisePropertyChanged("ReleaseId");
                 }
             }
         }
@@ -614,6 +630,83 @@ namespace IPS.Tracker.Web.TrackerService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReleaseDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
+    [System.SerializableAttribute()]
+    public partial class ReleaseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ReleaseDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReleaseVersionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ReleaseDate {
+            get {
+                return this.ReleaseDateField;
+            }
+            set {
+                if ((this.ReleaseDateField.Equals(value) != true)) {
+                    this.ReleaseDateField = value;
+                    this.RaisePropertyChanged("ReleaseDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ReleaseVersion {
+            get {
+                return this.ReleaseVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReleaseVersionField, value) != true)) {
+                    this.ReleaseVersionField = value;
+                    this.RaisePropertyChanged("ReleaseVersion");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="WorkOrderDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
     [System.SerializableAttribute()]
     public partial class WorkOrderDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -750,6 +843,9 @@ namespace IPS.Tracker.Web.TrackerService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefect", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectResponse")]
         IPS.Tracker.Web.TrackerService.DefectDTO SaveDefect(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveReleaseResponse")]
+        IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(string releaseVersion, System.Nullable<System.DateTime> date);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefaultAssigneeId", ReplyAction="http://tempuri.org/ITrackerService/GetDefaultAssigneeIdResponse")]
         int GetDefaultAssigneeId(int workOrderId);
         
@@ -771,6 +867,12 @@ namespace IPS.Tracker.Web.TrackerService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectById", ReplyAction="http://tempuri.org/ITrackerService/GetDefectByIdResponse")]
         IPS.Tracker.Web.TrackerService.DefectDTO GetDefectById(int defectId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsBySearchTerm", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsBySearchTermResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsBySearchTerm(string term);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllDefects", ReplyAction="http://tempuri.org/ITrackerService/GetAllDefectsResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllDefects();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsByWorkOrder", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsByWorkOrderResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page);
         
@@ -791,6 +893,9 @@ namespace IPS.Tracker.Web.TrackerService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/CloseSprint", ReplyAction="http://tempuri.org/ITrackerService/CloseSprintResponse")]
         void CloseSprint();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/AddDefectToRelease", ReplyAction="http://tempuri.org/ITrackerService/AddDefectToReleaseResponse")]
+        void AddDefectToRelease(IPS.Tracker.Web.TrackerService.DefectDTO dto);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -832,6 +937,10 @@ namespace IPS.Tracker.Web.TrackerService {
             return base.Channel.SaveDefect(id, summary, description, workOrderId, assigneeId, changedById, priority, sprint, state);
         }
         
+        public IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(string releaseVersion, System.Nullable<System.DateTime> date) {
+            return base.Channel.SaveRelease(releaseVersion, date);
+        }
+        
         public int GetDefaultAssigneeId(int workOrderId) {
             return base.Channel.GetDefaultAssigneeId(workOrderId);
         }
@@ -860,6 +969,14 @@ namespace IPS.Tracker.Web.TrackerService {
             return base.Channel.GetDefectById(defectId);
         }
         
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsBySearchTerm(string term) {
+            return base.Channel.GetDefectsBySearchTerm(term);
+        }
+        
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllDefects() {
+            return base.Channel.GetAllDefects();
+        }
+        
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page) {
             return base.Channel.GetDefectsByWorkOrder(workOrderId, state, page);
         }
@@ -886,6 +1003,10 @@ namespace IPS.Tracker.Web.TrackerService {
         
         public void CloseSprint() {
             base.Channel.CloseSprint();
+        }
+        
+        public void AddDefectToRelease(IPS.Tracker.Web.TrackerService.DefectDTO dto) {
+            base.Channel.AddDefectToRelease(dto);
         }
     }
 }

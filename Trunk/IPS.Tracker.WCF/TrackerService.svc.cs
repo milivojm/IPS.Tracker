@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
 using System.Text;
 using AutoMapper;
 using System.Net.Mail;
-using System.Net;
 using System.IO;
 using System.Web;
 using System.ServiceModel.Activation;
@@ -67,7 +63,7 @@ namespace IPS.Tracker.WCF
             newDefect.SubscribeFollower(reporter);
             newDefect.CheckForNewFollowers(description);
             newDefect.DefectFileType = fileContentType;
-            _repository.AddDefect(newDefect);
+            _repository.AddDefect(newDefect);            
             _repository.Save();
 
             SendNotification(newDefect);
@@ -164,6 +160,17 @@ namespace IPS.Tracker.WCF
             _repository.Save();
             SendNotification(comment);
             return Mapper.Map<DefectDTO>(defect);
+        }
+
+        public void AddDefectToRelease(DefectDTO dto)
+        {
+            Defect defect = (from d in _repository.Defects
+                             where d.Id == dto.Id
+                             select d).First();
+
+            defect.ReleaseId = dto.ReleaseId;
+
+            _repository.Save();
         }
 
         private void SendNotification(DefectComment defectComment)
@@ -401,6 +408,36 @@ namespace IPS.Tracker.WCF
                 query = query.Where(d => d.DefectState != "CLS");
 
             query = query.OrderByDescending(d => d.Priority).ThenBy(d => d.DefectDate);
+
+            return Mapper.Map<List<DefectDTO>>(query.ToList());
+        }
+
+        public ReleaseDTO SaveRelease(string releaseVersion, DateTime? date)
+        {            
+            Release release = new Release();
+
+            release.ReleaseVersion = releaseVersion;
+            release.ReleaseDate = date;
+
+            _repository.AddRelease(release);
+            _repository.Save();             
+                        
+            return Mapper.Map<ReleaseDTO>(release);
+        }
+
+        public List<DefectDTO> GetDefectsBySearchTerm(string term)
+        {
+            var query = from d in _repository.Defects
+                        where d.Id.ToString().Contains(term)
+                        select d;
+
+            return Mapper.Map<List<DefectDTO>>(query.ToList());
+        }
+
+        public List<DefectDTO> GetAllDefects()
+        {
+            var query = from d in _repository.Defects
+                        select d;
 
             return Mapper.Map<List<DefectDTO>>(query.ToList());
         }

@@ -19,6 +19,20 @@ namespace IPS.Tracker.Data
         public DbSet<Defect> DefectsSet { get; set; }
         public DbSet<Worker> WorkersSet { get; set; }
         public DbSet<WorkOrder> WorkOrdersSet { get; set; }
+        public DbSet<Release> ReleaseSet { get; set; }
+
+        public IQueryable<Release> Releases
+        {
+            get
+            {
+                return ReleaseSet;
+            }
+        }
+        
+        public void AddRelease(Release release)
+        {
+            ReleaseSet.Add(release);            
+        } 
 
         public IQueryable<Defect> Defects
         {
@@ -79,6 +93,7 @@ namespace IPS.Tracker.Data
             modelBuilder.Entity<Defect>().Property(d => d.Summary).HasColumnName("SUMMARY").IsRequired();
             modelBuilder.Entity<Defect>().HasOptional(d => d.WorkOrder).WithMany().HasForeignKey(d => d.WorkOrderId);
             modelBuilder.Entity<Defect>().Property(d => d.WorkOrderId).HasColumnName("WORK_ORDER_ID");
+            modelBuilder.Entity<Defect>().Property(d => d.ReleaseId).HasColumnName("RELEASE_ID");
             modelBuilder.Entity<Defect>().ToTable("IPS_DEFECTS");
             #endregion
 
@@ -116,6 +131,14 @@ namespace IPS.Tracker.Data
             modelBuilder.Entity<WorkOrder>().Property(w => w.Subnumber).HasColumnName("SUBNUMBER");
             modelBuilder.Entity<WorkOrder>().Property(w => w.Year).HasColumnName("YEAR").IsRequired();
             modelBuilder.Entity<WorkOrder>().ToTable("IPS_WORK_ORDERS");
+            #endregion
+
+            #region Release
+            modelBuilder.Entity<Release>().HasKey(k => k.Id);
+            modelBuilder.Entity<Release>().Property(k => k.Id).HasColumnName("ID").IsRequired();
+            modelBuilder.Entity<Release>().Property(k => k.ReleaseVersion).HasColumnName("RELEASE_VERSION");
+            modelBuilder.Entity<Release>().Property(k => k.ReleaseDate).HasColumnName("RELEASE_DATE");
+            modelBuilder.Entity<Release>().ToTable("IPS_RELEASE");
             #endregion
         }
 

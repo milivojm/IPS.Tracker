@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Verzije";
+}
+
+<h2>Verzije aplikacije</h2>
+
+@using (Html.BeginForm("NewRelease", "Home", FormMethod.Get))
+{
+    //todo : zamijeniti sa velikim plusom
+    <div class="form-group">
+        <input type="submit" value="Dodaj novu verziju" class="btn btn-danger" />
+    </div>
+}

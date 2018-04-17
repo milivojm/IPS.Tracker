@@ -20,6 +20,8 @@ namespace IPS.Tracker.WCF
         [DataMember]
         public int? WorkOrderId { get; set; }
         [DataMember]
+        public int? ReleaseId { get; set; }
+        [DataMember]
         public int ReporterId { get; set; }
         [DataMember]
         public int AssigneeId { get; set; }

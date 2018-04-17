@@ -336,5 +336,65 @@ namespace IPS.Tracker.Web.Controllers
                 return RedirectToAction("ListProblemsInSprint");
             }
         }
+        
+        public ActionResult Releases()
+        {
+            return View();
+        }
+                
+        public ActionResult NewRelease()
+        {
+            return View();
+        }
+
+        public JsonResult GetDefects(string data)
+        {            
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                //List<DefectDTO> defects = client.GetDefectsBySearchTerm(data);
+
+                List<DefectDTO> defects = client.GetAllDefects();
+
+                return Json(defects, JsonRequestBehavior.AllowGet);
+            }            
+        }
+
+        [HttpPost]
+        public ActionResult NewRelease(ReleaseViewModel release)
+        {
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                //todo : check if exists release with same version name 
+                                
+                ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                
+                
+                for (int i = 0; i < release.ReleaseListDefectId.Length; i++)
+                {                    
+                    DefectDTO defectDto = new DefectDTO();
+                    defectDto = client.GetDefectById(Int32.Parse(release.ReleaseListDefectId[i]));
+                    defectDto.ReleaseId = test.Id;
+                    client.AddDefectToRelease(defectDto);                    
+                }
+               
+                //redirect to releases 
+            }
+
+            /*
+            if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
+            {
+                return Json("Nova verzija je uspješno kreirana");
+
+                // todo : redirect to "Releases" action after creation of release
+            }
+            else
+            {
+                return Json("Nova verzija nije uspješno kreirana");
+            } 
+            
+            */
+            
+            return View();
+        }
+        
     }
 }
