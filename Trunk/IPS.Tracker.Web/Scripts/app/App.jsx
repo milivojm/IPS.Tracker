@@ -121,15 +121,7 @@ class App extends React.Component {
             <SelectTest onSelectTest={this.handleSelectTest}></SelectTest>
           </div>
           </div>          
-          
-          {/*           
-          <div className="form-horizontal">
-              <div className="form-group">            
-                  <TaskInput onAddTask={this.handleAddTask}></TaskInput>                
-              </div>
-          </div>                    
-          */}
-              
+
             <div className="form-horizontal">
                 <div className="form-group">
                     <div className="label-control col-md-2"></div>
@@ -199,87 +191,6 @@ class ReleaseNumber extends React.Component {
   }
 }
 
-class TaskInput extends React.Component {        
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            taskNo: ''
-        }
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(event) {
-        var url = "/Home/GetDefects";
-
-        $.ajax({
-            method: "POST",
-            url: url,
-            dataType: 'json',
-            data: {data: event.target.value},
-            cache: false,
-            success: function (data) {               
-                console.log(data);
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
-
-        this.setState({
-            taskNo: event.target.value
-        })
-    }
-
-    handleSubmit(event) {
-        const re = /^[0-9\b]+$/;
-
-        if (re.test(this.state.taskNo) && this.state.taskNo !== '') {
-            event.preventDefault();
-            this.props.onAddTask(this.state);
-            this.setState({
-                taskNo: ''
-            })
-        }
-
-        else {
-            this.setState({
-                taskNo: ''
-            })
-            event.preventDefault();
-        }
-    }
-
-    render() {
-        return (
-          <div className="form-group">   
-                 <form className="form-inline">
-                     <div className="">
-                         <label className="control-label col-md-2">
-                             Release task list
-                         </label>
-                     </div>
-                     <div className="col-md-4">
-                         <form onSubmit={this.handleSubmit}>
-                             <input name="taskNo"
-                                    type="text"
-                                    className="form-control"
-                                    id="inputTaskNo"
-                                    value={this.state.taskNo}
-                                    onChange={this.handleChange}
-                                    placeholder="Task Number">
-                             </input>
-                             <button type="submit" className="btn btn-success">Add Task</button>                 
-                         </form>                         
-                        </div>                     
-                 </form>
-          </div>                                                    
-      )
-    }
-}
 
 class ReleaseDate extends React.Component {
     constructor(props) {
@@ -379,6 +290,6 @@ class SelectTest extends React.Component {
 }
 
 ReactDOM.render(
-    <App />,
+    <App />, 
     document.getElementById('root')
 );
