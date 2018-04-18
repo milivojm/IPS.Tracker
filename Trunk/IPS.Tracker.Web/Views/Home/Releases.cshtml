@@ -14,21 +14,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Release version: @release.ReleaseNo</div>
                 <div class="panel-heading">Release date: @release.EstDateOfRelease</div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Task Id:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            @for (var i = 0; i < release.ReleaseListDefectId.Count; i ++)
-                            {
-                                <td>@release.ReleaseListDefectId[i]</td>
-                            }
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>        
     }
