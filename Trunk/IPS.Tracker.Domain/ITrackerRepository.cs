@@ -14,5 +14,6 @@ namespace IPS.Tracker.Domain
         void Save();
         void AddDefect(Defect defect);
         void AddRelease(Release release);
+        IQueryable<Release> Releases { get; }
     }
 }

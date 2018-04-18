@@ -11,6 +11,6 @@ namespace IPS.Tracker.Web.Models
     {                
         public string ReleaseNo { get; set; }        
         public DateTime? EstDateOfRelease { get; set; }               
-        public string[] ReleaseListDefectId { get; set; }
+        public List<string> ReleaseListDefectId { get; set; }
     }
 }

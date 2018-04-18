@@ -441,5 +441,13 @@ namespace IPS.Tracker.WCF
 
             return Mapper.Map<List<DefectDTO>>(query.ToList());
         }
+
+        public List<ReleaseDTO> GetAllReleases()
+        {
+            var query = from r in _repository.Releases
+                        select r;
+
+            return Mapper.Map<List<ReleaseDTO>>(query.ToList());
+        }
     }
 }

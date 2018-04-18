@@ -339,7 +339,25 @@ namespace IPS.Tracker.Web.Controllers
         
         public ActionResult Releases()
         {
-            return View();
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                List<ReleaseDTO> releases = client.GetAllReleases();
+         
+                List<ReleaseViewModel> listRelease = new List<ReleaseViewModel>();
+
+                for (int i = 0; i < releases.Count; i++)
+                {
+                    ReleaseViewModel vm = new ReleaseViewModel();
+                    vm.ReleaseListDefectId = new List<string>();
+                    vm.ReleaseListDefectId.Add(releases[i].Id.ToString());
+                    vm.EstDateOfRelease = releases[i].ReleaseDate;
+                    vm.ReleaseNo = releases[i].ReleaseVersion;
+
+                    listRelease.Add(vm);
+                }
+
+                return View(listRelease);
+            }                        
         }
                 
         public ActionResult NewRelease()
@@ -368,7 +386,7 @@ namespace IPS.Tracker.Web.Controllers
                                 
                 ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                
                 
-                for (int i = 0; i < release.ReleaseListDefectId.Length; i++)
+                for (int i = 0; i < release.ReleaseListDefectId.Count; i++)
                 {                    
                     DefectDTO defectDto = new DefectDTO();
                     defectDto = client.GetDefectById(Int32.Parse(release.ReleaseListDefectId[i]));

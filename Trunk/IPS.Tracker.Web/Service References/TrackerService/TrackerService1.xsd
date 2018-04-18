@@ -92,4 +92,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfDefectDTO" nillable="true" type="tns:ArrayOfDefectDTO" />
+  <xs:complexType name="ArrayOfReleaseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReleaseDTO" nillable="true" type="tns:ReleaseDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReleaseDTO" nillable="true" type="tns:ArrayOfReleaseDTO" />
 </xs:schema>
