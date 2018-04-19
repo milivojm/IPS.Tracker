@@ -347,10 +347,12 @@ namespace IPS.Tracker.Web.Controllers
 
                 for (int i = 0; i < releases.Count; i++)
                 {
+                    var vrijeme = releases[i].ReleaseDate;
+
                     ReleaseViewModel vm = new ReleaseViewModel();
                     vm.ReleaseListDefectId = new List<string>();
                     vm.ReleaseListDefectId.Add(releases[i].Id.ToString());
-                    vm.EstDateOfRelease = releases[i].ReleaseDate;
+                    vm.EstDateOfRelease = releases[i].ReleaseDate;                    
                     vm.ReleaseNo = releases[i].ReleaseVersion;
 
                     listRelease.Add(vm);
