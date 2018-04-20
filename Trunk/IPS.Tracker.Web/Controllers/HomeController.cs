@@ -346,9 +346,7 @@ namespace IPS.Tracker.Web.Controllers
                 List<ReleaseViewModel> listRelease = new List<ReleaseViewModel>();
 
                 for (int i = 0; i < releases.Count; i++)
-                {
-                    var vrijeme = releases[i].ReleaseDate;
-
+                {                    
                     ReleaseViewModel vm = new ReleaseViewModel();
                     vm.ReleaseListDefectId = new List<string>();
                     vm.ReleaseListDefectId.Add(releases[i].Id.ToString());
@@ -380,24 +378,29 @@ namespace IPS.Tracker.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewRelease(ReleaseViewModel release)
+        public EmptyResult NewRelease(ReleaseViewModel release)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 //todo : check if exists release with same version name 
                                 
-                ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                
-                
-                for (int i = 0; i < release.ReleaseListDefectId.Count; i++)
-                {                    
-                    DefectDTO defectDto = new DefectDTO();
-                    defectDto = client.GetDefectById(Int32.Parse(release.ReleaseListDefectId[i]));
-                    defectDto.ReleaseId = test.Id;
-                    client.AddDefectToRelease(defectDto);                    
+                ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                                                
+
+                if (release.ReleaseListDefectId != null)
+                {
+                    for (int i = 0; i < release.ReleaseListDefectId.Count; i++)
+                    {
+                        DefectDTO defectDto = new DefectDTO();
+                        defectDto = client.GetDefectById(Int32.Parse(release.ReleaseListDefectId[i]));
+                        defectDto.ReleaseId = test.Id;
+                        client.AddDefectToRelease(defectDto);
+                    }
                 }
-               
-                //redirect to releases 
+                
+                return new EmptyResult();
             }
+
+            //return RedirectToAction("Test", "Home");
 
             /*
             if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
@@ -412,9 +415,9 @@ namespace IPS.Tracker.Web.Controllers
             } 
             
             */
-            
-            return View();
-        }
+
+            //return View();
+        }        
         
     }
 }
