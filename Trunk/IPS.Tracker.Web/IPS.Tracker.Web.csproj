@@ -245,7 +245,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="readme.txt" />
-    <Content Include="Scripts\app\last-comments.js" />
+    <None Include="Scripts\app\last-comments.jsx" />
     <Content Include="Scripts\babel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

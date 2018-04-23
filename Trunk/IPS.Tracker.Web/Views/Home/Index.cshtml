@@ -1,4 +1,6 @@
-﻿@{
+﻿@using System.Web.Optimization
+
+@{
     ViewBag.Title = "Home";
 }
 
@@ -7,5 +9,9 @@
 </div>
 <div class="row">
     <div id="last_comments" data-url='@Url.Action("Index","Home")'></div>
-    <script type="text/babel" src="~/Scripts/app/last-comments.js" />
 </div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/react")
+    <script type="text/babel" src="~/Scripts/app/last-comments.js"></script>
+}

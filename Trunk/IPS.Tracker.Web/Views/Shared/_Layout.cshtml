@@ -7,15 +7,12 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/fonts/octicons.css" rel="stylesheet" />
-    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/react-select@1.2.1/dist/react-select.css">
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/react.js"></script>
-    <script src="~/Scripts/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -76,5 +73,6 @@
             });
         });
     </script>
+    @RenderSection("scripts", false)
 </body>
 </html>
