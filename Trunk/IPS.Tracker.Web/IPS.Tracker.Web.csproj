@@ -305,6 +305,7 @@
     <Content Include="Views\Home\ListProblemsBoard.cshtml" />
     <Content Include="Views\Home\Releases.cshtml" />
     <Content Include="Views\Home\NewRelease.cshtml" />
+    <Content Include="Views\Home\Backlog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

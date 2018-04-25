@@ -107,20 +107,30 @@ namespace IPS.Tracker.Web.Controllers
             return View();
         }
 
+        public ActionResult Backlog (int page = 1)
+        {
+            ViewBag.EditMode = true;
+            ViewBag.StateDescription = "Aktivni";
+
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                List<DefectDTO> result;
+                result = client.GetAllOpenDefects();
+                return View(result);
+            }
+        }
+
         public ActionResult ListProblemsByUser(int? userId, string stateDescription = "Aktivni", int page = 1)
         {
             ViewBag.EditMode = true;
             ViewBag.StateDescription = stateDescription;
             ViewBag.UserId = userId;
-            // ViewBag.Page = page;
 
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 List<DefectDTO> result;
 
-
                 if (userId.HasValue)
-                    //    result = client.GetDefectsByWorker(userId.Value, page - 1, defectsPerPage, stateDescription);
                     result = client.GetAllDefectsByWorker(userId.Value, stateDescription);
                 else
                 {
@@ -129,11 +139,7 @@ namespace IPS.Tracker.Web.Controllers
                     result = client.GetAllDefectsByWorker(currentWorker.Id, stateDescription);
                 }
 
-                // result = ExtractResultByState(stateDescription, result);
-
                 return View(result);
-
-                // return View(result.ToPagedList(page, defectsPerPage));
             }
         }
 

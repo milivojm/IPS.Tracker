@@ -74,5 +74,8 @@ namespace IPS.Tracker.WCF
 
         [OperationContract]
         void AddDefectToRelease(DefectDTO dto);
+
+        [OperationContract]
+        List<DefectDTO> GetAllOpenDefects();
     }
 }
