@@ -441,5 +441,14 @@ namespace IPS.Tracker.WCF
 
             return Mapper.Map<List<DefectDTO>>(query.ToList());
         }
+
+        public List<DefectDTO> GetAllOpenDefects()
+        {
+            var query = from d in _repository.Defects
+                        where d.DefectState != "CLS"
+                        select d;
+
+            return Mapper.Map<List<DefectDTO>>(query.ToList());
+        }
     }
 }

@@ -134,6 +134,12 @@
   <wsdl:message name="ITrackerService_AddDefectToRelease_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddDefectToReleaseResponse" />
   </wsdl:message>
+  <wsdl:message name="ITrackerService_GetAllOpenDefects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllOpenDefects" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_GetAllOpenDefects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllOpenDefectsResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITrackerService">
     <wsdl:operation name="InitializeNewDefect">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/InitializeNewDefect" message="tns:ITrackerService_InitializeNewDefect_InputMessage" />
@@ -218,6 +224,10 @@
     <wsdl:operation name="AddDefectToRelease">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/AddDefectToRelease" message="tns:ITrackerService_AddDefectToRelease_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/AddDefectToReleaseResponse" message="tns:ITrackerService_AddDefectToRelease_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllOpenDefects">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/GetAllOpenDefects" message="tns:ITrackerService_GetAllOpenDefects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/GetAllOpenDefectsResponse" message="tns:ITrackerService_GetAllOpenDefects_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TrackerServiceEndpoint" type="tns:ITrackerService">
@@ -404,6 +414,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddDefectToRelease">
       <soap:operation soapAction="http://tempuri.org/ITrackerService/AddDefectToRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllOpenDefects">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/GetAllOpenDefects" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
