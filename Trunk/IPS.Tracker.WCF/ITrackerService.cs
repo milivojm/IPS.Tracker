@@ -77,5 +77,11 @@ namespace IPS.Tracker.WCF
 
         [OperationContract]
         List<ReleaseDTO> GetAllReleases();
+
+        [OperationContract]
+        string GetReleaseVersion(int? releaseId);
+
+        [OperationContract]
+        void SaveDefectRelease(string releaseVersion, int defectId);
     }
 }

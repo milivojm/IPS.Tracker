@@ -17,6 +17,7 @@
       <xs:element minOccurs="0" name="Priority" type="xs:short" />
       <xs:element minOccurs="0" name="PriorityDescription" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReleaseId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ReleaseVersion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReporterId" type="xs:int" />
       <xs:element minOccurs="0" name="ReporterName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SprintNo" nillable="true" type="xs:int" />

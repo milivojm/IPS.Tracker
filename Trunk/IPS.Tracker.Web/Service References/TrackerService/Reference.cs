@@ -65,6 +65,9 @@ namespace IPS.Tracker.Web.TrackerService {
         private System.Nullable<int> ReleaseIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReleaseVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ReporterIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -276,6 +279,19 @@ namespace IPS.Tracker.Web.TrackerService {
                 if ((this.ReleaseIdField.Equals(value) != true)) {
                     this.ReleaseIdField = value;
                     this.RaisePropertyChanged("ReleaseId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ReleaseVersion {
+            get {
+                return this.ReleaseVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReleaseVersionField, value) != true)) {
+                    this.ReleaseVersionField = value;
+                    this.RaisePropertyChanged("ReleaseVersion");
                 }
             }
         }
@@ -899,6 +915,12 @@ namespace IPS.Tracker.Web.TrackerService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllReleases", ReplyAction="http://tempuri.org/ITrackerService/GetAllReleasesResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.ReleaseDTO> GetAllReleases();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetReleaseVersion", ReplyAction="http://tempuri.org/ITrackerService/GetReleaseVersionResponse")]
+        string GetReleaseVersion(System.Nullable<int> releaseId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefectRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectReleaseResponse")]
+        void SaveDefectRelease(string releaseVersion, int defectId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1014,6 +1036,14 @@ namespace IPS.Tracker.Web.TrackerService {
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.ReleaseDTO> GetAllReleases() {
             return base.Channel.GetAllReleases();
+        }
+        
+        public string GetReleaseVersion(System.Nullable<int> releaseId) {
+            return base.Channel.GetReleaseVersion(releaseId);
+        }
+        
+        public void SaveDefectRelease(string releaseVersion, int defectId) {
+            base.Channel.SaveDefectRelease(releaseVersion, defectId);
         }
     }
 }

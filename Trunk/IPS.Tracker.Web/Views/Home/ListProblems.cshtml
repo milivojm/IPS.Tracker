@@ -29,7 +29,7 @@
                 else
                     return Html.ActionLink((string)d.SprintNo.ToString(), "Search", new { criteria = string.Format("sprint {0}", d.SprintNo) });
             }),
-            grid.Column(columnName: "ReleaseId", header: "Release", style: "col-md-1")
+            grid.Column(columnName: "ReleaseVersion", header: "Release", style: "col-md-1")
         )
     )
 </div>

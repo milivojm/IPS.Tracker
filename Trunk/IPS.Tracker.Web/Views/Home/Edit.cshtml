@@ -79,6 +79,14 @@
                     @Html.TextBoxFor(model => model.SprintNumber, new { @class = "form-control" })
                 </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReleaseVersion, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.ReleaseVersion, Model.ReleaseVersions, new { @class = "form-control" })                     
+                    @Html.HiddenFor(model => model.ReleaseId)                   
+                </div>
+            </div>
         }
         else
         {

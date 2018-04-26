@@ -121,12 +121,17 @@ namespace IPS.Tracker.Web.Controllers
 
                 if (userId.HasValue)
                     //    result = client.GetDefectsByWorker(userId.Value, page - 1, defectsPerPage, stateDescription);
-                    result = client.GetAllDefectsByWorker(userId.Value, stateDescription);
+                    result = client.GetAllDefectsByWorker(userId.Value, stateDescription);                                       
                 else
                 {
                     WorkerDTO currentWorker = GetCurrentWorker(client);
                     ViewBag.UserId = currentWorker.Id;
                     result = client.GetAllDefectsByWorker(currentWorker.Id, stateDescription);
+
+                    foreach (var item in result)
+                    {
+                        item.ReleaseVersion = client.GetReleaseVersion(item.ReleaseId);
+                    }
                 }
 
                 // result = ExtractResultByState(stateDescription, result);
@@ -213,6 +218,7 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.GetDefectById(id);
+                defect.ReleaseVersion = client.GetReleaseVersion(defect.ReleaseId);
                 defect.LinkedDefects = new List<DefectDTO>();
 
                 foreach (int no in defect.LinkedDefectNumbers)
@@ -261,7 +267,11 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.GetDefectById(id);
+                List<ReleaseDTO> releases = client.GetAllReleases();
+                defect.ReleaseVersion = client.GetReleaseVersion(defect.ReleaseId);
+
                 WorkerDTO currentWorker = GetCurrentWorker(client);
+
                 bool planningAllowed = false;
 
                 if (defect.WorkOrderId.HasValue)
@@ -275,6 +285,7 @@ namespace IPS.Tracker.Web.Controllers
                 DefectViewModel viewModel = new DefectViewModel(defect);
                 viewModel.Workers = client.GetActiveWorkers();
                 viewModel.PlanningAllowed = planningAllowed || currentWorker.TrackerAdmin == "D";
+                viewModel.Releases = client.GetAllReleases();
                 return View(viewModel);
             }
         }
@@ -286,6 +297,8 @@ namespace IPS.Tracker.Web.Controllers
             {
                 WorkerDTO currentWorker = GetCurrentWorker(client);
                 DefectDTO defect = client.SaveDefect(viewModel.Id, viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.SprintNumber, viewModel.StateDescription);
+
+                client.SaveDefectRelease(viewModel.ReleaseVersion, viewModel.Id);
 
                 if (!String.IsNullOrEmpty(viewModel.EditCommentText))
                 {
