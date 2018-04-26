@@ -13,6 +13,7 @@ namespace IPS.Tracker.Web.Models
         private List<Priority> _priorities;
         private List<WorkerDTO> _workers;
         private List<string> _defectStates;
+        private List<ReleaseDTO> _releases;
 
         public DefectViewModel() { }
 
@@ -43,6 +44,8 @@ namespace IPS.Tracker.Web.Models
             ReporterName = defect.ReporterName;
 
             SprintNumber = defect.SprintNo;
+            ReleaseVersion = defect.ReleaseVersion;
+            ReleaseId = defect.ReleaseId;
 
             Comments = defect.DefectComments.OrderByDescending(d => d.CommentDate).ToList();
             Followers = defect.DefectFollowers;
@@ -84,12 +87,31 @@ namespace IPS.Tracker.Web.Models
         [Display(Name = "Sprint")]
         public int? SprintNumber { get; set; }
 
+        [Display(Name = "Release version")]
+        public string ReleaseVersion { get; set; }
+
+        public int? ReleaseId { get; set; }
+
         public HttpPostedFileBase UploadedFile { get; set; }
 
         public List<WorkerDTO> Workers
         {
             get { return _workers; }
             set { _workers = value; }
+        }
+
+        public List<ReleaseDTO> Releases
+        {
+            get { return _releases; }
+            set { _releases = value; }
+        }
+
+        public IEnumerable<SelectListItem> ReleaseVersions
+        {
+            get
+            {
+                return new SelectList(_releases, "ReleaseVersion", "ReleaseVersion", selectedValue: ReleaseVersion);                                
+            }
         }
 
         public IEnumerable<SelectListItem> Assignees

@@ -63,7 +63,7 @@ namespace IPS.Tracker.WCF
             newDefect.SubscribeFollower(reporter);
             newDefect.CheckForNewFollowers(description);
             newDefect.DefectFileType = fileContentType;
-            _repository.AddDefect(newDefect);            
+            _repository.AddDefect(newDefect);
             _repository.Save();
 
             SendNotification(newDefect);
@@ -413,15 +413,15 @@ namespace IPS.Tracker.WCF
         }
 
         public ReleaseDTO SaveRelease(string releaseVersion, DateTime? date)
-        {            
+        {
             Release release = new Release();
 
             release.ReleaseVersion = releaseVersion;
             release.ReleaseDate = date;
 
             _repository.AddRelease(release);
-            _repository.Save();             
-                        
+            _repository.Save();
+
             return Mapper.Map<ReleaseDTO>(release);
         }
 
@@ -449,6 +449,47 @@ namespace IPS.Tracker.WCF
                         select d;
 
             return Mapper.Map<List<DefectDTO>>(query.ToList());
+        }
+
+        public List<ReleaseDTO> GetAllReleases()
+        {
+            var query = from r in _repository.Releases
+                        select r;
+
+            return Mapper.Map<List<ReleaseDTO>>(query.ToList());
+        }
+
+        public string GetReleaseVersion(int? releaseId)
+        {
+            var query = from r in _repository.Releases
+                        where r.Id == releaseId
+                        select r;
+
+            var result = Mapper.Map<ReleaseDTO>(query.FirstOrDefault());
+
+            if (result == null)
+            {
+                return "";
+            }
+
+            else
+            {
+                return result.ReleaseVersion;
+            }
+        }
+
+        public void SaveDefectRelease(string releaseVersion, int defectId)
+        {
+            Defect defect = (from d in _repository.Defects
+                             where d.Id == defectId
+                             select d).First();
+            Release release = (from r in _repository.Releases
+                               where r.ReleaseVersion == releaseVersion
+                               select r).FirstOrDefault();
+
+            defect.ReleaseId = release.Id;
+
+            _repository.Save();
         }
     }
 }

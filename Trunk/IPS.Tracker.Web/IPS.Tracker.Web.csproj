@@ -245,7 +245,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="readme.txt" />
-    <Content Include="Scripts\app\last-comments.js" />
+    <None Include="Scripts\app\last-comments.jsx" />
     <Content Include="Scripts\babel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -268,21 +268,21 @@
     <Content Include="Scripts\react-dom.js" />
     <Content Include="Scripts\react.development.js" />
     <Content Include="Scripts\react.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Service References\TrackerService\IPS.Tracker.Web.TrackerService.DefectCommentDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\TrackerService\IPS.Tracker.Web.TrackerService.DefectDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\TrackerService\IPS.Tracker.Web.TrackerService.ReleaseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Service References\TrackerService\IPS.Tracker.Web.TrackerService.WorkerDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\TrackerService\IPS.Tracker.Web.TrackerService.WorkOrderDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Service References\TrackerService\IPS.Tracker.Web.TrackerService.ReleaseDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\TrackerService\TrackerService.disco" />
@@ -296,9 +296,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Home\DefectLinks.cshtml" />
-    <None Include="Service References\TrackerService\TrackerService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Home\ListProblems.cshtml" />
     <Content Include="Views\Home\ListProblemsInSprint.cshtml" />
     <Content Include="Views\Home\ProblemCard.cshtml" />
@@ -306,6 +303,19 @@
     <Content Include="Views\Home\Releases.cshtml" />
     <Content Include="Views\Home\NewRelease.cshtml" />
     <Content Include="Views\Home\Backlog.cshtml" />
+    <None Include="Service References\TrackerService\TrackerService.wsdl" />
+    <None Include="Service References\TrackerService\TrackerService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrackerService\TrackerService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrackerService\TrackerService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TrackerService\TrackerService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -354,16 +364,6 @@
     <Content Include="Views\Home\CommentRow.cshtml" />
     <Content Include="Views\Home\PageNotExist.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
-    <None Include="Service References\TrackerService\TrackerService.wsdl" />
-    <None Include="Service References\TrackerService\TrackerService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TrackerService\TrackerService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TrackerService\TrackerService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

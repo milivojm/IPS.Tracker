@@ -53,5 +53,7 @@ namespace IPS.Tracker.WCF
         public List<WorkerDTO> DefectFollowers { get; set; }
         [DataMember]
         public List<int> LinkedDefectNumbers { get; set; }
+        [DataMember]
+        public string ReleaseVersion { get; set; }
     }
 }

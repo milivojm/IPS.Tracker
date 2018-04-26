@@ -137,6 +137,11 @@ namespace IPS.Tracker.Web.Controllers
                     WorkerDTO currentWorker = GetCurrentWorker(client);
                     ViewBag.UserId = currentWorker.Id;
                     result = client.GetAllDefectsByWorker(currentWorker.Id, stateDescription);
+
+                    foreach (var item in result)
+                    {
+                        item.ReleaseVersion = client.GetReleaseVersion(item.ReleaseId);
+                    }
                 }
 
                 return View(result);
@@ -219,6 +224,7 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.GetDefectById(id);
+                defect.ReleaseVersion = client.GetReleaseVersion(defect.ReleaseId);
                 defect.LinkedDefects = new List<DefectDTO>();
 
                 foreach (int no in defect.LinkedDefectNumbers)
@@ -267,7 +273,11 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.GetDefectById(id);
+                List<ReleaseDTO> releases = client.GetAllReleases();
+                defect.ReleaseVersion = client.GetReleaseVersion(defect.ReleaseId);
+
                 WorkerDTO currentWorker = GetCurrentWorker(client);
+
                 bool planningAllowed = false;
 
                 if (defect.WorkOrderId.HasValue)
@@ -281,6 +291,7 @@ namespace IPS.Tracker.Web.Controllers
                 DefectViewModel viewModel = new DefectViewModel(defect);
                 viewModel.Workers = client.GetActiveWorkers();
                 viewModel.PlanningAllowed = planningAllowed || currentWorker.TrackerAdmin == "D";
+                viewModel.Releases = client.GetAllReleases();
                 return View(viewModel);
             }
         }
@@ -292,6 +303,8 @@ namespace IPS.Tracker.Web.Controllers
             {
                 WorkerDTO currentWorker = GetCurrentWorker(client);
                 DefectDTO defect = client.SaveDefect(viewModel.Id, viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.SprintNumber, viewModel.StateDescription);
+
+                client.SaveDefectRelease(viewModel.ReleaseVersion, viewModel.Id);
 
                 if (!String.IsNullOrEmpty(viewModel.EditCommentText))
                 {
@@ -345,7 +358,25 @@ namespace IPS.Tracker.Web.Controllers
         
         public ActionResult Releases()
         {
-            return View();
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                List<ReleaseDTO> releases = client.GetAllReleases();
+         
+                List<ReleaseViewModel> listRelease = new List<ReleaseViewModel>();
+
+                for (int i = 0; i < releases.Count; i++)
+                {                    
+                    ReleaseViewModel vm = new ReleaseViewModel();
+                    vm.ReleaseListDefectId = new List<string>();
+                    vm.ReleaseListDefectId.Add(releases[i].Id.ToString());
+                    vm.EstDateOfRelease = releases[i].ReleaseDate;                    
+                    vm.ReleaseNo = releases[i].ReleaseVersion;
+
+                    listRelease.Add(vm);
+                }
+
+                return View(listRelease);
+            }                        
         }
                 
         public ActionResult NewRelease()
@@ -366,24 +397,29 @@ namespace IPS.Tracker.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewRelease(ReleaseViewModel release)
+        public EmptyResult NewRelease(ReleaseViewModel release)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 //todo : check if exists release with same version name 
                                 
-                ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                
-                
-                for (int i = 0; i < release.ReleaseListDefectId.Length; i++)
-                {                    
-                    DefectDTO defectDto = new DefectDTO();
-                    defectDto = client.GetDefectById(Int32.Parse(release.ReleaseListDefectId[i]));
-                    defectDto.ReleaseId = test.Id;
-                    client.AddDefectToRelease(defectDto);                    
+                ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                                                
+
+                if (release.ReleaseListDefectId != null)
+                {
+                    for (int i = 0; i < release.ReleaseListDefectId.Count; i++)
+                    {
+                        DefectDTO defectDto = new DefectDTO();
+                        defectDto = client.GetDefectById(Int32.Parse(release.ReleaseListDefectId[i]));
+                        defectDto.ReleaseId = test.Id;
+                        client.AddDefectToRelease(defectDto);
+                    }
                 }
-               
-                //redirect to releases 
+                
+                return new EmptyResult();
             }
+
+            //return RedirectToAction("Test", "Home");
 
             /*
             if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
@@ -398,9 +434,9 @@ namespace IPS.Tracker.Web.Controllers
             } 
             
             */
-            
-            return View();
-        }
+
+            //return View();
+        }        
         
     }
 }

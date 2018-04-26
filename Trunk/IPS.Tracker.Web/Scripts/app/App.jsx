@@ -66,6 +66,8 @@ class App extends React.Component {
   }   
 
   handleSubmit(event) {
+      event.preventDefault();
+
     var data = {
         ReleaseListDefectId: this.state.taskList,
         ReleaseNo: this.state.releaseNumber.releaseNumber,
@@ -79,22 +81,21 @@ class App extends React.Component {
     }
     
     data.ReleaseListDefectId = arr;
-          
-    var url = "/Home/NewRelease";            
-        
-    $.ajax({        
-        method: "POST",
-        url: url,
-        dataType: 'json',
-        data: data,
-        cache: false,
-        success: function (data) {
-            this.setState({ data: data });
-        }.bind(this),
-        error: function (xhr, status, err) {
-            console.error(this.props.url, status, err.toString());
-        }.bind(this)
-    });                   
+
+    var url = "/Home/NewRelease";
+    
+    axios.post(url, {
+          ReleaseListDefectId: arr,
+          ReleaseNo: this.state.releaseNumber.releaseNumber,
+          EstDateOfRelease: this.state.releaseDate.releaseDate
+    })
+    .then(function (response) {
+        console.log(response);
+        location.assign('/Home/Releases')
+    })
+    .catch(function (error) {
+        console.log(error);        
+    });        
   }
 
   render() {
