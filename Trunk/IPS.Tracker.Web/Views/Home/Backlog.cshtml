@@ -1,0 +1,15 @@
+﻿@model List<IPS.Tracker.Web.TrackerService.DefectDTO>
+
+@{
+    ViewBag.Title = "Backlog"; 
+}
+
+<h2>Backlog</h2>
+
+<div class="toolbox-container pull-left">
+    @Html.ActionLink("New issue", "ReportNewDefect", null, new { @class = "btn btn-danger" })
+</div>
+
+<div class="clearfix "></div>
+
+@Html.Partial("ListProblems", Model)

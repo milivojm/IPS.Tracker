@@ -7,15 +7,12 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/fonts/octicons.css" rel="stylesheet" />
-    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/react-select@1.2.1/dist/react-select.css">
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/react.js"></script>
-    <script src="~/Scripts/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -32,16 +29,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Podsjetnik","Index")</li>
-                    <li>@Html.ActionLink("Moji zadaci", "ListProblemsByUser", "Home")</li>
-                    <li>@Html.ActionLink("Novi zadatak", "ReportNewDefect", "Home")</li>
-                    <li>@Html.ActionLink("Trenutni sprint", "ListProblemsInSprint", "Home")</li>      
+                    <li>@Html.ActionLink("Tracker","Index")</li>
+                    <li>@Html.ActionLink("Backlog", "Backlog", "Home")</li>
+                    <li>@Html.ActionLink("New issue", "ReportNewDefect", "Home")</li>
+                    <li>@Html.ActionLink("Ongoing sprint", "ListProblemsInSprint", "Home")</li>      
+                    <li>@Html.ActionLink("Releases", "Releases", "Home")</li>      
                 </ul>
                 <div class="navbar-form navbar-right">
                     <div class="form-group">
                         <input id="searchBox" type="text" class="form-control" />
                     </div>
-                    <a id="searchButton" class="btn btn-default">Traži</a>
+                    <a id="searchButton" class="btn btn-default">Search</a>
                 </div>
             </div>
 
@@ -75,5 +73,6 @@
             });
         });
     </script>
+    @RenderSection("scripts", false)
 </body>
 </html>

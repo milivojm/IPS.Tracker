@@ -7,15 +7,13 @@ using System.Web;
 namespace IPS.Tracker.WCF
 {
     [DataContract]
-    public class DefectFollowerDTO
+    public class ReleaseDTO
     {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public int DefectId { get; set; }
+        public string ReleaseVersion { get; set; }
         [DataMember]
-        public int FollowerId { get; set; }
-        [DataMember]
-        public string FollowerName { get; set; }
+        public DateTime? ReleaseDate { get; set; }
     }
 }

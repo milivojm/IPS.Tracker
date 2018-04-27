@@ -22,6 +22,9 @@ namespace IPS.Tracker.WCF
         DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state);
 
         [OperationContract]
+        ReleaseDTO SaveRelease(string releaseVersion, DateTime? date);
+
+        [OperationContract]
         int GetDefaultAssigneeId(int workOrderId);
 
         [OperationContract]
@@ -43,6 +46,12 @@ namespace IPS.Tracker.WCF
         DefectDTO GetDefectById(int defectId);
 
         [OperationContract]
+        List<DefectDTO> GetDefectsBySearchTerm(string term);
+
+        [OperationContract]
+        List<DefectDTO> GetAllDefects();
+
+        [OperationContract]
         List<DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page);
 
         [OperationContract]
@@ -55,12 +64,27 @@ namespace IPS.Tracker.WCF
         List<DefectCommentDTO> GetLastCommentsByWorker(int currentWorkerId, int commentNumber);
 
         [OperationContract]
-        List<DefectCommentDTO> GetLastComments(int commentNumber);
+        List<DefectCommentDTO> GetLastComments(int commentNumber);        
 
         [OperationContract]
         List<DefectDTO> GetMaxValueSprintDefects();
 
         [OperationContract]
         void CloseSprint();
+
+        [OperationContract]
+        void AddDefectToRelease(DefectDTO dto);
+
+        [OperationContract]
+        List<DefectDTO> GetAllOpenDefects();
+
+        [OperationContract]
+        List<ReleaseDTO> GetAllReleases();
+
+        [OperationContract]
+        string GetReleaseVersion(int? releaseId);
+
+        [OperationContract]
+        void SaveDefectRelease(string releaseVersion, int defectId);
     }
 }

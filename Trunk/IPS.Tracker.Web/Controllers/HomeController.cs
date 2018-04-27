@@ -107,33 +107,44 @@ namespace IPS.Tracker.Web.Controllers
             return View();
         }
 
+        public ActionResult Backlog (int page = 1)
+        {
+            ViewBag.EditMode = true;
+            ViewBag.StateDescription = "Aktivni";
+
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                List<DefectDTO> result;
+                result = client.GetAllOpenDefects();
+                return View(result);
+            }
+        }
+
         public ActionResult ListProblemsByUser(int? userId, string stateDescription = "Aktivni", int page = 1)
         {
             ViewBag.EditMode = true;
             ViewBag.StateDescription = stateDescription;
             ViewBag.UserId = userId;
-            // ViewBag.Page = page;
 
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 List<DefectDTO> result;
 
-
                 if (userId.HasValue)
-                    //    result = client.GetDefectsByWorker(userId.Value, page - 1, defectsPerPage, stateDescription);
                     result = client.GetAllDefectsByWorker(userId.Value, stateDescription);
                 else
                 {
                     WorkerDTO currentWorker = GetCurrentWorker(client);
                     ViewBag.UserId = currentWorker.Id;
                     result = client.GetAllDefectsByWorker(currentWorker.Id, stateDescription);
+
+                    foreach (var item in result)
+                    {
+                        item.ReleaseVersion = client.GetReleaseVersion(item.ReleaseId);
+                    }
                 }
 
-                // result = ExtractResultByState(stateDescription, result);
-
                 return View(result);
-
-                // return View(result.ToPagedList(page, defectsPerPage));
             }
         }
 
@@ -185,9 +196,7 @@ namespace IPS.Tracker.Web.Controllers
                 WorkerDTO worker = GetCurrentWorker(client);
                 ViewBag.IsAdministrator = worker.TrackerAdmin == "D";
 
-                ListProblemsBoardViewModel viewModel = new ListProblemsBoardViewModel();
-
-                viewModel.SprintCompletion = Math.Round((decimal)defects.Count(d => d.DefectState == "CLS") * 100 / defects.Count, 0);
+                ListProblemsBoardViewModel viewModel = new ListProblemsBoardViewModel();                
 
                 if (onlyMine)
                     viewModel.Defects = defects.Where(d => d.AssigneeId == worker.Id);
@@ -195,7 +204,13 @@ namespace IPS.Tracker.Web.Controllers
                     viewModel.Defects = defects;
 
                 if (defects.Count > 0)
+                {
                     viewModel.SprintNo = defects[0].SprintNo;
+                    viewModel.SprintCompletion = Math.Round((decimal)defects.Count(d => d.DefectState == "CLS") * 100 / defects.Count, 0);
+                } else
+                {
+                    viewModel.Message = "No sprint created";
+                }
 
                 return View(viewModel);
             }
@@ -209,6 +224,7 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.GetDefectById(id);
+                defect.ReleaseVersion = client.GetReleaseVersion(defect.ReleaseId);
                 defect.LinkedDefects = new List<DefectDTO>();
 
                 foreach (int no in defect.LinkedDefectNumbers)
@@ -257,7 +273,11 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 DefectDTO defect = client.GetDefectById(id);
+                List<ReleaseDTO> releases = client.GetAllReleases();
+                defect.ReleaseVersion = client.GetReleaseVersion(defect.ReleaseId);
+
                 WorkerDTO currentWorker = GetCurrentWorker(client);
+
                 bool planningAllowed = false;
 
                 if (defect.WorkOrderId.HasValue)
@@ -271,6 +291,7 @@ namespace IPS.Tracker.Web.Controllers
                 DefectViewModel viewModel = new DefectViewModel(defect);
                 viewModel.Workers = client.GetActiveWorkers();
                 viewModel.PlanningAllowed = planningAllowed || currentWorker.TrackerAdmin == "D";
+                viewModel.Releases = client.GetAllReleases();
                 return View(viewModel);
             }
         }
@@ -282,6 +303,8 @@ namespace IPS.Tracker.Web.Controllers
             {
                 WorkerDTO currentWorker = GetCurrentWorker(client);
                 DefectDTO defect = client.SaveDefect(viewModel.Id, viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.SprintNumber, viewModel.StateDescription);
+
+                client.SaveDefectRelease(viewModel.ReleaseVersion, viewModel.Id);
 
                 if (!String.IsNullOrEmpty(viewModel.EditCommentText))
                 {
@@ -332,5 +355,88 @@ namespace IPS.Tracker.Web.Controllers
                 return RedirectToAction("ListProblemsInSprint");
             }
         }
+        
+        public ActionResult Releases()
+        {
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                List<ReleaseDTO> releases = client.GetAllReleases();
+         
+                List<ReleaseViewModel> listRelease = new List<ReleaseViewModel>();
+
+                for (int i = 0; i < releases.Count; i++)
+                {                    
+                    ReleaseViewModel vm = new ReleaseViewModel();
+                    vm.ReleaseListDefectId = new List<string>();
+                    vm.ReleaseListDefectId.Add(releases[i].Id.ToString());
+                    vm.EstDateOfRelease = releases[i].ReleaseDate;                    
+                    vm.ReleaseNo = releases[i].ReleaseVersion;
+
+                    listRelease.Add(vm);
+                }
+
+                return View(listRelease);
+            }                        
+        }
+                
+        public ActionResult NewRelease()
+        {
+            return View();
+        }
+
+        public JsonResult GetDefects(string data)
+        {            
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                //List<DefectDTO> defects = client.GetDefectsBySearchTerm(data);
+
+                List<DefectDTO> defects = client.GetAllDefects();
+
+                return Json(defects, JsonRequestBehavior.AllowGet);
+            }            
+        }
+
+        [HttpPost]
+        public EmptyResult NewRelease(ReleaseViewModel release)
+        {
+            using (TrackerServiceClient client = new TrackerServiceClient())
+            {
+                //todo : check if exists release with same version name 
+                                
+                ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                                                
+
+                if (release.ReleaseListDefectId != null)
+                {
+                    for (int i = 0; i < release.ReleaseListDefectId.Count; i++)
+                    {
+                        DefectDTO defectDto = new DefectDTO();
+                        defectDto = client.GetDefectById(Int32.Parse(release.ReleaseListDefectId[i]));
+                        defectDto.ReleaseId = test.Id;
+                        client.AddDefectToRelease(defectDto);
+                    }
+                }
+                
+                return new EmptyResult();
+            }
+
+            //return RedirectToAction("Test", "Home");
+
+            /*
+            if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
+            {
+                return Json("Nova verzija je uspješno kreirana");
+
+                // todo : redirect to "Releases" action after creation of release
+            }
+            else
+            {
+                return Json("Nova verzija nije uspješno kreirana");
+            } 
+            
+            */
+
+            //return View();
+        }        
+        
     }
 }

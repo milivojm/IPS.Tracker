@@ -1,18 +1,17 @@
 ﻿@model List<IPS.Tracker.Web.TrackerService.DefectDTO>
 
 @{
-    ViewBag.Title = "Pregled mojih zadataka"; 
+    ViewBag.Title = "Summary of issues assigned to me"; 
 }
 
-<h2>Moji zadaci</h2>
+<h2>Issues assigned to me</h2>
 
 <div class="toolbox-container pull-left">
-    @Html.ActionLink("Kreiraj novi zadatak", "ReportNewDefect", null, new { @class = "btn btn-danger" })
+    @Html.ActionLink("New issue", "ReportNewDefect", null, new { @class = "btn btn-danger" })
 </div>
 
 <div class="pull-right">
-    @Html.ActionLink("Otvoreni", "ListProblemsByUser", new { stateDescription = "Aktivni" }, new { @class = "btn btn-default" })
-    @*@Html.ActionLink("Riješeni", "ListProblemsByUser", new { stateDescription = "Riješen" }, new { @class = "btn btn-default" })*@
+    @Html.ActionLink("All open issues", "ListProblemsByUser", new { stateDescription = "Aktivni" }, new { @class = "btn btn-default" })
 </div>
 
 <div class="clearfix "></div>

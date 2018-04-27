@@ -1,0 +1,29 @@
+﻿@model IEnumerable<IPS.Tracker.Web.Models.ReleaseViewModel>
+
+@{
+    ViewBag.Title = "Releases";
+}
+
+<h2>Releases</h2>
+
+@using (Html.BeginForm("NewRelease", "Home", FormMethod.Get))
+{
+    foreach (var release in Model)
+    {
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Release version: @release.ReleaseNo</div>
+                <div class="panel-heading">Release date: @release.EstDateOfRelease.ToString().Replace("0:00:00", "")</div>
+            </div>
+        </div>        
+    }
+
+    //todo : zamijeniti sa velikim plusom
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="Add new release" class="btn btn-danger" />
+            </div>            
+        </div>
+    </div>        
+}

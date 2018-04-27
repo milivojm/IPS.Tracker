@@ -1,13 +1,17 @@
-﻿@*@model List<IPS.Tracker.Web.TrackerService.DefectCommentDTO>*@
+﻿@using System.Web.Optimization
 
 @{
-    ViewBag.Title = "Početna";
+    ViewBag.Title = "Home";
 }
 
 <div class="page-header">
-    <h1>Tracker <small>zadataka</small> </h1>
+    <h1>Last changes</h1>
 </div>
 <div class="row">
     <div id="last_comments" data-url='@Url.Action("Index","Home")'></div>
-    <script type="text/babel" src="~/Scripts/app/last-comments.js" />
 </div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/react")
+    <script type="text/babel" src="~/Scripts/app/last-comments.js"></script>
+}

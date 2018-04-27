@@ -2,32 +2,54 @@
 @model IEnumerable<IPS.Tracker.Web.TrackerService.DefectDTO>
 
 <div class="row kanban-board">
+    <h5 class="text-center">Open <span class="badge">@Model.Count(i => i.DefectState == "OPN")</span></h5>
+    
+    @foreach (var issue in Model.Where(i => i.DefectState == "OPN").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
+    {
+        <div class="col-md-3">
+            @Html.Partial("ProblemCard", issue)
+        </div>
+    }
+</div>
+
+<div class="row kanban-board">
     <div class="col-md-3">
-        <h4 class="text-center">Novi <span class="badge">@Model.Count(i => i.DefectState == "OPN")</span></h4>
-        @foreach (var issue in Model.Where(i => i.DefectState == "OPN").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
+        <h5 class="text-center">Needs review <span class="badge">@Model.Count(i => i.DefectState == "NRE")</span></h5>
+        @foreach (var issue in Model.Where(i => i.DefectState == "NRE").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
             {
             @Html.Partial("ProblemCard", issue)
         }
     </div>
     <div class="col-md-3">
-        <h4 class="text-center">Neispravni <span class="badge">@Model.Count(i => i.DefectState == "INV")</span></h4>
-        @foreach (var issue in Model.Where(i => i.DefectState == "INV").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
+        <h5 class="text-center">Reviewed <span class="badge">@Model.Count(i => i.DefectState == "REV")</span></h5>
+        @foreach (var issue in Model.Where(i => i.DefectState == "REV").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
             {
             @Html.Partial("ProblemCard", issue)
         }
     </div>
     <div class="col-md-3">
-        <h4 class="text-center">Testirati <span class="badge">@Model.Count(i => i.DefectState == "PRO")</span></h4>
+        <h5 class="text-center">Needs QA <span class="badge">@Model.Count(i => i.DefectState == "PRO")</span></h5>
         @foreach (var issue in Model.Where(i => i.DefectState == "PRO").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
             {
             @Html.Partial("ProblemCard", issue)
         }
     </div>
     <div class="col-md-3">
-        <h4 class="text-center">Riješeni <span class="badge">@Model.Count(i => i.DefectState == "CLS")</span></h4>
-        @foreach (var issue in Model.Where(i => i.DefectState == "CLS").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
+        <h5 class="text-center text-danger">Needs improvements <span class="badge">@Model.Count(i => i.DefectState == "INV")</span></h5>
+        @foreach (var issue in Model.Where(i => i.DefectState == "INV").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
             {
             @Html.Partial("ProblemCard", issue)
         }
     </div>
+</div>
+
+<div class="row kanban-board">
+    <h5 class="text-center">Resolved <span class="badge">@Model.Count(i => i.DefectState == "CLS")</span></h5>
+
+    @foreach (var issue in Model.Where(i => i.DefectState == "CLS").OrderByDescending(i => i.Priority).ThenByDescending(i => i.LastChangeDate))
+    {
+        <div class="col-md-3">
+            @Html.Partial("ProblemCard", issue)
+        </div>
+    }
 </div>

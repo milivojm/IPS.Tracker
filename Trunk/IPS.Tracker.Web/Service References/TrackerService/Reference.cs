@@ -41,7 +41,7 @@ namespace IPS.Tracker.Web.TrackerService {
         private string DefectFileTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectFollowerDTO> DefectFollowersField;
+        private System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO> DefectFollowersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DefectStateField;
@@ -60,6 +60,12 @@ namespace IPS.Tracker.Web.TrackerService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PriorityDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ReleaseIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReleaseVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ReporterIdField;
@@ -174,7 +180,7 @@ namespace IPS.Tracker.Web.TrackerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectFollowerDTO> DefectFollowers {
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO> DefectFollowers {
             get {
                 return this.DefectFollowersField;
             }
@@ -260,6 +266,32 @@ namespace IPS.Tracker.Web.TrackerService {
                 if ((object.ReferenceEquals(this.PriorityDescriptionField, value) != true)) {
                     this.PriorityDescriptionField = value;
                     this.RaisePropertyChanged("PriorityDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ReleaseId {
+            get {
+                return this.ReleaseIdField;
+            }
+            set {
+                if ((this.ReleaseIdField.Equals(value) != true)) {
+                    this.ReleaseIdField = value;
+                    this.RaisePropertyChanged("ReleaseId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ReleaseVersion {
+            get {
+                return this.ReleaseVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReleaseVersionField, value) != true)) {
+                    this.ReleaseVersionField = value;
+                    this.RaisePropertyChanged("ReleaseVersion");
                 }
             }
         }
@@ -521,24 +553,24 @@ namespace IPS.Tracker.Web.TrackerService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DefectFollowerDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkerDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
     [System.SerializableAttribute()]
-    public partial class DefectFollowerDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class WorkerDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DefectIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FollowerIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FollowerNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TrackerAdminField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -551,41 +583,92 @@ namespace IPS.Tracker.Web.TrackerService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DefectId {
+        public int Id {
             get {
-                return this.DefectIdField;
+                return this.IdField;
             }
             set {
-                if ((this.DefectIdField.Equals(value) != true)) {
-                    this.DefectIdField = value;
-                    this.RaisePropertyChanged("DefectId");
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FollowerId {
+        public string Name {
             get {
-                return this.FollowerIdField;
+                return this.NameField;
             }
             set {
-                if ((this.FollowerIdField.Equals(value) != true)) {
-                    this.FollowerIdField = value;
-                    this.RaisePropertyChanged("FollowerId");
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FollowerName {
+        public string TrackerAdmin {
             get {
-                return this.FollowerNameField;
+                return this.TrackerAdminField;
             }
             set {
-                if ((object.ReferenceEquals(this.FollowerNameField, value) != true)) {
-                    this.FollowerNameField = value;
-                    this.RaisePropertyChanged("FollowerName");
+                if ((object.ReferenceEquals(this.TrackerAdminField, value) != true)) {
+                    this.TrackerAdminField = value;
+                    this.RaisePropertyChanged("TrackerAdmin");
                 }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReleaseDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
+    [System.SerializableAttribute()]
+    public partial class ReleaseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ReleaseDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReleaseVersionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
             }
         }
         
@@ -598,6 +681,32 @@ namespace IPS.Tracker.Web.TrackerService {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ReleaseDate {
+            get {
+                return this.ReleaseDateField;
+            }
+            set {
+                if ((this.ReleaseDateField.Equals(value) != true)) {
+                    this.ReleaseDateField = value;
+                    this.RaisePropertyChanged("ReleaseDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ReleaseVersion {
+            get {
+                return this.ReleaseVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReleaseVersionField, value) != true)) {
+                    this.ReleaseVersionField = value;
+                    this.RaisePropertyChanged("ReleaseVersion");
                 }
             }
         }
@@ -737,99 +846,6 @@ namespace IPS.Tracker.Web.TrackerService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WorkerDTO", Namespace="http://schemas.datacontract.org/2004/07/IPS.Tracker.WCF")]
-    [System.SerializableAttribute()]
-    public partial class WorkerDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TrackerAdminField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TrackerAdmin {
-            get {
-                return this.TrackerAdminField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TrackerAdminField, value) != true)) {
-                    this.TrackerAdminField = value;
-                    this.RaisePropertyChanged("TrackerAdmin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TrackerService.ITrackerService")]
     public interface ITrackerService {
@@ -837,53 +853,152 @@ namespace IPS.Tracker.Web.TrackerService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/InitializeNewDefect", ReplyAction="http://tempuri.org/ITrackerService/InitializeNewDefectResponse")]
         IPS.Tracker.Web.TrackerService.DefectDTO InitializeNewDefect();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/InitializeNewDefect", ReplyAction="http://tempuri.org/ITrackerService/InitializeNewDefectResponse")]
+        System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> InitializeNewDefectAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/ReportNewDefect", ReplyAction="http://tempuri.org/ITrackerService/ReportNewDefectResponse")]
         IPS.Tracker.Web.TrackerService.DefectDTO ReportNewDefect(string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int reporterId, short priority, System.Nullable<int> sprint, byte[] defectFile, string defectFileType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/ReportNewDefect", ReplyAction="http://tempuri.org/ITrackerService/ReportNewDefectResponse")]
+        System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> ReportNewDefectAsync(string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int reporterId, short priority, System.Nullable<int> sprint, byte[] defectFile, string defectFileType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefect", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectResponse")]
         IPS.Tracker.Web.TrackerService.DefectDTO SaveDefect(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefect", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectResponse")]
+        System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> SaveDefectAsync(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveReleaseResponse")]
+        IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(string releaseVersion, System.Nullable<System.DateTime> date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveReleaseResponse")]
+        System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.ReleaseDTO> SaveReleaseAsync(string releaseVersion, System.Nullable<System.DateTime> date);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefaultAssigneeId", ReplyAction="http://tempuri.org/ITrackerService/GetDefaultAssigneeIdResponse")]
         int GetDefaultAssigneeId(int workOrderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefaultAssigneeId", ReplyAction="http://tempuri.org/ITrackerService/GetDefaultAssigneeIdResponse")]
+        System.Threading.Tasks.Task<int> GetDefaultAssigneeIdAsync(int workOrderId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetActiveWorkOrders", ReplyAction="http://tempuri.org/ITrackerService/GetActiveWorkOrdersResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO> GetActiveWorkOrders();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetActiveWorkOrders", ReplyAction="http://tempuri.org/ITrackerService/GetActiveWorkOrdersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO>> GetActiveWorkOrdersAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllWorkOrders", ReplyAction="http://tempuri.org/ITrackerService/GetAllWorkOrdersResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO> GetAllWorkOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllWorkOrders", ReplyAction="http://tempuri.org/ITrackerService/GetAllWorkOrdersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO>> GetAllWorkOrdersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetActiveWorkers", ReplyAction="http://tempuri.org/ITrackerService/GetActiveWorkersResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO> GetActiveWorkers();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetActiveWorkers", ReplyAction="http://tempuri.org/ITrackerService/GetActiveWorkersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO>> GetActiveWorkersAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsByWorker", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsByWorkerResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorker(int workerId, int pageNumber, int defectsPerPage, string state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsByWorker", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsByWorkerResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetDefectsByWorkerAsync(int workerId, int pageNumber, int defectsPerPage, string state);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllDefectsByWorker", ReplyAction="http://tempuri.org/ITrackerService/GetAllDefectsByWorkerResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllDefectsByWorker(int workerId, string state);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllDefectsByWorker", ReplyAction="http://tempuri.org/ITrackerService/GetAllDefectsByWorkerResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetAllDefectsByWorkerAsync(int workerId, string state);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectById", ReplyAction="http://tempuri.org/ITrackerService/GetDefectByIdResponse")]
         IPS.Tracker.Web.TrackerService.DefectDTO GetDefectById(int defectId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectById", ReplyAction="http://tempuri.org/ITrackerService/GetDefectByIdResponse")]
+        System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectByIdAsync(int defectId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsBySearchTerm", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsBySearchTermResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsBySearchTerm(string term);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsBySearchTerm", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsBySearchTermResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetDefectsBySearchTermAsync(string term);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllDefects", ReplyAction="http://tempuri.org/ITrackerService/GetAllDefectsResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllDefects();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllDefects", ReplyAction="http://tempuri.org/ITrackerService/GetAllDefectsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetAllDefectsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsByWorkOrder", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsByWorkOrderResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetDefectsByWorkOrder", ReplyAction="http://tempuri.org/ITrackerService/GetDefectsByWorkOrderResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetDefectsByWorkOrderAsync(int workOrderId, string state, int page);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/CommentOnDefect", ReplyAction="http://tempuri.org/ITrackerService/CommentOnDefectResponse")]
         IPS.Tracker.Web.TrackerService.DefectCommentDTO CommentOnDefect(int defectId, int workerId, string commentText);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/CommentOnDefect", ReplyAction="http://tempuri.org/ITrackerService/CommentOnDefectResponse")]
+        System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectCommentDTO> CommentOnDefectAsync(int defectId, int workerId, string commentText);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SearchDefects", ReplyAction="http://tempuri.org/ITrackerService/SearchDefectsResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> SearchDefects(string searchTerm);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SearchDefects", ReplyAction="http://tempuri.org/ITrackerService/SearchDefectsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> SearchDefectsAsync(string searchTerm);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetLastCommentsByWorker", ReplyAction="http://tempuri.org/ITrackerService/GetLastCommentsByWorkerResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO> GetLastCommentsByWorker(int currentWorkerId, int commentNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetLastCommentsByWorker", ReplyAction="http://tempuri.org/ITrackerService/GetLastCommentsByWorkerResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO>> GetLastCommentsByWorkerAsync(int currentWorkerId, int commentNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetLastComments", ReplyAction="http://tempuri.org/ITrackerService/GetLastCommentsResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO> GetLastComments(int commentNumber);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetLastComments", ReplyAction="http://tempuri.org/ITrackerService/GetLastCommentsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO>> GetLastCommentsAsync(int commentNumber);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetMaxValueSprintDefects", ReplyAction="http://tempuri.org/ITrackerService/GetMaxValueSprintDefectsResponse")]
         System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetMaxValueSprintDefects();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetMaxValueSprintDefects", ReplyAction="http://tempuri.org/ITrackerService/GetMaxValueSprintDefectsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetMaxValueSprintDefectsAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/CloseSprint", ReplyAction="http://tempuri.org/ITrackerService/CloseSprintResponse")]
         void CloseSprint();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/CloseSprint", ReplyAction="http://tempuri.org/ITrackerService/CloseSprintResponse")]
+        System.Threading.Tasks.Task CloseSprintAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/AddDefectToRelease", ReplyAction="http://tempuri.org/ITrackerService/AddDefectToReleaseResponse")]
+        void AddDefectToRelease(IPS.Tracker.Web.TrackerService.DefectDTO dto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/AddDefectToRelease", ReplyAction="http://tempuri.org/ITrackerService/AddDefectToReleaseResponse")]
+        System.Threading.Tasks.Task AddDefectToReleaseAsync(IPS.Tracker.Web.TrackerService.DefectDTO dto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllOpenDefects", ReplyAction="http://tempuri.org/ITrackerService/GetAllOpenDefectsResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllOpenDefects();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllOpenDefects", ReplyAction="http://tempuri.org/ITrackerService/GetAllOpenDefectsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetAllOpenDefectsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllReleases", ReplyAction="http://tempuri.org/ITrackerService/GetAllReleasesResponse")]
+        System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.ReleaseDTO> GetAllReleases();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetAllReleases", ReplyAction="http://tempuri.org/ITrackerService/GetAllReleasesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.ReleaseDTO>> GetAllReleasesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetReleaseVersion", ReplyAction="http://tempuri.org/ITrackerService/GetReleaseVersionResponse")]
+        string GetReleaseVersion(System.Nullable<int> releaseId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetReleaseVersion", ReplyAction="http://tempuri.org/ITrackerService/GetReleaseVersionResponse")]
+        System.Threading.Tasks.Task<string> GetReleaseVersionAsync(System.Nullable<int> releaseId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefectRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectReleaseResponse")]
+        void SaveDefectRelease(string releaseVersion, int defectId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefectRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectReleaseResponse")]
+        System.Threading.Tasks.Task SaveDefectReleaseAsync(string releaseVersion, int defectId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -917,68 +1032,200 @@ namespace IPS.Tracker.Web.TrackerService {
             return base.Channel.InitializeNewDefect();
         }
         
+        public System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> InitializeNewDefectAsync() {
+            return base.Channel.InitializeNewDefectAsync();
+        }
+        
         public IPS.Tracker.Web.TrackerService.DefectDTO ReportNewDefect(string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int reporterId, short priority, System.Nullable<int> sprint, byte[] defectFile, string defectFileType) {
             return base.Channel.ReportNewDefect(summary, description, workOrderId, assigneeId, reporterId, priority, sprint, defectFile, defectFileType);
+        }
+        
+        public System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> ReportNewDefectAsync(string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int reporterId, short priority, System.Nullable<int> sprint, byte[] defectFile, string defectFileType) {
+            return base.Channel.ReportNewDefectAsync(summary, description, workOrderId, assigneeId, reporterId, priority, sprint, defectFile, defectFileType);
         }
         
         public IPS.Tracker.Web.TrackerService.DefectDTO SaveDefect(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state) {
             return base.Channel.SaveDefect(id, summary, description, workOrderId, assigneeId, changedById, priority, sprint, state);
         }
         
+        public System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> SaveDefectAsync(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state) {
+            return base.Channel.SaveDefectAsync(id, summary, description, workOrderId, assigneeId, changedById, priority, sprint, state);
+        }
+        
+        public IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(string releaseVersion, System.Nullable<System.DateTime> date) {
+            return base.Channel.SaveRelease(releaseVersion, date);
+        }
+        
+        public System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.ReleaseDTO> SaveReleaseAsync(string releaseVersion, System.Nullable<System.DateTime> date) {
+            return base.Channel.SaveReleaseAsync(releaseVersion, date);
+        }
+        
         public int GetDefaultAssigneeId(int workOrderId) {
             return base.Channel.GetDefaultAssigneeId(workOrderId);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetDefaultAssigneeIdAsync(int workOrderId) {
+            return base.Channel.GetDefaultAssigneeIdAsync(workOrderId);
         }
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO> GetActiveWorkOrders() {
             return base.Channel.GetActiveWorkOrders();
         }
         
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO>> GetActiveWorkOrdersAsync() {
+            return base.Channel.GetActiveWorkOrdersAsync();
+        }
+        
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO> GetAllWorkOrders() {
             return base.Channel.GetAllWorkOrders();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkOrderDTO>> GetAllWorkOrdersAsync() {
+            return base.Channel.GetAllWorkOrdersAsync();
         }
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO> GetActiveWorkers() {
             return base.Channel.GetActiveWorkers();
         }
         
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.WorkerDTO>> GetActiveWorkersAsync() {
+            return base.Channel.GetActiveWorkersAsync();
+        }
+        
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorker(int workerId, int pageNumber, int defectsPerPage, string state) {
             return base.Channel.GetDefectsByWorker(workerId, pageNumber, defectsPerPage, state);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetDefectsByWorkerAsync(int workerId, int pageNumber, int defectsPerPage, string state) {
+            return base.Channel.GetDefectsByWorkerAsync(workerId, pageNumber, defectsPerPage, state);
         }
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllDefectsByWorker(int workerId, string state) {
             return base.Channel.GetAllDefectsByWorker(workerId, state);
         }
         
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetAllDefectsByWorkerAsync(int workerId, string state) {
+            return base.Channel.GetAllDefectsByWorkerAsync(workerId, state);
+        }
+        
         public IPS.Tracker.Web.TrackerService.DefectDTO GetDefectById(int defectId) {
             return base.Channel.GetDefectById(defectId);
+        }
+        
+        public System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectByIdAsync(int defectId) {
+            return base.Channel.GetDefectByIdAsync(defectId);
+        }
+        
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsBySearchTerm(string term) {
+            return base.Channel.GetDefectsBySearchTerm(term);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetDefectsBySearchTermAsync(string term) {
+            return base.Channel.GetDefectsBySearchTermAsync(term);
+        }
+        
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllDefects() {
+            return base.Channel.GetAllDefects();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetAllDefectsAsync() {
+            return base.Channel.GetAllDefectsAsync();
         }
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetDefectsByWorkOrder(int workOrderId, string state, int page) {
             return base.Channel.GetDefectsByWorkOrder(workOrderId, state, page);
         }
         
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetDefectsByWorkOrderAsync(int workOrderId, string state, int page) {
+            return base.Channel.GetDefectsByWorkOrderAsync(workOrderId, state, page);
+        }
+        
         public IPS.Tracker.Web.TrackerService.DefectCommentDTO CommentOnDefect(int defectId, int workerId, string commentText) {
             return base.Channel.CommentOnDefect(defectId, workerId, commentText);
+        }
+        
+        public System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectCommentDTO> CommentOnDefectAsync(int defectId, int workerId, string commentText) {
+            return base.Channel.CommentOnDefectAsync(defectId, workerId, commentText);
         }
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> SearchDefects(string searchTerm) {
             return base.Channel.SearchDefects(searchTerm);
         }
         
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> SearchDefectsAsync(string searchTerm) {
+            return base.Channel.SearchDefectsAsync(searchTerm);
+        }
+        
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO> GetLastCommentsByWorker(int currentWorkerId, int commentNumber) {
             return base.Channel.GetLastCommentsByWorker(currentWorkerId, commentNumber);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO>> GetLastCommentsByWorkerAsync(int currentWorkerId, int commentNumber) {
+            return base.Channel.GetLastCommentsByWorkerAsync(currentWorkerId, commentNumber);
         }
         
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO> GetLastComments(int commentNumber) {
             return base.Channel.GetLastComments(commentNumber);
         }
         
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectCommentDTO>> GetLastCommentsAsync(int commentNumber) {
+            return base.Channel.GetLastCommentsAsync(commentNumber);
+        }
+        
         public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetMaxValueSprintDefects() {
             return base.Channel.GetMaxValueSprintDefects();
         }
         
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetMaxValueSprintDefectsAsync() {
+            return base.Channel.GetMaxValueSprintDefectsAsync();
+        }
+        
         public void CloseSprint() {
             base.Channel.CloseSprint();
+        }
+        
+        public System.Threading.Tasks.Task CloseSprintAsync() {
+            return base.Channel.CloseSprintAsync();
+        }
+        
+        public void AddDefectToRelease(IPS.Tracker.Web.TrackerService.DefectDTO dto) {
+            base.Channel.AddDefectToRelease(dto);
+        }
+        
+        public System.Threading.Tasks.Task AddDefectToReleaseAsync(IPS.Tracker.Web.TrackerService.DefectDTO dto) {
+            return base.Channel.AddDefectToReleaseAsync(dto);
+        }
+        
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO> GetAllOpenDefects() {
+            return base.Channel.GetAllOpenDefects();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.DefectDTO>> GetAllOpenDefectsAsync() {
+            return base.Channel.GetAllOpenDefectsAsync();
+        }
+        
+        public System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.ReleaseDTO> GetAllReleases() {
+            return base.Channel.GetAllReleases();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<IPS.Tracker.Web.TrackerService.ReleaseDTO>> GetAllReleasesAsync() {
+            return base.Channel.GetAllReleasesAsync();
+        }
+        
+        public string GetReleaseVersion(System.Nullable<int> releaseId) {
+            return base.Channel.GetReleaseVersion(releaseId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetReleaseVersionAsync(System.Nullable<int> releaseId) {
+            return base.Channel.GetReleaseVersionAsync(releaseId);
+        }
+        
+        public void SaveDefectRelease(string releaseVersion, int defectId) {
+            base.Channel.SaveDefectRelease(releaseVersion, defectId);
+        }
+        
+        public System.Threading.Tasks.Task SaveDefectReleaseAsync(string releaseVersion, int defectId) {
+            return base.Channel.SaveDefectReleaseAsync(releaseVersion, defectId);
         }
     }
 }

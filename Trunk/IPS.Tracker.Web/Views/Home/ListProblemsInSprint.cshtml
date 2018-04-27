@@ -1,19 +1,26 @@
 ﻿<script src="~/Scripts/knockout-3.1.0.js"></script>
 @model IPS.Tracker.Web.Models.ListProblemsBoardViewModel
 
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-warning">
+        @Model.Message
+    </div>
+}
+
 <div class="row kanban-header">
     <div class="col-md-4">
         <h2>Sprint @Model.SprintNo</h2>
-        <p>Završeno @Model.SprintCompletion%</p>
+        <p>Completed @Model.SprintCompletion%</p>
     </div>
 
     <div class="col-md-8 clearfix">
         <div class="pull-right">
-            @Html.ActionLink("Samo moji", "ListProblemsInSprint", new { onlyMine = true }, new { @class = "btn btn-default" })
-            @Html.ActionLink("Svi", "ListProblemsInSprint", new { onlyMine = false }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Assigned to me", "ListProblemsInSprint", new { onlyMine = true }, new { @class = "btn btn-default" })
+            @Html.ActionLink("All", "ListProblemsInSprint", new { onlyMine = false }, new { @class = "btn btn-default" })
             @if (ViewBag.IsAdministrator)
             {
-                @Html.ActionLink("Zatvori sprint", "CloseSprint", new { }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Finish sprint", "CloseSprint", new { }, new { @class = "btn btn-danger" })
             }
         </div>
     </div>

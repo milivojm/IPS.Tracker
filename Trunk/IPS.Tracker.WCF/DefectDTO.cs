@@ -20,6 +20,8 @@ namespace IPS.Tracker.WCF
         [DataMember]
         public int? WorkOrderId { get; set; }
         [DataMember]
+        public int? ReleaseId { get; set; }
+        [DataMember]
         public int ReporterId { get; set; }
         [DataMember]
         public int AssigneeId { get; set; }
@@ -48,8 +50,10 @@ namespace IPS.Tracker.WCF
         [DataMember] 
         public int? SprintNo { get; set; }
         [DataMember]
-        public List<DefectFollowerDTO> DefectFollowers { get; set; }
+        public List<WorkerDTO> DefectFollowers { get; set; }
         [DataMember]
         public List<int> LinkedDefectNumbers { get; set; }
+        [DataMember]
+        public string ReleaseVersion { get; set; }
     }
 }

@@ -6,6 +6,9 @@ using System.Web.Security;
 using System.Web.SessionState;
 using AutoMapper;
 using IPS.Tracker.Data;
+using SimpleInjector;
+using SimpleInjector.Integration.Wcf;
+using IPS.Tracker.Domain;
 
 namespace IPS.Tracker.WCF
 {
@@ -13,11 +16,22 @@ namespace IPS.Tracker.WCF
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            Mapper.CreateMap<Defect, DefectDTO>();
-            Mapper.CreateMap<WorkOrder, WorkOrderDTO>();
-            Mapper.CreateMap<Worker, WorkerDTO>();
-            Mapper.CreateMap<DefectComment, DefectCommentDTO>();
-            Mapper.CreateMap<DefectFollower, DefectFollowerDTO>();
+            var container = new Container();
+            container.Options.DefaultScopedLifestyle = new WcfOperationLifestyle();
+
+            // Register your types, for instance:
+            container.Register<ITrackerRepository, OracleTrackerRepository>();
+
+            // Register the container to the SimpleInjectorServiceHostFactory.
+            SimpleInjectorServiceHostFactory.SetContainer(container);
+
+            Mapper.Initialize(cfg => {
+                cfg.CreateMap<Defect, DefectDTO>();
+                cfg.CreateMap<WorkOrder, WorkOrderDTO>();
+                cfg.CreateMap<Worker, WorkerDTO>();
+                cfg.CreateMap<DefectComment, DefectCommentDTO>();
+                cfg.CreateMap<Release, ReleaseDTO>();
+            });
         }
 
         protected void Session_Start(object sender, EventArgs e)

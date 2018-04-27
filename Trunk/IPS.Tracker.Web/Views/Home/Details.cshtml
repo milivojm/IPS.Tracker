@@ -1,15 +1,15 @@
 ﻿@model IPS.Tracker.Web.TrackerService.DefectDTO
 
 @{
-    ViewBag.Title = "Detalji zadatka";
+    ViewBag.Title = "Issue details";
 }
 
-<h2>Detalji zadatka</h2>
+<h2>Issue details</h2>
 
 @if (ViewBag.ShowEditButton)
 {
     <div class="toolbox-container pull-left">
-        @Html.ActionLink("Uredi zadatak", "Edit", new { id = ViewBag.Id }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Edit issue", "Edit", new { id = ViewBag.Id }, new { @class = "btn btn-danger" })
     </div>
 
     <div class="clearfix"></div>
@@ -17,17 +17,17 @@
 <hr />
 <div>
     <dl class="dl-horizontal col-md-9 pull-left">
-        <dt>Broj</dt>
+        <dt>Number</dt>
         <dd>@Model.Id</dd>
 
-        <dt>Naziv
+        <dt>Summary
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Summary)
         </dd>
 
-        <dt>Opis
+        <dt>Description
         </dt>
 
         <dd>
@@ -35,42 +35,42 @@
             @Html.Raw(IPS.Tracker.Web.Utils.HtmlUtils.ParseHash(Model.Description))
         </dd>
 
-        <dt>Vrijeme prijave
+        <dt>Reported on
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DefectDate)
         </dd>
 
-        <dt>Prioritet
+        <dt>Priority
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.PriorityDescription)
         </dd>
 
-        <dt>Stanje
+        <dt>State
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.StateDescription)
         </dd>
 
-        <dt>Zadužen
+        <dt>Assigned to
         </dt>
 
         <dd>
             <span class="glyphicon glyphicon-user"></span>@Html.DisplayFor(model => model.AssigneeName)
         </dd>
 
-        <dt>Prijavio
+        <dt>Reported by
         </dt>
 
         <dd>
             <span class="glyphicon glyphicon-user"></span>@Html.DisplayFor(model => model.ReporterName)
         </dd>
 
-        <dt>Oznaka RN
+        <dt>Work order label
         </dt>
 
         <dd>
@@ -82,7 +82,7 @@
             }
         </dd>
 
-        <dt>Naziv RN
+        <dt>Work order name
         </dt>
 
         <dd>
@@ -96,9 +96,13 @@
             @Html.DisplayFor(model => model.SprintNo)
         </dd>
 
+        <dt>Release</dt>
+        <dd>@Html.DisplayFor(model => model.ReleaseVersion)</dd>
+
+
         @if (Model.DefectFile != null)
         {
-            <dt>Prilog
+            <dt>Attachment
             </dt>
             <dd>
                 <a href="@ViewBag.DefectFilePath">@Model.DefectFileType</a>

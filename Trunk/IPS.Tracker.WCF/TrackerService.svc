@@ -1,1 +1,6 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="IPS.Tracker.WCF.TrackerService" CodeBehind="TrackerService.svc.cs" %>
+﻿<%@ ServiceHost 
+    Language="C#"
+    Debug="true" 
+    Service="IPS.Tracker.WCF.TrackerService" 
+    CodeBehind="TrackerService.svc.cs" 
+    Factory="SimpleInjector.Integration.Wcf.SimpleInjectorServiceHostFactory,SimpleInjector.Integration.Wcf" %>

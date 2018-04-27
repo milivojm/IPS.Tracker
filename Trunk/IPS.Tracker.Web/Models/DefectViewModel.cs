@@ -13,22 +13,24 @@ namespace IPS.Tracker.Web.Models
         private List<Priority> _priorities;
         private List<WorkerDTO> _workers;
         private List<string> _defectStates;
+        private List<ReleaseDTO> _releases;
 
         public DefectViewModel() { }
 
         public DefectViewModel(DefectDTO defect)
         {
             _priorities = new List<Priority>();
-            _priorities.Add(new Priority() { Id = 0, Name = "Nizak" });
-            _priorities.Add(new Priority() { Id = 1, Name = "Srednji" });
-            _priorities.Add(new Priority() { Id = 2, Name = "Visok" });
+            _priorities.Add(new Priority() { Id = 0, Name = "Low" });
+            _priorities.Add(new Priority() { Id = 1, Name = "Normal" });
+            _priorities.Add(new Priority() { Id = 2, Name = "High" });
 
             _defectStates = new List<string>();
-            _defectStates.Add("Novi");
-            _defectStates.Add("Ispravljen");
-            // _defectStates.Add("Testirati");
-            _defectStates.Add("Neispravan");
-            _defectStates.Add("Riješen");
+            _defectStates.Add("Open");
+            _defectStates.Add("Needs review");
+            _defectStates.Add("Reviewed");
+            _defectStates.Add("Needs QA test");
+            _defectStates.Add("Needs improvements");
+            _defectStates.Add("Resolved");
 
             SelectedPriorityId = defect.Priority;
             Summary = defect.Summary;
@@ -42,6 +44,8 @@ namespace IPS.Tracker.Web.Models
             ReporterName = defect.ReporterName;
 
             SprintNumber = defect.SprintNo;
+            ReleaseVersion = defect.ReleaseVersion;
+            ReleaseId = defect.ReleaseId;
 
             Comments = defect.DefectComments.OrderByDescending(d => d.CommentDate).ToList();
             Followers = defect.DefectFollowers;
@@ -50,7 +54,7 @@ namespace IPS.Tracker.Web.Models
                 Comments = new List<DefectCommentDTO>();
         }
 
-        [Display(Name = "Prioritet *")]
+        [Display(Name = "Priority *")]
         public short SelectedPriorityId { get; set; }
 
         public IEnumerable<SelectListItem> Priorities
@@ -61,27 +65,32 @@ namespace IPS.Tracker.Web.Models
             }
         }
 
-        [Required(ErrorMessage="Naziv je obavezan")]
-        [StringLength(50,ErrorMessage="Najviše 50 znakova")]
-        [Display(Name = "Naziv *")]
+        [Required(ErrorMessage="Summary is mandatory")]
+        [StringLength(50,ErrorMessage="Max 50 characters")]
+        [Display(Name = "Summary *")]
         public string Summary { get; set; }
 
-        [Required(ErrorMessage="Opis zadatka je obavezan")]
-        [Display(Name = "Opis zadatka *")]
+        [Required(ErrorMessage="Description is mandatory")]
+        [Display(Name = "Description *")]
         [AllowHtml()]
         public string Description { get; set; }
 
-        [Display(Name = "Radni nalog")]
+        [Display(Name = "Work order")]
         public string SelectedWorkOrderName { get; set; }
 
         public int? SelectedWorkOrderId { get; set; }
 
-        [Required(ErrorMessage="Zaduženje je obavezno")]
-        [Display(Name = "Zadužen *")]
+        [Required(ErrorMessage="Assignee is mandatory")]
+        [Display(Name = "Assigned to *")]
         public int AssigneeId { get; set; }
 
         [Display(Name = "Sprint")]
         public int? SprintNumber { get; set; }
+
+        [Display(Name = "Release version")]
+        public string ReleaseVersion { get; set; }
+
+        public int? ReleaseId { get; set; }
 
         public HttpPostedFileBase UploadedFile { get; set; }
 
@@ -89,6 +98,20 @@ namespace IPS.Tracker.Web.Models
         {
             get { return _workers; }
             set { _workers = value; }
+        }
+
+        public List<ReleaseDTO> Releases
+        {
+            get { return _releases; }
+            set { _releases = value; }
+        }
+
+        public IEnumerable<SelectListItem> ReleaseVersions
+        {
+            get
+            {
+                return new SelectList(_releases, "ReleaseVersion", "ReleaseVersion", selectedValue: ReleaseVersion);                                
+            }
         }
 
         public IEnumerable<SelectListItem> Assignees
@@ -99,7 +122,7 @@ namespace IPS.Tracker.Web.Models
             }
         }
 
-        [Display(Name = "Stanje")]
+        [Display(Name = "State")]
         public string StateDescription
         {
             get;
@@ -116,12 +139,12 @@ namespace IPS.Tracker.Web.Models
 
         public int Id { get; set; }
 
-        [Display(Name = "Prijavio")]
+        [Display(Name = "Reported by")]
         public string ReporterName { get; set; }
 
         public List<DefectCommentDTO> Comments { get; set; }
 
-        public List<DefectFollowerDTO> Followers { get; set; }
+        public List<WorkerDTO> Followers { get; set; }
 
         public string EditCommentText { get; set; }
 
