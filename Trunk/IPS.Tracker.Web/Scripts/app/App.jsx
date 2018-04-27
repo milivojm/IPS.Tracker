@@ -91,7 +91,14 @@ class App extends React.Component {
     })
     .then(function (response) {
         console.log(response);
-        location.assign('/Home/Releases')
+
+        if (response.data == "Version already exists") {
+            alert("Version already exists");
+        }
+
+        else {
+            location.assign('/Home/Releases')
+        }        
     })
     .catch(function (error) {
         console.log(error);        

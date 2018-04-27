@@ -397,12 +397,17 @@ namespace IPS.Tracker.Web.Controllers
         }
 
         [HttpPost]
-        public EmptyResult NewRelease(ReleaseViewModel release)
+        public JsonResult NewRelease(ReleaseViewModel release)
         {
             using (TrackerServiceClient client = new TrackerServiceClient())
-            {
-                //todo : check if exists release with same version name 
-                                
+            {                
+                bool releaseVersionExists = client.ReleaseVersionExists(release.ReleaseNo);
+
+                if (releaseVersionExists)
+                {
+                    return Json("Version already exists");
+                }
+
                 ReleaseDTO test = client.SaveRelease(release.ReleaseNo, release.EstDateOfRelease);                                                
 
                 if (release.ReleaseListDefectId != null)
@@ -416,26 +421,8 @@ namespace IPS.Tracker.Web.Controllers
                     }
                 }
                 
-                return new EmptyResult();
+                return new JsonResult();
             }
-
-            //return RedirectToAction("Test", "Home");
-
-            /*
-            if (release.ReleaseNo != null && release.ReleaseListDefectId != null) 
-            {
-                return Json("Nova verzija je uspješno kreirana");
-
-                // todo : redirect to "Releases" action after creation of release
-            }
-            else
-            {
-                return Json("Nova verzija nije uspješno kreirana");
-            } 
-            
-            */
-
-            //return View();
         }        
         
     }

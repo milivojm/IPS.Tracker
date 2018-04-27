@@ -335,9 +335,8 @@ namespace IPS.Tracker.WCF
         public List<DefectCommentDTO> GetLastComments(int commentNumber)
         {
 
-            IQueryable<DefectComment> query = (from d in _repository.Defects.Include("_comments").Include("_followers").ToList().AsQueryable()
+            IQueryable<DefectComment> query = (from d in _repository.Defects.Include("_comments").ToList().AsQueryable()
                                                from dc in d.DefectComments
-                                               from df in d.DefectFollowers
                                                orderby dc.CommentDate descending
                                                select dc).Take(commentNumber);
 
@@ -351,7 +350,7 @@ namespace IPS.Tracker.WCF
 
             foreach (Defect d in newDefects)
             {
-                defectsOpened.Add(new DefectCommentDTO() { CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate, DefectId = d.Id, DefectSummary = d.Summary, Text = "Reported", DefectDescription = d.Description });
+                defectsOpened.Add(new DefectCommentDTO() { Id = -d.Id, CommentatorName = d.Reporter.Name, CommentDate = d.DefectDate, DefectId = d.Id, DefectSummary = d.Summary, Text = "Reported", DefectDescription = d.Description });
             }
 
             List<DefectCommentDTO> result = comments.Union(defectsOpened).OrderByDescending(d => d.CommentDate).Take(commentNumber).ToList();
@@ -456,7 +455,7 @@ namespace IPS.Tracker.WCF
                 {
                     item.ReleaseVersion = GetReleaseVersion(item.ReleaseId);
                 }
-            }                                   
+            }
 
             return defectDTOList;
         }
@@ -500,6 +499,22 @@ namespace IPS.Tracker.WCF
             defect.ReleaseId = release.Id;
 
             _repository.Save();
+        }
+
+        public bool ReleaseVersionExists(string releaseVersion)
+        {
+            Release release = (from r in _repository.Releases
+                               where r.ReleaseVersion == releaseVersion
+                               select r).FirstOrDefault();
+
+            if (release != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
