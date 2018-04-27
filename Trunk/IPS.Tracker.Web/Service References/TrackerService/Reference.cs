@@ -999,6 +999,12 @@ namespace IPS.Tracker.Web.TrackerService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefectRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectReleaseResponse")]
         System.Threading.Tasks.Task SaveDefectReleaseAsync(string releaseVersion, int defectId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/ReleaseVersionExists", ReplyAction="http://tempuri.org/ITrackerService/ReleaseVersionExistsResponse")]
+        bool ReleaseVersionExists(string releaseVersion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/ReleaseVersionExists", ReplyAction="http://tempuri.org/ITrackerService/ReleaseVersionExistsResponse")]
+        System.Threading.Tasks.Task<bool> ReleaseVersionExistsAsync(string releaseVersion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1226,6 +1232,14 @@ namespace IPS.Tracker.Web.TrackerService {
         
         public System.Threading.Tasks.Task SaveDefectReleaseAsync(string releaseVersion, int defectId) {
             return base.Channel.SaveDefectReleaseAsync(releaseVersion, defectId);
+        }
+        
+        public bool ReleaseVersionExists(string releaseVersion) {
+            return base.Channel.ReleaseVersionExists(releaseVersion);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ReleaseVersionExistsAsync(string releaseVersion) {
+            return base.Channel.ReleaseVersionExistsAsync(releaseVersion);
         }
     }
 }
