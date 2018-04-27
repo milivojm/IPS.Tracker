@@ -86,5 +86,8 @@ namespace IPS.Tracker.WCF
 
         [OperationContract]
         void SaveDefectRelease(string releaseVersion, int defectId);
+
+        [OperationContract]
+        bool ReleaseVersionExists(string releaseVersion);
     }
 }

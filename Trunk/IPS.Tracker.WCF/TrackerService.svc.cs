@@ -500,5 +500,21 @@ namespace IPS.Tracker.WCF
 
             _repository.Save();
         }
+
+        public bool ReleaseVersionExists(string releaseVersion)
+        {
+            Release release = (from r in _repository.Releases
+                               where r.ReleaseVersion == releaseVersion
+                               select r).FirstOrDefault();
+
+            if (release != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

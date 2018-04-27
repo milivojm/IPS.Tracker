@@ -158,6 +158,12 @@
   <wsdl:message name="ITrackerService_SaveDefectRelease_OutputMessage">
     <wsdl:part name="parameters" element="tns:SaveDefectReleaseResponse" />
   </wsdl:message>
+  <wsdl:message name="ITrackerService_ReleaseVersionExists_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReleaseVersionExists" />
+  </wsdl:message>
+  <wsdl:message name="ITrackerService_ReleaseVersionExists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReleaseVersionExistsResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITrackerService">
     <wsdl:operation name="InitializeNewDefect">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/InitializeNewDefect" message="tns:ITrackerService_InitializeNewDefect_InputMessage" />
@@ -258,6 +264,10 @@
     <wsdl:operation name="SaveDefectRelease">
       <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/SaveDefectRelease" message="tns:ITrackerService_SaveDefectRelease_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/SaveDefectReleaseResponse" message="tns:ITrackerService_SaveDefectRelease_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReleaseVersionExists">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrackerService/ReleaseVersionExists" message="tns:ITrackerService_ReleaseVersionExists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrackerService/ReleaseVersionExistsResponse" message="tns:ITrackerService_ReleaseVersionExists_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TrackerServiceEndpoint" type="tns:ITrackerService">
@@ -480,6 +490,15 @@
     </wsdl:operation>
     <wsdl:operation name="SaveDefectRelease">
       <soap:operation soapAction="http://tempuri.org/ITrackerService/SaveDefectRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReleaseVersionExists">
+      <soap:operation soapAction="http://tempuri.org/ITrackerService/ReleaseVersionExists" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
