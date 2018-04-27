@@ -448,7 +448,17 @@ namespace IPS.Tracker.WCF
                         where d.DefectState != "CLS"
                         select d;
 
-            return Mapper.Map<List<DefectDTO>>(query.ToList());
+            List<DefectDTO> defectDTOList = Mapper.Map<List<DefectDTO>>(query.ToList());
+
+            foreach (var item in defectDTOList)
+            {
+                if (item.ReleaseId != null)
+                {
+                    item.ReleaseVersion = GetReleaseVersion(item.ReleaseId);
+                }
+            }                                   
+
+            return defectDTOList;
         }
 
         public List<ReleaseDTO> GetAllReleases()
