@@ -1,12 +1,19 @@
 ﻿var baseUrl = $('#last_comments').data('url');
 var croatianDateTimeFormat = new Intl.DateTimeFormat("hr-HR", { year: "numeric" , month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format;
 
-var CommentSelector = React.createClass({
-    selectOption: function (event){
+class CommentSelector extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.selectOption = this.selectOption.bind(this);
+    }
+
+    selectOption (event) {
         event.preventDefault();
         this.props.onCommentSelected(parseInt(event.target.text,10));        
-    },
-    render: function (){
+    }
+
+    render() {
         return (
             <div className="dropdown">
                 <button className="btn btn-default btn-sm dropdown-toggle pull-right" type="button" data-toggle="dropdown">
@@ -20,14 +27,15 @@ var CommentSelector = React.createClass({
             </div>
         );
     }
-});
+};
 
-var CommentResults = React.createClass({
-    render: function(){
+class CommentResults extends React.Component {
+    render() {
         var commentNodes = this.props.comments.map(function(comment){
             var localDate = croatianDateTimeFormat(new Date(comment.CommentDate));
+
             return (
-                <li className="media">
+                <li className="media" key={comment.Id} >
                     <div className="pull-left">                        
                         <span className="mega-octicon octicon-comment-discussion"></span>                        
                     </div>
@@ -46,21 +54,32 @@ var CommentResults = React.createClass({
             </ul>
         );
     }
-});
+}
 
-var LastComments = React.createClass({
-    getInitialState: function() {
-        return { numberOfComments: 20, results: [] };
-    },
-    handleCommentSelected: function (commentNo){
+class LastComments extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            numberOfComments: 20,
+            results: []
+        };
+
+        this.loadData = this.loadData.bind(this);
+        this.handleCommentSelected = this.handleCommentSelected.bind(this);
+    }
+
+    handleCommentSelected(commentNo) {
         this.setState({ numberOfComments: commentNo}, function(){
             this.loadData();
         });        
-    },
-    componentDidMount: function (){
+    }
+
+    componentDidMount() {
         this.loadData();
-    },
-    loadData: function(){
+    }
+
+    loadData() {
         $.ajax({
             dataType: "json",
             url: baseUrl + "api/home/GetLastComments",
@@ -69,8 +88,9 @@ var LastComments = React.createClass({
                 this.setState({results: data});
             }.bind(this)
         });
-    },
-    render: function () {
+    }
+
+    render () {
         return (
             <div>
                 <CommentSelector onCommentSelected={this.handleCommentSelected} selectedOption={this.state.numberOfComments} />
@@ -78,7 +98,7 @@ var LastComments = React.createClass({
             </div>
         );
     }
-});
+};
 
 ReactDOM.render(
     <LastComments />,
