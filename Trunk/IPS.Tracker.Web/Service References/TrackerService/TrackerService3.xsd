@@ -47,6 +47,7 @@
         <xs:element minOccurs="0" name="priority" type="xs:short" />
         <xs:element minOccurs="0" name="sprint" nillable="true" type="xs:int" />
         <xs:element minOccurs="0" name="state" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="releaseVersion" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -339,19 +340,6 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="GetReleaseVersionResult" nillable="true" type="xs:string" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SaveDefectRelease">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="releaseVersion" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="defectId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SaveDefectReleaseResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="ReleaseVersionExists">

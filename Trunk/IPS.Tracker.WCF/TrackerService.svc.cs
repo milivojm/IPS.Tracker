@@ -141,13 +141,19 @@ namespace IPS.Tracker.WCF
         }
 
         //DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state);
-        public DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state)
+        public DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state, string releaseVersion)
         {
             Worker.AllWorkers = _repository.Workers.ToList();
 
             Defect defect = (from d in _repository.Defects
                              where d.Id == id
                              select d).First();
+
+            Release release = (from r in _repository.Releases
+                               where r.ReleaseVersion == releaseVersion
+                               select r).FirstOrDefault();
+
+            defect.ReleaseId = release.Id;
 
             Worker assignee = _repository.Workers.First(w => w.Id == assigneeId);
             WorkOrder newWorkOrder = null;
@@ -485,21 +491,7 @@ namespace IPS.Tracker.WCF
             {
                 return result.ReleaseVersion;
             }
-        }
-
-        public void SaveDefectRelease(string releaseVersion, int defectId)
-        {
-            Defect defect = (from d in _repository.Defects
-                             where d.Id == defectId
-                             select d).First();
-            Release release = (from r in _repository.Releases
-                               where r.ReleaseVersion == releaseVersion
-                               select r).FirstOrDefault();
-
-            defect.ReleaseId = release.Id;
-
-            _repository.Save();
-        }
+        }        
 
         public bool ReleaseVersionExists(string releaseVersion)
         {

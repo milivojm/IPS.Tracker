@@ -302,9 +302,7 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 WorkerDTO currentWorker = GetCurrentWorker(client);
-                DefectDTO defect = client.SaveDefect(viewModel.Id, viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.SprintNumber, viewModel.StateDescription);
-
-                client.SaveDefectRelease(viewModel.ReleaseVersion, viewModel.Id);
+                DefectDTO defect = client.SaveDefect(viewModel.Id, viewModel.Summary, viewModel.Description, viewModel.SelectedWorkOrderId, viewModel.AssigneeId, currentWorker.Id, viewModel.SelectedPriorityId, viewModel.SprintNumber, viewModel.StateDescription, viewModel.ReleaseVersion);                
 
                 if (!String.IsNullOrEmpty(viewModel.EditCommentText))
                 {

@@ -863,10 +863,10 @@ namespace IPS.Tracker.Web.TrackerService {
         System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> ReportNewDefectAsync(string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int reporterId, short priority, System.Nullable<int> sprint, byte[] defectFile, string defectFileType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefect", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectResponse")]
-        IPS.Tracker.Web.TrackerService.DefectDTO SaveDefect(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state);
+        IPS.Tracker.Web.TrackerService.DefectDTO SaveDefect(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state, string releaseVersion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefect", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectResponse")]
-        System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> SaveDefectAsync(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state);
+        System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> SaveDefectAsync(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state, string releaseVersion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveReleaseResponse")]
         IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(string releaseVersion, System.Nullable<System.DateTime> date);
@@ -994,12 +994,6 @@ namespace IPS.Tracker.Web.TrackerService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/GetReleaseVersion", ReplyAction="http://tempuri.org/ITrackerService/GetReleaseVersionResponse")]
         System.Threading.Tasks.Task<string> GetReleaseVersionAsync(System.Nullable<int> releaseId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefectRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectReleaseResponse")]
-        void SaveDefectRelease(string releaseVersion, int defectId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/SaveDefectRelease", ReplyAction="http://tempuri.org/ITrackerService/SaveDefectReleaseResponse")]
-        System.Threading.Tasks.Task SaveDefectReleaseAsync(string releaseVersion, int defectId);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITrackerService/ReleaseVersionExists", ReplyAction="http://tempuri.org/ITrackerService/ReleaseVersionExistsResponse")]
         bool ReleaseVersionExists(string releaseVersion);
         
@@ -1050,12 +1044,12 @@ namespace IPS.Tracker.Web.TrackerService {
             return base.Channel.ReportNewDefectAsync(summary, description, workOrderId, assigneeId, reporterId, priority, sprint, defectFile, defectFileType);
         }
         
-        public IPS.Tracker.Web.TrackerService.DefectDTO SaveDefect(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state) {
-            return base.Channel.SaveDefect(id, summary, description, workOrderId, assigneeId, changedById, priority, sprint, state);
+        public IPS.Tracker.Web.TrackerService.DefectDTO SaveDefect(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state, string releaseVersion) {
+            return base.Channel.SaveDefect(id, summary, description, workOrderId, assigneeId, changedById, priority, sprint, state, releaseVersion);
         }
         
-        public System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> SaveDefectAsync(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state) {
-            return base.Channel.SaveDefectAsync(id, summary, description, workOrderId, assigneeId, changedById, priority, sprint, state);
+        public System.Threading.Tasks.Task<IPS.Tracker.Web.TrackerService.DefectDTO> SaveDefectAsync(int id, string summary, string description, System.Nullable<int> workOrderId, int assigneeId, int changedById, short priority, System.Nullable<int> sprint, string state, string releaseVersion) {
+            return base.Channel.SaveDefectAsync(id, summary, description, workOrderId, assigneeId, changedById, priority, sprint, state, releaseVersion);
         }
         
         public IPS.Tracker.Web.TrackerService.ReleaseDTO SaveRelease(string releaseVersion, System.Nullable<System.DateTime> date) {
@@ -1224,14 +1218,6 @@ namespace IPS.Tracker.Web.TrackerService {
         
         public System.Threading.Tasks.Task<string> GetReleaseVersionAsync(System.Nullable<int> releaseId) {
             return base.Channel.GetReleaseVersionAsync(releaseId);
-        }
-        
-        public void SaveDefectRelease(string releaseVersion, int defectId) {
-            base.Channel.SaveDefectRelease(releaseVersion, defectId);
-        }
-        
-        public System.Threading.Tasks.Task SaveDefectReleaseAsync(string releaseVersion, int defectId) {
-            return base.Channel.SaveDefectReleaseAsync(releaseVersion, defectId);
         }
         
         public bool ReleaseVersionExists(string releaseVersion) {

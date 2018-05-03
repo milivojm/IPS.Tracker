@@ -19,7 +19,7 @@ namespace IPS.Tracker.WCF
         DefectDTO ReportNewDefect(string summary, string description, int? workOrderId, int assigneeId, int reporterId, short priority, int? sprint, Byte[] defectFile, string defectFileType);
 
         [OperationContract]
-        DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state);
+        DefectDTO SaveDefect(int id, string summary, string description, int? workOrderId, int assigneeId, int changedById, short priority, int? sprint, string state, string releaseVersion);
 
         [OperationContract]
         ReleaseDTO SaveRelease(string releaseVersion, DateTime? date);
@@ -83,10 +83,7 @@ namespace IPS.Tracker.WCF
 
         [OperationContract]
         string GetReleaseVersion(int? releaseId);
-
-        [OperationContract]
-        void SaveDefectRelease(string releaseVersion, int defectId);
-
+        
         [OperationContract]
         bool ReleaseVersionExists(string releaseVersion);
     }
