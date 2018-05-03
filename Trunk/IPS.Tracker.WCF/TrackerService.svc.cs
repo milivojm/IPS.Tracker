@@ -148,12 +148,20 @@ namespace IPS.Tracker.WCF
             Defect defect = (from d in _repository.Defects
                              where d.Id == id
                              select d).First();
+            
+            if (releaseVersion != null)
+            {
+                Release release = (from r in _repository.Releases
+                                   where r.ReleaseVersion == releaseVersion
+                                   select r).FirstOrDefault();
 
-            Release release = (from r in _repository.Releases
-                               where r.ReleaseVersion == releaseVersion
-                               select r).FirstOrDefault();
-
-            defect.ReleaseId = release.Id;
+                defect.ReleaseId = release.Id;
+            }      
+            
+            else
+            {
+                defect.ReleaseId = null;
+            }      
 
             Worker assignee = _repository.Workers.First(w => w.Id == assigneeId);
             WorkOrder newWorkOrder = null;
