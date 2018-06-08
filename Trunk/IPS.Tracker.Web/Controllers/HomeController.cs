@@ -115,7 +115,7 @@ namespace IPS.Tracker.Web.Controllers
             using (TrackerServiceClient client = new TrackerServiceClient())
             {
                 List<DefectDTO> result;
-                result = client.GetAllOpenDefects();
+                result = client.GetAllOpenDefects().Where(d => !d.SprintNo.HasValue).ToList();
                 return View(result);
             }
         }
